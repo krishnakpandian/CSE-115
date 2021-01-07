@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/cse-115-frontend/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/cse-115-frontend/static/js/main.d67a1750.chunk.js",
-    "main.js.map": "/cse-115-frontend/static/js/main.d67a1750.chunk.js.map",
-    "runtime-main.js": "/cse-115-frontend/static/js/runtime-main.f0405c74.js",
-    "runtime-main.js.map": "/cse-115-frontend/static/js/runtime-main.f0405c74.js.map",
-    "static/js/2.45b791f5.chunk.js": "/cse-115-frontend/static/js/2.45b791f5.chunk.js",
-    "static/js/2.45b791f5.chunk.js.map": "/cse-115-frontend/static/js/2.45b791f5.chunk.js.map",
-    "static/js/3.59698090.chunk.js": "/cse-115-frontend/static/js/3.59698090.chunk.js",
-    "static/js/3.59698090.chunk.js.map": "/cse-115-frontend/static/js/3.59698090.chunk.js.map",
-    "index.html": "/cse-115-frontend/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/cse-115-frontend/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.45b791f5.chunk.js.LICENSE.txt": "/cse-115-frontend/static/js/2.45b791f5.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/cse-115-frontend/static/media/logo.6ce24c58.svg"
+    "main.css": "/CSE-115-frontend/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/CSE-115-frontend/static/js/main.d67a1750.chunk.js",
+    "main.js.map": "/CSE-115-frontend/static/js/main.d67a1750.chunk.js.map",
+    "runtime-main.js": "/CSE-115-frontend/static/js/runtime-main.4384ef8f.js",
+    "runtime-main.js.map": "/CSE-115-frontend/static/js/runtime-main.4384ef8f.js.map",
+    "static/js/2.45b791f5.chunk.js": "/CSE-115-frontend/static/js/2.45b791f5.chunk.js",
+    "static/js/2.45b791f5.chunk.js.map": "/CSE-115-frontend/static/js/2.45b791f5.chunk.js.map",
+    "static/js/3.59698090.chunk.js": "/CSE-115-frontend/static/js/3.59698090.chunk.js",
+    "static/js/3.59698090.chunk.js.map": "/CSE-115-frontend/static/js/3.59698090.chunk.js.map",
+    "index.html": "/CSE-115-frontend/index.html",
+    "static/css/main.8c8b27cf.chunk.css.map": "/CSE-115-frontend/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.45b791f5.chunk.js.LICENSE.txt": "/CSE-115-frontend/static/js/2.45b791f5.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/CSE-115-frontend/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f0405c74.js",
+    "static/js/runtime-main.4384ef8f.js",
     "static/js/2.45b791f5.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
     "static/js/main.d67a1750.chunk.js"
