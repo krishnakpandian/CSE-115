@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import dog from './Images/dog.jpg'
+import dog from '../assets/dog.jpg'
 class ResultBody extends Component {
   render() {
     return (
