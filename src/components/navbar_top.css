@@ -1,0 +1,16 @@
+
+.topnav {
+    overflow: hidden;
+    background-color: rgb(119, 119, 119);
+  }
+  
+.topnav a {
+    float: left;
+    color: #9a16ce;
+    text-align: center;
+    padding-left: 25px;
+    padding-bottom: 15px;
+    text-decoration: none;
+    font-size: 36px;
+    font-family: Arial, sans-serif
+}
