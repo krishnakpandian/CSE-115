@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import dog from '../assets/dog.jpg'
+import './result-body.css'
 class ResultBody extends Component {
   render() {
     return (
       <section>
         <div>
-          <img src={dog} className="Dog" onClick={this.imgClick}/> 
-          <img src={dog} className="Dog" onClick={this.imgClick}/> 
-          <img src={dog} className="Dog" onClick={this.imgClick}/> 
-          <img src={dog} className="Dog" onClick={this.imgClick}/> 
-          <img src={dog} className="Dog" onClick={this.imgClick}/> 
-          <img src={dog} className="Dog" onClick={this.imgClick}/> 
- 
+          <img src={dog} className="Box1" onClick={this.imgClick}/> 
+          <img src={dog} className="Box2" onClick={this.imgClick}/> 
+          <img src={dog} className="Box3" onClick={this.imgClick}/> 
+          <img src={dog} className="Box4" onClick={this.imgClick}/> 
+          <img src={dog} className="Box5" onClick={this.imgClick}/> 
+          <img src={dog} className="Box6" onClick={this.imgClick}/> 
         </div>
         <div>
-          <button onClick={this.backClick}>Back</button>
-          <button onClick={this.nextClick}>Next</button>
+          <button className="Back" onClick={this.backClick}>Back</button>
+          <button className="Next" onClick={this.nextClick}>Next</button>
         </div>
       </section>
    );
