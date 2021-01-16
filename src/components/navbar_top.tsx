@@ -5,7 +5,7 @@ import "../bulma.css"
 class NavbarTop extends Component {
   render() {
     return (
-      <nav className="navbar is-fixed-top has-background-danger" role="navigation" aria-label="main navigation">
+      <nav className="navbar has-background-danger" id="top_navbar"role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <h1 className="navbar-item title is-1">
             We-Locate
