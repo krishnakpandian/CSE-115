@@ -1,24 +1,58 @@
 import React, { Component } from "react";
-import dog from '../assets/dog.jpg'
-import './result-body.css'
+import dog from '../assets/dog2.jpg'
+import "../bulma.css"
+import "./result-body.css"
+
+// ResultBody Contains the 6 rectangles that will host the results of a search
+// Also contains the back and next buttons
+// Back and next button call backClick() and nextClick() respectively
+// Clicking on an image calls imgClick()
+// Formatted using bulma columns, split into three columns
+// Each column has two images on them with automatically stacked on the other
+// The first and third column have the back and next button on the bottom respectively
+
+// Columns currently in use but tiles might be better later when bringing in data
+
 class ResultBody extends Component {
   render() {
     return (
       <section>
-        <div>
-          <img src={dog} className="Box1" onClick={this.imgClick}/> 
-          <img src={dog} className="Box2" onClick={this.imgClick}/> 
-          <img src={dog} className="Box3" onClick={this.imgClick}/> 
-          <img src={dog} className="Box4" onClick={this.imgClick}/> 
-          <img src={dog} className="Box5" onClick={this.imgClick}/> 
-          <img src={dog} className="Box6" onClick={this.imgClick}/> 
+
+        <div className="columns">
+
+          <div className="column">
+            <figure className="image">
+              <img src={dog} onClick={this.imgClick} />
+            </figure>
+            <figure className="image">
+              <img src={dog} onClick={this.imgClick} />
+            </figure>
+            <button className="button" onClick={this.backClick}>Back</button>
+          </div>
+
+          <div className="column">
+            <figure className="image">
+              <img src={dog} onClick={this.imgClick} />
+            </figure>
+            <figure className="image">
+              <img src={dog} onClick={this.imgClick} />
+            </figure>
+          </div>
+
+          <div className="column">
+            <figure className="image">
+              <img src={dog} onClick={this.imgClick} />
+            </figure>
+            <figure className="image">
+              <img src={dog} onClick={this.imgClick} />
+            </figure>
+            <button className="button" onClick={this.nextClick}>Next</button>
+          </div>
+
         </div>
-        <div>
-          <button className="Back" onClick={this.backClick}>Back</button>
-          <button className="Next" onClick={this.nextClick}>Next</button>
-        </div>
-      </section>
-   );
+
+      </section >
+    );
   }
 
   backClick() {
