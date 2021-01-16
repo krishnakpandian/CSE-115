@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SearchBar from './SearchBar';
+import SearchButton from './SearchButton';
 import './Search.css';
 
 const Search = () => {
@@ -16,6 +17,7 @@ const Search = () => {
         keyword={input}
         setKeyword={updateInput}
       />
+      <SearchButton />
     </div>
   );
 };
