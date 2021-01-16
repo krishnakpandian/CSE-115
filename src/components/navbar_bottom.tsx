@@ -5,7 +5,7 @@ import "../bulma.css"
 class NavbarBottom extends Component {
   render() {
     return (
-      <nav className="navbar is-fixed-bottom has-background-danger" id="bottom_navbar" role="navigation" aria-label="footer navigation">
+      <nav className="navbar has-background-danger" id="bottom_navbar" role="navigation" aria-label="footer navigation">
         <div className="navbar-end">
           <div className="navbar-item">
             <p>About Us</p>
