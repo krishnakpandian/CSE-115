@@ -10,9 +10,8 @@ function App() {
   return (
     <div className="App">
       <NavbarTop />
-      <div>
       <Search />
-      </div>
+      <ResultBody />
       <NavbarBottom />
     </div>
   );
