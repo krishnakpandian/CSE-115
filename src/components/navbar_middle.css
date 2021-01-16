@@ -1,4 +1,6 @@
 #middle_navbar {
     border-radius: 15px;
     background-color:mediumslateblue;
+    height: 4.5rem !important;
+    min-height: unset;
 }
