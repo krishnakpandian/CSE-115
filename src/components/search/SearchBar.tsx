@@ -2,11 +2,12 @@ import './SearchBar.css';
 
 const SearchBar = ({ keyword, setKeyword }) => {
   return (
-    <div className='SearchBar'>
+    <div className='SearchBar control'>
       <input
-        id='barStyle'
+        className='input is-info'
+        type='text'
+        placeholder='search location'
         value={keyword}
-        placeholder={"search location"}
         onChange={(e) => setKeyword(e.target.value)}
       />
     </div>
