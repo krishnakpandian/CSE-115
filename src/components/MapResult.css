@@ -1,0 +1,10 @@
+.MapResult {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.googleMap {
+  width: 50%;
+  height: 30rem;
+}
