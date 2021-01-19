@@ -1,9 +1,9 @@
 import './SearchButton.css';
 
-const SearchButton = () => {
+const SearchButton = ({ buttonClick }) => {
   return (
     <div className='SearchButton'>
-      <button className="button is-primary" onClick={() => console.log("search button")}>Search</button>
+      <button className="button is-primary" onClick={() => buttonClick()}>Search</button>
     </div>
   );
 };

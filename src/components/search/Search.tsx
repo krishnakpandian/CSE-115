@@ -6,9 +6,14 @@ import './Search.css';
 const Search = () => {
   const [input, setInput] = useState('');
 
+  // live update of search bar
   const updateInput = async (input) => {
-    console.log(input);
     setInput(input);
+  }
+
+  const buttonClick = () => {
+    console.log("You searched: " + input);
+    setInput('');
   }
 
   return (
@@ -17,7 +22,9 @@ const Search = () => {
         keyword={input}
         setKeyword={updateInput}
       />
-      <SearchButton />
+      <SearchButton
+        buttonClick={buttonClick}
+      />
     </div>
   );
 };
