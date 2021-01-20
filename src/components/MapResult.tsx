@@ -6,7 +6,7 @@ import GoogleMapReact from 'google-map-react';
 const MapResult = ({ location, zoomLevel }) => {
   return (
     <div className='MapResult'>
-      <div className="googleMap">
+      <div className="googleMap columns">
         <GoogleMapReact
           bootstrapURLKeys={{ key: '' }}
           defaultCenter={location}
