@@ -20,8 +20,8 @@ const App = () => {
     <div className="App">
       <NavbarTop />
       <Search />
-      <NavbarMiddle />
       <MapResult location={location} zoomLevel={17} />
+      <NavbarMiddle />
       <ResultBody />
       <NavbarBottom />
     </div>
