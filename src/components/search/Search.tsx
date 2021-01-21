@@ -35,12 +35,10 @@ const Search = () => {
     if (input === '') {
       console.log("blank search");
     } else {
-      setInput('');
-      // Below is example use of the function
-      request("San Jose", 300, 2).then(res => {
-        // Takes about five-ten seconds
+      request(input, radius, people).then(res => {
         console.log(res);
       });
+      setInput('');
     }
   }
 
