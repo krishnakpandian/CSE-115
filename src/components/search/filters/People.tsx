@@ -1,6 +1,6 @@
 import './People.css';
 
-const People = () => {
+const People = ({ currentPeop, setCurrentPeop }) => {
   return (
     <div className='People'>
       people filter

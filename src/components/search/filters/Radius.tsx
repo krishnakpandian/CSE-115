@@ -1,6 +1,6 @@
 import './Radius.css';
 
-const Radius = () => {
+const Radius = ({ currentRad, setCurrentRad }) => {
   return (
     <div className='Radius'>
       radius filter
