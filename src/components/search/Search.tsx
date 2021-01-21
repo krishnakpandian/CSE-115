@@ -1,36 +1,68 @@
 import { useState } from 'react';
+import { request } from '../request';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
+import Radius from './filters/Radius';
+import People from './filters/People';
 import './Search.css';
-import { request } from '../request';
 
 const Search = () => {
   const [input, setInput] = useState('');
+  const [radius, setRadius] = useState(10);
+  const [people, setPeople] = useState(1);
 
   // live update of search bar
-  const updateInput = async (input) => {
+  const updateInput = (input) => {
     setInput(input);
   }
 
+  // live update of radius
+  const updateRadius = (radius) => {
+    setRadius(parseInt(radius));
+  }
+
+  // live update of number of people
+  const updatePeople = (people) => {
+    setPeople(parseInt(people));
+  }
+
   const buttonClick = () => {
-    console.log("You searched: " + input);
-    setInput('');
-    // Below is example use of the function
-    request("San Jose", 300, 2).then(res => {
-      // Takes about five-ten seconds
-      console.log(res);
-    });
+    // for testing, delete later
+    console.log("Searched: " + input);
+    console.log("Radius: " + radius);
+    console.log("People: " + people);
+
+    if (input === '') {
+      console.log("blank search");
+    } else {
+      request(input, radius, people).then(res => {
+        console.log(res);
+      });
+      setInput('');
+    }
   }
 
   return (
     <div className="Search">
-      <SearchBar
-        keyword={input}
-        setKeyword={updateInput}
-      />
-      <SearchButton
-        buttonClick={buttonClick}
-      />
+      <div className='Inputs'>
+        <SearchBar
+          keyword={input}
+          setKeyword={updateInput}
+        />
+        <SearchButton
+          buttonClick={buttonClick}
+        />
+      </div>
+      <div className='Filters'>
+        <Radius
+          currentRad={radius}
+          setCurrentRad={updateRadius}
+        />
+        <People
+          currentPeop={people}
+          setCurrentPeop={updatePeople}
+        />
+      </div>
     </div>
   );
 };
