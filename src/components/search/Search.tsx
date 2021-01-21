@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { request } from '../request';
 import SearchBar from './SearchBar';
 import SearchButton from './SearchButton';
+import Radius from './filters/Radius';
+import People from './filters/People';
 import './Search.css';
-import { request } from '../request';
 
 const Search = () => {
   const [input, setInput] = useState('');
