@@ -8,7 +8,7 @@ import './Search.css';
 
 const Search = () => {
   const [input, setInput] = useState('');
-  const [radius, setRadius] = useState(25);
+  const [radius, setRadius] = useState(10);
   const [people, setPeople] = useState(1);
 
   // live update of search bar
@@ -18,12 +18,12 @@ const Search = () => {
 
   // live update of radius
   const updateRadius = (radius) => {
-    setRadius(radius);
+    setRadius(parseInt(radius));
   }
 
   // live update of number of people
   const updatePeople = (people) => {
-    setPeople(people);
+    setPeople(parseInt(people));
   }
 
   const buttonClick = () => {
@@ -32,12 +32,16 @@ const Search = () => {
     console.log("Radius: " + radius);
     console.log("People: " + people);
 
-    setInput('');
-    // Below is example use of the function
-    request("San Jose", 300, 2).then(res => {
-      // Takes about five-ten seconds
-      console.log(res);
-    });
+    if (input === '') {
+      console.log("blank search");
+    } else {
+      setInput('');
+      // Below is example use of the function
+      request("San Jose", 300, 2).then(res => {
+        // Takes about five-ten seconds
+        console.log(res);
+      });
+    }
   }
 
   return (
