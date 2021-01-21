@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
 
 
+#prompt_bar {
+  background-color: white;
+}
 
 #top_navbar {
   height: 5rem !important;
@@ -19,4 +22,20 @@
   border: none;
   background: none;
   padding-left: 1rem;
+}
+
+#about_section {
+  margin-top: 12rem;
+  margin-bottom: 12rem;
+  margin-left:2rem;
+  margin-right:2rem;
+}
+
+.is-horizontal-center {
+  justify-content: center;
+}
+
+#info_card {
+  border-bottom-left-radius:
+      0px 0px 0px 0px rgba(0, 0, 0, 0.5);
 }
