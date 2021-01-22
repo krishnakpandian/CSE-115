@@ -1,0 +1,22 @@
+{
+    "results": [
+        {
+            "cityName": "San Jose",
+            "distance": 20,
+            "travelTime": 40.2,
+            "averageCost": 1879.99
+        },
+        {
+            "cityName": "Dublin",
+            "distance": 60,
+            "averageCost": 1879.99
+        },
+        {
+            "cityName": "Santa Clara",
+            "distance": 30,
+            "travelTime": 40.2
+        }
+    ],
+    "statusCode": 200,
+    "message": "Success"
+}
