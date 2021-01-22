@@ -8,7 +8,7 @@ import NavbarMiddle from "./components/navbar_middle";
 import ResultBody from './components/result-body';
 import Search from './components/search/Search';
 import MapResult from './components/MapResult';
-
+import data from './components/sampleReturn.json';
 const location = {
   // temporary for google maps, delete later
   address: '1600 Amphitheatre Parkway, Mountain View, california.',
@@ -36,7 +36,7 @@ const App = () => {
       <Search cities={cities} setCities={updateCities} />
       <MapResult location={location} zoomLevel={17} />
       <NavbarMiddle />
-      <ResultBody />
+      <ResultBody {...data}/>
       <NavbarBottom />
     </div>
   );
