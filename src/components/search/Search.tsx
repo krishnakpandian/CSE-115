@@ -6,7 +6,7 @@ import Radius from './filters/Radius';
 import People from './filters/People';
 import './Search.css';
 
-const Search = () => {
+const Search = params  => {
   const [input, setInput] = useState('');
   const [radius, setRadius] = useState(10);
   const [people, setPeople] = useState(1);
@@ -37,6 +37,7 @@ const Search = () => {
     } else {
       request(input, radius, people).then(res => {
         console.log(res);
+        params.setData(res);
       });
       setInput('');
     }
