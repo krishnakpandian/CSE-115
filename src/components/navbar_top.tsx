@@ -65,7 +65,7 @@ class NavbarTop extends React.Component<props,state> {
               <figure className='image is-64x64'><img src={form_logo}></img></figure>
             </div>
             <h1 className="title is-2"> Search </h1>
-            <p className="is-size-3">Enter an address to receive vital information
+            <p className="is-size-4">Enter an address to receive vital information
               about cost of living, traffic, and distances to 
               places to visit.
             </p>
@@ -77,7 +77,7 @@ class NavbarTop extends React.Component<props,state> {
               <figure className='image is-64x64'><img src={apartment_logo}></img></figure>
             </div>
             <h1 className="title is-2"> Choose </h1>
-            <p className="is-size-3">Pick a place that fits your creteria from the results
+            <p className="is-size-4">Pick a place that fits your creteria from the results
               and save it along with other relevant links. 
             </p>
           </div>
@@ -88,7 +88,7 @@ class NavbarTop extends React.Component<props,state> {
                 <figure className='image is-64x64'><img src={truck_logo}></img></figure>
               </div>
               <h1 className="title is-2"> Relocate </h1>
-              <p className="is-size-3">Now that you are informed and prepared, it is time to make your 
+              <p className="is-size-4">Now that you are informed and prepared, it is time to make your 
                 life-changing move. 
               </p>
               
