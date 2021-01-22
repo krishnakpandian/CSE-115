@@ -16,24 +16,41 @@ const location = {
   lng: -122.08427,
 }
 
-const App = () => {
-  const [cities, setCities] = useState<Array<object>>([]);
+interface results {
+  cityName: string,
+  distance?: number,
+  travelTime?: number,
+  averageCost?: number
+}
 
-  // update of cities
-  const updateCities = (results) => {
-    setCities(results);
+interface props {
+  results: results[],
+  statusCode: number,
+  message: string
+}
+
+const App = () => {
+  const [data, setData] = useState<props>({
+    results: [],
+    statusCode: 0,
+    message:"",
+  });
+
+  // update of data
+  const updateData = (results) => {
+    setData(results);
   }
 
   // Just checking cities is updated correctly
   //    Whenever cities updates, print to console
   useEffect(() => {
-    console.log(cities);
-  }, [cities]);
+    console.log(data);
+  }, [data]);
 
   return (
     <div className="App">
       <NavbarTop />
-      <Search cities={cities} setCities={updateCities} />
+      <Search data={data} setData={updateData} />
       <MapResult location={location} zoomLevel={17} />
       <NavbarMiddle />
       <ResultBody {...data}/>

@@ -1,5 +1,22 @@
+interface results {
+    cityName: string,
+    distance?: number,
+    travelTime?: number,
+    averageCost?: number
+  }
+  
+  interface props {
+    results: results[],
+    statusCode: number,
+    message: string
+  }
+
 export async function request(city: string, radius_of_results: number, number_of_people: number){
-    let results: object[] = [];
+    let response: props = {
+        results: [],
+        statusCode: 0,
+        message:"",
+    };
     let values = {
         'place': city,
         'radius': radius_of_results,
@@ -10,9 +27,10 @@ export async function request(city: string, radius_of_results: number, number_of
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
         }).then(res => res.json()).then(data => {
-            results = data['results'];
-        
+            response.results = data['results'];
+            response.statusCode = data['statusCode'];
+            response.message = data['message'];
     });
-    console.log(results);
-    return results;
+    console.log(response);
+    return response;
 }

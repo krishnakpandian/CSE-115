@@ -37,7 +37,7 @@ const Search = params  => {
     } else {
       request(input, radius, people).then(res => {
         console.log(res);
-        params.setCities(res);
+        params.setData(res);
       });
       setInput('');
     }
