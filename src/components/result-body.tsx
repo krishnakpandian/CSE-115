@@ -13,7 +13,7 @@ import "./result-body.css"
 
 // Columns currently in use but tiles might be better later when bringing in data
 
-class ResultBody extends Component {
+class resultBody extends Component {
   render() {
     return (
       <section>
@@ -68,4 +68,41 @@ class ResultBody extends Component {
   }
 
 }
+
+
+
+interface results{
+  cityName: string,
+  distance?: number,
+  travelTime?: number,
+  averageCost?: number
+}
+
+interface props{
+  results: results[],
+  statusCode: number,
+  message: string
+}
+
+const ResultBody: React.FC<props> = ( {results, statusCode, message} ) => {
+    console.log(results);
+    return(
+      <>
+        <div className="result-container">
+            component Renders
+            { results.map( (result) => {
+                return(
+                  <>
+                    <div>
+                        Hello
+                    </div>
+                  </>
+                )
+            })}
+        </div>
+      </>
+    )
+}
+
+
 export default ResultBody;
