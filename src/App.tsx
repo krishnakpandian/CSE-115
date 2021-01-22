@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from 'react';
 import "./App.css";
 import "./bulma.css"
 import NavbarTop from "./components/navbar_top";
@@ -16,10 +17,23 @@ const location = {
 }
 
 const App = () => {
+  const [cities, setCities] = useState<Array<object>>([]);
+
+  // update of cities
+  const updateCities = (results) => {
+    setCities(results);
+  }
+
+  // Just checking cities is updated correctly
+  //    Whenever cities updates, print to console
+  useEffect(() => {
+    console.log(cities);
+  }, [cities]);
+
   return (
     <div className="App">
       <NavbarTop />
-      <Search />
+      <Search cities={cities} setCities={updateCities} />
       <MapResult location={location} zoomLevel={17} />
       <NavbarMiddle />
       <ResultBody />
