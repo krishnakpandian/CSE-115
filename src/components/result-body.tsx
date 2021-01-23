@@ -4,20 +4,23 @@ import dog from '../assets/dog2.jpg'
 import "../bulma.css"
 import "./result-body.css"
 
-interface results {
+export interface results {
   cityName: string,
   distance?: number,
   travelTime?: number,
   averageCost?: number
 }
 
-interface props {
+export interface props {
   results: results[],
   statusCode: number,
-  message: string
+  message: string,
+  lat: number,
+  lng: number,
+  address: string
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message }) => {
+const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }) => {
   console.log(results);
   return (
     <>
