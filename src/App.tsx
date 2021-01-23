@@ -9,7 +9,9 @@ import ResultBody from './components/result-body';
 import Search from './components/search/Search';
 import MapResult from './components/MapResult';
 import data from './components/sampleReturn.json';
+import {results, props} from "./components/result-body";
 
+/*
 interface results {
   cityName: string,
   distance?: number,
@@ -20,23 +22,30 @@ interface results {
 interface props {
   results: results[],
   statusCode: number,
-  message: string
+  message: string,
+  lat: number,
+  lng: number,
+  address: string
 }
+*/
 
 const App = () => {
   const [data, setData] = useState<props>({
     results: [],
     statusCode: 0,
     message:"",
+    lat: 0,
+    lng: 0,
+    address: ""
   });
 
   // update of data
-  const updateData = (results) => {
-    setData(results);
+  const updateData = (res: props) => {
+    setData(res);
   }
 
-  // Just checking cities is updated correctly
-  //    Whenever cities updates, print to console
+  // Just checking data is updated correctly
+  //    Whenever data updates, print to console
   useEffect(() => {
     console.log(data);
   }, [data]);
