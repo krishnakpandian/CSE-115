@@ -6,7 +6,7 @@ const People = ({ currentPeop, setCurrentPeop }) => {
       <div className="field subtitle is-6">
         People
         <div className="control">
-          <div className="select is-info">
+          <div className="select is-primary">
             <select value={currentPeop} onChange={(e) => setCurrentPeop(e.target.value)}>
               <option>1</option>
               <option>2</option>

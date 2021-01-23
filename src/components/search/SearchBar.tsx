@@ -4,7 +4,7 @@ const SearchBar = ({ keyword, setKeyword }) => {
   return (
     <div className='SearchBar control'>
       <input
-        className='input is-info'
+        className='input is-primary is-medium'
         type='text'
         placeholder='search location'
         value={keyword}

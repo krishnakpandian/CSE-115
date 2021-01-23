@@ -6,7 +6,7 @@ const Radius = ({ currentRad, setCurrentRad }) => {
       <div className="field subtitle is-6">
         Radius
         <div className="control">
-          <div className="select is-info">
+          <div className="select is-primary">
             <select value={currentRad} onChange={(e) => setCurrentRad(e.target.value)}>
               <option value='10'>within 10 km</option>
               <option value='25'>within 25 km</option>
