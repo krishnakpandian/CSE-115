@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { request } from '../request';
 import SearchBar from './SearchBar';
-import SearchButton from './SearchButton';
 import Radius from './filters/Radius';
 import People from './filters/People';
 import './Search.css';
@@ -34,7 +33,6 @@ const Search = params => {
         console.log(res);
         params.setData(res);
       });
-      setInput('');
     }
   }
 
@@ -44,8 +42,6 @@ const Search = params => {
         <SearchBar
           keyword={input}
           setKeyword={updateInput}
-        />
-        <SearchButton
           buttonClick={buttonClick}
         />
       </div>
