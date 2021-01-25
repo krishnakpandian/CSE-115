@@ -3,14 +3,34 @@ import GoogleMapReact from 'google-map-react';
 
 // https://blog.logrocket.com/a-practical-guide-to-integrating-google-maps-in-react/
 
-const MapResult = ({ location, zoomLevel }) => {
+const location = {
+  // temporary for google maps, delete later
+  address: '1600 Amphitheatre Parkway, Mountain View, california.',
+  lat: 37.42216,
+  lng: -122.08427,
+}
+
+interface results {
+  cityName: string,
+  distance?: number,
+  travelTime?: number,
+  averageCost?: number
+}
+
+interface props {
+  results: results[],
+  statusCode: number,
+  message: string
+}
+
+const MapResult = ({ results, statusCode, message }) => {
   return (
     <div className='MapResult'>
       <div className="googleMap columns">
         <GoogleMapReact
           bootstrapURLKeys={{ key: '' }}
           defaultCenter={location}
-          defaultZoom={zoomLevel}
+          defaultZoom={17}
         >
         </GoogleMapReact>
       </div>
