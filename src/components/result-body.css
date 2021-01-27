@@ -9,5 +9,27 @@
 
 .card {
   width: 350px;
-  height: 305px;
+  height: 350px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.title {
+  margin-top: 2vh;
+}
+
+.card-content {
+  padding: 0 2rem 2rem;
+}
+
+.card-content li {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.card-content li:not(:last-child) {
+  border-bottom: 1px solid rgb(24, 21, 21);
 }

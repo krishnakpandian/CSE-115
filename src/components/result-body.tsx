@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
-import dog from '../assets/dog2.jpg'
 import "../bulma.css"
 import "./result-body.css"
 
@@ -31,25 +30,41 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
               <div className="title">
                 {result.cityName}
               </div>
-              <div className="card-content distance">
-                {result.distance} Miles
-                </div>
-              <div className="card-content averageCost">
-                ${result.averageCost}
+              <div className="card-content">
+                <li>{result.distance} Miles</li>
+                <li>{cost(result.averageCost)}</li>
+                <li>{travel(result.travelTime)}</li>
               </div>
-              <div className="card-content travelTime">
-                {result.travelTime} Minutes
-              </div>
-              <div className="card-footer">
-                <p className="card-footer-item">
-                  View
-                </p>
-              </div>
+              <a href="#" className="button">
+                View
+              </a>
             </div>
           )
         })}
       </div>
     </>
   )
+
+  // Checks if the travelTime exists
+  function travel(param) {
+    if (param != null) {
+      return param + " Minutes"
+    }
+    else {
+      return "Time unavailable"
+    }
+  }
+
+  // Checks if the averageCost exists
+  function cost(param) {
+    if (param != null) {
+      return "$" + param
+    }
+    else {
+      return "Price unavailable"
+    }
+  }
 }
+
+
 export default ResultBody;
