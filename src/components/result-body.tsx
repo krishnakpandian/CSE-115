@@ -35,9 +35,15 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <li>{cost(result.averageCost)}</li>
                 <li>{travel(result.travelTime)}</li>
               </div>
-              <a href="#" className="button">
-                View
-              </a>
+              <footer className="card-footer">
+
+                <a href="#" className="card-footer-item">
+                  View
+                </a>
+                <a href="#" className="card-footer-item">
+                  Save
+                </a>
+              </footer>
             </div>
           )
         })}
