@@ -48,7 +48,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
   // Checks if the travelTime exists
   function travel(param) {
     if (param != null) {
-      return param + " Minutes"
+      return param
     }
     else {
       return "Time unavailable"
@@ -57,7 +57,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
 
   // Checks if the averageCost exists
   function cost(param) {
-    if (param != null) {
+    if (param != -1) {
       return "$" + param
     }
     else {
