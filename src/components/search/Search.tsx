@@ -32,6 +32,7 @@ const Search = params => {
       request(input, radius, people).then(res => {
         console.log(res);
         params.setData(res);
+        setInput(res.address);
       });
     }
   }
