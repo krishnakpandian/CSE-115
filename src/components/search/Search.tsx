@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { request } from '../Request/request';
 import SearchBar from './SearchBar';
-import Radius from './filters/Radius';
-import People from './filters/People';
+import Radius from './Filters/Radius';
+import People from './Filters/People';
 import './Search.css';
 
 const Search = params => {
@@ -45,7 +45,7 @@ const Search = params => {
           buttonClick={buttonClick}
         />
       </div>
-      <div className='Filters'>
+      <div className='Inputs'>
         <Radius
           currentRad={radius}
           setCurrentRad={updateRadius}

@@ -6,10 +6,11 @@ import NavbarTop from "./components/NavBar/navbar_top";
 import NavbarBottom from "./components/NavBar/navbar_bottom";
 import NavbarMiddle from "./components/NavBar/navbar_middle";
 import ResultBody from './components/Results/result-body';
-import Search from './components/search/Search';
+import Search from './components/Search/Search';
 import MapResult from './components/Request/MapResult';
 import {results, props} from "./components/Results/result-body";
 import Routes from './Routes/Route';
+
 /*
 interface results {
   cityName: string,

@@ -40,7 +40,7 @@ export async function request(city: string, radius_of_results: number, number_of
             response.statusCode = data['statusCode'];
             response.message = data['message'];
             response.lat = data['lat'];
-            response.lat = data['lng'];
+            response.lng = data['lng'];
             response.address = data['address'];
     });
     console.log(response);

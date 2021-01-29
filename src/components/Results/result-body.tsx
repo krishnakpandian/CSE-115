@@ -24,9 +24,9 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
   return (
     <>
       <div className="result-container">
-        {results.map((result) => {
+        {results.map((result, index) => {
           return (
-            <div className="card">
+            <div className="card" key={index}>
               <div className="title">
                 {result.cityName}
               </div>

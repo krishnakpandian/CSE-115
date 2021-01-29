@@ -99,7 +99,7 @@ class NavbarTop extends React.Component<props,state> {
       <div className="container is-widescreen">
         <div className="notification" id="prompt_bar">
           <h1 className="navbar-item title is-1 is-flex is-horizontal-center" id="prompt_text">
-            Begin Your Search: 
+            Begin Your Search 
           </h1>
         </div>
       </div>
