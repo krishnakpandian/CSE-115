@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { request } from '../request';
+import { request } from '../Request/request';
 import SearchBar from './SearchBar';
 import Radius from './filters/Radius';
 import People from './filters/People';

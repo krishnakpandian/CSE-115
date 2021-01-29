@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
-import "../bulma.css"
+import "../../bulma.css"
 import "./result-body.css"
 
 export interface results {
