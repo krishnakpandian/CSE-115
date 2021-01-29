@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import './navbar_middle.css'
-import "../bulma.css"
+import "../../bulma.css"
 
-class NavbarMiddle extends Component {
-  render() {
+const NavbarMiddle = () => {
     return (
       <div className="container is-widescreen" id="middle_navbar">
         <div className="notification" id="info_bar">
@@ -13,6 +12,6 @@ class NavbarMiddle extends Component {
         </div>
       </div>
    );
-  }
 }
+
 export default NavbarMiddle;
