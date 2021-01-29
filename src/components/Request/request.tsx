@@ -1,4 +1,4 @@
-import {results, props} from "./result-body";
+import {results, props} from "../Results/result-body";
 /*
 interface results {
     cityName: string,
