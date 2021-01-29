@@ -8,7 +8,6 @@ import NavbarMiddle from "./components/navbar_middle";
 import ResultBody from './components/result-body';
 import Search from './components/search/Search';
 import MapResult from './components/MapResult';
-import data from './components/sampleReturn.json';
 import {results, props} from "./components/result-body";
 
 /*
