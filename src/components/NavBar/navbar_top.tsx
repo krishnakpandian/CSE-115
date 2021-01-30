@@ -5,17 +5,43 @@ import truck_logo from '../../assets/moving_truck.png'
 import form_logo from '../../assets/form_icon.png'
 import apartment_logo from '../../assets/apartment_icon.png'
 
-type state = { collapsed: boolean };
-type props = {};
-class NavbarTop extends React.Component<props,state> {
+type state = { collapsed: boolean,
+              signupCollapsed: boolean
+              email: string,
+              password: string };
+type props = { };
+
+class NavbarTop extends React.Component<{}, any> {
 
   constructor(props) {
     super(props);
-    this.state = { collapsed: true };
+    this.state = { collapsed: true,
+                  signupCollapsed: true,
+                  email: "",
+                  password: "" };
+    this.handleEmail = this.handleEmail.bind(this);
   }
 
   handleToggle() {
     this.setState({ collapsed: !this.state.collapsed });
+  }
+
+  handleSignup() {
+    this.setState({ signupCollapsed: !this.state.signupCollapsed });
+  }
+
+  handleEmail(e){
+    this.setState({[e.target.name]:e.target.value});
+    console.log(e.target.value);
+  }
+
+  handlePassword({target}){
+    this.setState({ password: target})
+  }
+
+  signUpClick() {
+    console.log("Sign up vals: ");
+    console.log(this.state.email, this.state.password);
   }
 
   render() {
@@ -58,6 +84,31 @@ class NavbarTop extends React.Component<props,state> {
         </div>
       </nav> 
       
+      <form action="" className="box">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left">
+                <input name="emBox" type="email" placeholder="e.g. bobsmith@gmail.com" className="input" required
+                 onChange={this.handleEmail}>
+              
+                </input>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left">
+                <input name="password" type="password" placeholder="*******" className="input" required 
+                >
+                </input>
+              </div>
+            </div>
+            <div className="field">
+              <button value="Send" className="button is-success" onClick={this.signUpClick}>
+                Login
+              </button>
+            </div>
+          </form>
+
       <div className="columns is-centered" id="about_section">
         <div className="column is-one-third">
           <div id="info_card">
@@ -111,8 +162,6 @@ class NavbarTop extends React.Component<props,state> {
   logInClick() {
     console.log("Login button has been pressed.");
   }
-  signUpClick() {
-    console.log("Sign up button has been pressed.");
-  }
+  
 }
 export default NavbarTop;
