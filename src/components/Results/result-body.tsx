@@ -19,14 +19,14 @@ export interface props {
   address: string
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }) => {
+const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
   console.log(results);
   return (
     <>
       <div className="result-container">
-        {results.map((result, index) => {
+        {results.map((result,i) => {
           return (
-            <div className="card" key={index}>
+            <div className="card" key={i}>
               <div className="title">
                 {result.cityName}
               </div>

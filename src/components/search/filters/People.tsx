@@ -1,6 +1,12 @@
+import React from 'react'
 import './People.css';
 
-const People = ({ currentPeop, setCurrentPeop }) => {
+interface props {
+  currentPeop: any,
+  setCurrentPeop: any
+}
+
+const People: React.FC<props> = ({ currentPeop, setCurrentPeop }: props) => {
   return (
     <div className='People field has-addons'>
       <div className='control'>

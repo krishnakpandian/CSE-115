@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { request } from '../Request/request';
 import SearchBar from './SearchBar';
 import Radius from './filters/Radius';
