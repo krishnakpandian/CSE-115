@@ -10,7 +10,7 @@ const People: React.FC<props> = ({ currentPeop, setCurrentPeop }: props) => {
   return (
     <div className='People field has-addons'>
       <div className='control'>
-        <button className='button is-static'>People</button>
+        <button className='button is-static PeopleMargin'>People</button>
       </div>
       <div className="control">
         <div className="select is-primary is-rounded">

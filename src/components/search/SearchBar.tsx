@@ -21,7 +21,7 @@ const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props)
           />
         </div>
         <div className='control'>
-          <button className="button is-primary is-medium is-outlined" onClick={() => buttonClick()}>Search</button>
+          <button className="button is-primary is-medium is-outlined ButtonMargin" onClick={() => buttonClick()}>Search</button>
         </div>
       </div>
     </div>
