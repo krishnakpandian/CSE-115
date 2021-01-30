@@ -9,9 +9,9 @@ const About: React.FC = () => {
         <div className="about-container">
           <div className= "title"> About Us</div>
           <div className="developer-list">
-          {developers.map((developer) => {
+          {developers.map((developer, i) => {
                 return(
-                <div className="developer-card">
+                <div className="developer-card" key={i}>
                     <DeveloperCard {...developer}/>
                 </div>
             )    
