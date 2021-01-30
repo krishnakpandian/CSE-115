@@ -1,3 +1,4 @@
+import React from 'react';
 import './MapResult.css';
 import GoogleMapReact from 'google-map-react';
 
@@ -23,7 +24,7 @@ interface props {
   message: string
 }
 
-const MapResult = ({ results, statusCode, message }) => {
+const MapResult: React.FC<props> = ({ results, statusCode, message }: props) => {
   return (
     <div className='MapResult'>
       <div className="googleMap columns">
