@@ -14,7 +14,7 @@ const SearchBar = ({ keyword, setKeyword, buttonClick }) => {
           />
         </div>
         <div className='control'>
-          <button className="button is-primary is-medium is-outlined" onClick={() => buttonClick()}>Search</button>
+          <button className="button is-primary is-medium is-outlined ButtonMargin" onClick={() => buttonClick()}>Search</button>
         </div>
       </div>
     </div>
