@@ -32,8 +32,8 @@ export const developers = [
         },
         {
             "name": "Jonah Kulakofsky",
-            "major": "Front End Developer",
-            "description": "Hi, I'm a fourth year Computer Science major at UCSC.",
+            "major": "TBD",
+            "description": "TBD",
             "profile": "https://www.linkedin.com/in/jonahkulakofsky/",
             "image": Jonah
         },
