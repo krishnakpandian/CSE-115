@@ -1,6 +1,12 @@
+import React from "react";
 import './Radius.css';
 
-const Radius = ({ currentRad, setCurrentRad }) => {
+interface props {
+  currentRad: number;
+  setCurrentRad: any;
+}
+
+const Radius: React.FC<props> = ({ currentRad, setCurrentRad }: props) => {
   return (
     <div className='Radius field has-addons'>
       <div className='control'>
