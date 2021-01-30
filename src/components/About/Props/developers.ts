@@ -1,4 +1,5 @@
 import Krishna from '../../../assets/krishna.jpg';
+import Jonah from '../../../assets/jonah.jpeg';
 
 export const developers = [
         {
@@ -30,11 +31,11 @@ export const developers = [
             "image": "n/a"
         },
         {
-            "name": "",
-            "major": "",
-            "description": "",
-            "profile": "",
-            "image": "n/a"
+            "name": "Jonah Kulakofsky",
+            "major": "Front End Developer",
+            "description": "Hi, I'm a fourth year Computer Science major at UCSC.",
+            "profile": "https://www.linkedin.com/in/jonahkulakofsky/",
+            "image": Jonah
         },
         {
             "name": "",
