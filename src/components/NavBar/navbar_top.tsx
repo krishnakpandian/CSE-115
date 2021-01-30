@@ -1,47 +1,51 @@
-import React, { Component } from "react";
+import React, { Component, RefObject } from "react";
+import { useState } from 'react';
+import PropTypes from "prop-types";
 import './navbar_top.css'
 import "../../bulma.css"
 import truck_logo from '../../assets/moving_truck.png'
 import form_logo from '../../assets/form_icon.png'
 import apartment_logo from '../../assets/apartment_icon.png'
+import newUser from '../Signup/signup_form'
 
 type state = { collapsed: boolean,
               signupCollapsed: boolean
               email: string,
               password: string };
-type props = { };
+type props = {};
 
 class NavbarTop extends React.Component<{}, any> {
-
+  
   constructor(props) {
     super(props);
+    
     this.state = { collapsed: true,
                   signupCollapsed: true,
                   email: "",
                   password: "" };
-    this.handleEmail = this.handleEmail.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+  
 
   handleToggle() {
     this.setState({ collapsed: !this.state.collapsed });
+    console.log("Toggle state: ", this.state)
   }
 
   handleSignup() {
     this.setState({ signupCollapsed: !this.state.signupCollapsed });
+    
   }
 
-  handleEmail(e){
-    this.setState({[e.target.name]:e.target.value});
-    console.log(e.target.value);
-  }
-
-  handlePassword({target}){
-    this.setState({ password: target})
+  handleChange(field){
+  //  this.setState({[field.target.name]:field.target.value});
+    this.setState({ [field.target.name]: field.target.value});
+    console.log("Email/password changing: ", field.target.value);
   }
 
   signUpClick() {
-    console.log("Sign up vals: ");
-    console.log(this.state.email, this.state.password);
+    newUser(this.state.email, this.state.password);
+    console.log(this.state);
   }
 
   render() {
@@ -84,12 +88,12 @@ class NavbarTop extends React.Component<{}, any> {
         </div>
       </nav> 
       
-      <form action="" className="box">
+      <div className="box">
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left">
-                <input name="emBox" type="email" placeholder="e.g. bobsmith@gmail.com" className="input" required
-                 onChange={this.handleEmail}>
+                <input name="email" type="email" placeholder="test@gmail.com" className="input" required
+                 onChange={this.handleChange}>
               
                 </input>
               </div>
@@ -98,16 +102,16 @@ class NavbarTop extends React.Component<{}, any> {
               <label className="label">Password</label>
               <div className="control has-icons-left">
                 <input name="password" type="password" placeholder="*******" className="input" required 
-                >
+                onChange={this.handleChange}>
                 </input>
               </div>
             </div>
-            <div className="field">
-              <button value="Send" className="button is-success" onClick={this.signUpClick}>
+            <div>
+              <button className="button is-success" onClick={() => this.signUpClick()}>
                 Login
               </button>
             </div>
-          </form>
+      </div>
 
       <div className="columns is-centered" id="about_section">
         <div className="column is-one-third">

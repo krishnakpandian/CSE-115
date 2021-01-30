@@ -3,25 +3,26 @@ import React, { Component } from "react";
 
 // TODO: env file for all firebase data
 var firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
+  apiKey: "AIzaSyB9y6F2kChB7JXgw_dXSvibzqQZ0uSkbKk",
+  authDomain: "we-locate-9922e.firebaseapp.com",
+  projectId: "we-locate-9922e",
+  storageBucket: "we-locate-9922e.appspot.com",
+  messagingSenderId: "42576953167",
+  appId: "1:42576953167:web:072384b40dd30498800f3a",
+  measurementId: "G-FQJN16Z8FZ"
 };
-
 firebase.initializeApp(firebaseConfig);
 
 // TODO: pass input for user email and password during registration
-function newUser(){
-    firebase.auth().createUserWithEmailAndPassword("email here","password here").catch(function(error) {
+function newUser(email, password) {
+    firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       window.alert("Error: " + errorCode + errorMessage);
     });
-    
+    window.alert(
+      "Creating user!"
+    )
 }
 
 export default newUser;
