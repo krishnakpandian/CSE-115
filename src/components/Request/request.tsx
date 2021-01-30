@@ -19,7 +19,7 @@ interface props {
 */
 
 export async function request(city: string, radius_of_results: number, number_of_people: number){
-    let response: props = {
+    const response: props = {
         results: [],
         statusCode: 0,
         message:"",
@@ -27,7 +27,7 @@ export async function request(city: string, radius_of_results: number, number_of
         lng: 0,
         address: ""
     };
-    let values = {
+    const values = {
         'place': city,
         'radius': radius_of_results,
         'people': number_of_people

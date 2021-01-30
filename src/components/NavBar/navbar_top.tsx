@@ -6,8 +6,8 @@ import form_logo from '../../assets/form_icon.png'
 import apartment_logo from '../../assets/apartment_icon.png'
 
 type state = { collapsed: boolean };
-type props = {};
-class NavbarTop extends React.Component<props,state> {
+// type props = {};
+class NavbarTop extends React.Component<any,state> {
 
   constructor(props) {
     super(props);
