@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { request } from '../Request/request';
 import SearchBar from './SearchBar';
-import Radius from './Filters/Radius';
-import People from './Filters/People';
+import Radius from './filters/Radius';
+import People from './filters/People';
 import './Search.css';
 
 const Search = params => {
