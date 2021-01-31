@@ -9,18 +9,18 @@ import apartment_logo from '../../assets/apartment_icon.png'
 import newUser from '../Signup/signup_form'
 
 type state = { collapsed: boolean,
-              signupCollapsed: boolean
+              signupCollapsed: boolean,
               email: string,
               password: string };
-type props = {};
+type props = unknown;
 
-class NavbarTop extends React.Component<{}, any> {
+class NavbarTop extends React.Component<any, any> {
   
   constructor(props) {
     super(props);
     
     this.state = { collapsed: true,
-                  signupCollapsed: true,
+                  signupCollapsed: false,
                   email: "",
                   password: "" };
     this.handleChange = this.handleChange.bind(this);
@@ -29,23 +29,18 @@ class NavbarTop extends React.Component<{}, any> {
 
   handleToggle() {
     this.setState({ collapsed: !this.state.collapsed });
-    console.log("Toggle state: ", this.state)
   }
 
   handleSignup() {
-    this.setState({ signupCollapsed: !this.state.signupCollapsed });
-    
+    this.setState({ signupCollapsed: !this.state.signupCollapsed});
   }
 
   handleChange(field){
-  //  this.setState({[field.target.name]:field.target.value});
     this.setState({ [field.target.name]: field.target.value});
-    console.log("Email/password changing: ", field.target.value);
   }
 
   signUpClick() {
     newUser(this.state.email, this.state.password);
-    console.log(this.state);
   }
 
   render() {
@@ -70,7 +65,7 @@ class NavbarTop extends React.Component<{}, any> {
             </div>
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
-                  <button className="button dropdown-item" id="list_button" onClick={this.signUpClick}>Sign Up</button>
+                  <button className="button dropdown-item" id="list_button" onClick={()=>this.handleSignup()}>Sign Up</button>
                   <button className="button dropdown-item" id="list_button" onClick={this.logInClick}>Login</button>
                 </div>
             </div>
@@ -80,38 +75,14 @@ class NavbarTop extends React.Component<{}, any> {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <button className="button is-black is-outlined" onClick={this.signUpClick}>Sign Up</button>
+                <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Sign Up</button>
                 <button className="button is-black is-outlined" onClick={this.logInClick}>Login</button>
               </div>
             </div>
           </div>
         </div>
       </nav> 
-      
-      <div className="box">
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control has-icons-left">
-                <input name="email" type="email" placeholder="test@gmail.com" className="input" required
-                 onChange={this.handleChange}>
-              
-                </input>
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control has-icons-left">
-                <input name="password" type="password" placeholder="*******" className="input" required 
-                onChange={this.handleChange}>
-                </input>
-              </div>
-            </div>
-            <div>
-              <button className="button is-success" onClick={() => this.signUpClick()}>
-                Login
-              </button>
-            </div>
-      </div>
+      { this.state.signupCollapsed ? <this.Signup /> : null }
 
       <div className="columns is-centered" id="about_section">
         <div className="column is-one-third">
@@ -162,6 +133,33 @@ class NavbarTop extends React.Component<{}, any> {
       </section>
    );
   }
+
+  Signup = () => (
+    <div className="box">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left">
+                <input name="email" type="email" placeholder="test@gmail.com" className="input" required
+                 onChange={this.handleChange}>
+              
+                </input>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left">
+                <input name="password" type="password" placeholder="*******" className="input" required 
+                onChange={this.handleChange}>
+                </input>
+              </div>
+            </div>
+            <div>
+              <button className="button is-success" onClick={() => this.signUpClick()}>
+                Signup
+              </button>
+            </div>
+      </div>
+  );
 
   logInClick() {
     console.log("Login button has been pressed.");

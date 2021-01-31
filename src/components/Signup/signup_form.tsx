@@ -3,13 +3,13 @@ import React, { Component } from "react";
 
 // TODO: env file for all firebase data
 var firebaseConfig = {
-  apiKey: "AIzaSyB9y6F2kChB7JXgw_dXSvibzqQZ0uSkbKk",
-  authDomain: "we-locate-9922e.firebaseapp.com",
-  projectId: "we-locate-9922e",
-  storageBucket: "we-locate-9922e.appspot.com",
-  messagingSenderId: "42576953167",
-  appId: "1:42576953167:web:072384b40dd30498800f3a",
-  measurementId: "G-FQJN16Z8FZ"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: ""
 };
 firebase.initializeApp(firebaseConfig);
 
