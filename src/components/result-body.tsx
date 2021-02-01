@@ -24,7 +24,8 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
   return (
     <>
       <div className="result-container">
-        {results.map((result) => {
+        {results.map((result, index) => {
+          let cardResult = result;
           return (
             <div className="card">
               <div className="title">
@@ -36,11 +37,10 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <li>{travel(result.travelTime)}</li>
               </div>
               <footer className="card-footer">
-
-                <a href="#" className="card-footer-item">
+                <a className="card-footer-item">
                   View
                 </a>
-                <a href="#" className="card-footer-item">
+                <a key={index} onClick={() => saveFunc(cardResult)} className="card-footer-item">
                   Save
                 </a>
               </footer>
@@ -50,6 +50,9 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
       </div>
     </>
   )
+  function saveFunc(cardResult) {
+    console.log(cardResult);
+  }
 
   // Checks if the travelTime exists
   function travel(param) {
