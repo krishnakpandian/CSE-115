@@ -1,4 +1,4 @@
-import { props} from "../Results/result-body";
+import {results, props} from "../Results/result-body";
 
 /*
 interface results {
@@ -18,7 +18,7 @@ interface props {
 }
 */
 
-export async function request(city: string, radius_of_results: number, number_of_people: number){
+export async function request(city: string, radius_of_results: number, number_of_people: number): Promise<props>{
     const response: props = {
         results: [],
         statusCode: 0,
@@ -48,9 +48,9 @@ export async function request(city: string, radius_of_results: number, number_of
     return response;
 }
 
-export async function createRequest(id: string, city_name: string, travel_time: number, distance: number, average_cost: number){
-    let message:"";
-    let values = {
+export async function createRequest(id: string, city_name: string, travel_time: number, distance: number, average_cost: number): Promise<string>{
+    let message = "";
+    const values = {
         'id': id,
         'cityName': city_name,
         'travelTime': travel_time,
@@ -69,9 +69,9 @@ export async function createRequest(id: string, city_name: string, travel_time: 
     return message;
 }
 
-export async function deleteRequest(id: string, city_name: string, travel_time: number, distance: number, average_cost: number){
-    let message:"";
-    let values = {
+export async function deleteRequest(id: string, city_name: string, travel_time: number, distance: number, average_cost: number): Promise<string>{
+    let message = "";
+    const values = {
         'id': id,
         'cityName': city_name,
         'travelTime': travel_time,
@@ -90,13 +90,13 @@ export async function deleteRequest(id: string, city_name: string, travel_time: 
     return message;
 }
 
-export async function getRequest(id: string){
-    let results: object[] = [];
-    let values = {
+export async function getRequest(id: string): Promise<results[]> {
+    let results: results[] = [];
+    const values = {
         'id': id
     };
     await fetch('/cards', {
-            method: 'GET',
+            method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
         }).then(res => res.json()).then(data => {
