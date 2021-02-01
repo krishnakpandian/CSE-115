@@ -47,3 +47,62 @@ export async function request(city: string, radius_of_results: number, number_of
     console.log(response);
     return response;
 }
+
+export async function createRequest(id: string, city_name: string, travel_time: number, distance: number, average_cost: number){
+    let message:"";
+    let values = {
+        'id': id,
+        'cityName': city_name,
+        'travelTime': travel_time,
+        'distance': distance,
+        'averageCost': average_cost
+    };
+    await fetch('/add', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(values),
+        }).then(res => res.json()).then(data => {
+            message = data['success'];
+        
+    });
+    console.log(message);
+    return message;
+}
+
+export async function deleteRequest(id: string, city_name: string, travel_time: number, distance: number, average_cost: number){
+    let message:"";
+    let values = {
+        'id': id,
+        'cityName': city_name,
+        'travelTime': travel_time,
+        'distance': distance,
+        'averageCost': average_cost
+    };
+    await fetch('/delete', {
+            method: 'DELETE',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(values),
+        }).then(res => res.json()).then(data => {
+            message = data['success'];
+        
+    });
+    console.log(message);
+    return message;
+}
+
+export async function getRequest(id: string){
+    let results: object[] = [];
+    let values = {
+        'id': id
+    };
+    await fetch('/cards', {
+            method: 'GET',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(values),
+        }).then(res => res.json()).then(data => {
+            results = data['cards'];
+        
+    });
+    console.log(results);
+    return results;
+}
