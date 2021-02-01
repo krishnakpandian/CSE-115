@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { props } from "../Results/result-body";
-import './navbar_middle.css'
-import "../../bulma.css"
+import './invalid_search.css'
 import { stat } from "fs";
 
 let status;
 
-const NavbarMiddle: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
-  status = address && (
+const InvalidSearch: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
+
+  status = (statusCode === 400) && (
     <div className="container is-widescreen" id="middle_navbar">
       <div className="notification" id="info_bar">
         <h1 className="navbar-item title is-1 is-flex is-horizontal-center" id="prompt_text">
-          Your Results
+          No Results
         </h1>
       </div>
     </div>
@@ -24,4 +24,4 @@ const NavbarMiddle: React.FC<props> = ({ results, statusCode, message, lat, lng,
   );
 }
 
-export default NavbarMiddle;
+export default InvalidSearch;
