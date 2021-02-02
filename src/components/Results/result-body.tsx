@@ -7,7 +7,8 @@ export interface results {
   cityName: string,
   distance?: number,
   travelTime?: number,
-  averageCost?: number
+  averageCost?: number,
+  saved: boolean
 }
 
 export interface props {
@@ -16,11 +17,12 @@ export interface props {
   message: string,
   lat: number,
   lng: number,
-  address: string
+  address: string,
+  setSave: React.Dispatch<React.SetStateAction<results[]>>
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
-  console.log(results);
+const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address, setSave }: props) => {
+  console.log(typeof results);
   return (
     <>
       <div className="result-container">
