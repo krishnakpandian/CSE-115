@@ -8,19 +8,24 @@ import ResultBody from '../components/Results/result-body';
 import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import {results, props} from "../components/Results/result-body";
+import {getRequest} from "../components/Request/request";
 
 const Home = () => {
+    const [saves, setSaves] = useState<results[]>([]);  
+
     const [data, setData] = useState<props>({
       results: [],
       statusCode: 0,
       message:"",
       lat: 0,
       lng: 0,
-      address: ""
+      address: "",
+      setSave: setSaves
     });
-  
+
     // update of data
     const updateData = (res: props) => {
+      res.setSave = setSaves;
       setData(res);
     }
   
@@ -29,7 +34,31 @@ const Home = () => {
     useEffect(() => {
       console.log(data);
     }, [data]);
-  
+
+    // Get saved cards on intial load
+    useEffect(() => {
+      getRequest("gypCsrGv8s3QEk8iuaeP").then(res => {
+        setSaves(res);
+      });
+    }, []);
+
+    // Just checking saves is updated correctly
+    //    Whenever saves updates, print to console
+    useEffect(() => {
+      console.log(saves);
+    }, [saves]);
+    
+    // necessary because of result-body props parameters, might have to change this
+    const saveFormat = {
+      results: saves,
+      statusCode: 200,
+      message: "",
+      lat: 0,
+      lng: 0,
+      address: "",
+      setSave: setSaves
+    };
+    
     return (
       <div className="App">
         <NavbarTop />
@@ -37,6 +66,8 @@ const Home = () => {
         <NavbarMiddle />
         <MapResult {...data} />
         <ResultBody {...data}/>
+        <h1 >Temporary Separator between Results and Saves </h1>
+        <ResultBody {...saveFormat}/>
         <NavbarBottom />
       </div>
     );
