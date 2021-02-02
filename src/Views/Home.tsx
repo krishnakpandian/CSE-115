@@ -17,7 +17,7 @@ let saved_props: props =  {
   lat: 0,
   lng: 0,
   address: "",
-  updateSaves: (res: results) => {console.log(res);}
+  updateSaves: (add_or_delete: boolean, res: results) => {console.log(res);}
 };
 
 const Home = () => {
@@ -25,22 +25,31 @@ const Home = () => {
 
     const [data, setData] = useState<props>(saved_props);
 
-    // add save
-    const appendSave = (res: results) => {
-      setSaves(oldArray => [...oldArray, res]);
-      console.log(saved_props);
-      saved_props.results.forEach(element => {
-        if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
-          element.saved = true;
-        }
-      });
-      console.log(saved_props);
-      updateData(saved_props);
+    // add or delete save; true for add, false for delete
+    const add_or_delete_save = (add_or_delete: boolean, res: results) => {
+      if(add_or_delete){
+        setSaves(oldArray => [...oldArray, res]);
+        saved_props.results.forEach(element => {
+          if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
+            element.saved = true;
+          }
+        });
+        updateData(saved_props);
+      }else{
+        setSaves(oldArray => oldArray.filter(oldArray => {return oldArray.cityName != res.cityName && oldArray.distance != res.distance}));
+        saved_props.results.forEach(element => {
+          if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
+            element.saved = false;
+          }
+        });
+        updateData(saved_props);
+      }
+      
     }
 
     // update of data
     const updateData = (res: props) => {
-      res.updateSaves = appendSave;
+      res.updateSaves = add_or_delete_save;
       setData(res);
     }
   
@@ -54,13 +63,13 @@ const Home = () => {
     useEffect(() => {
       getRequest("gypCsrGv8s3QEk8iuaeP").then(res => {
         setSaves(res);
+        console.log("Loaded Cards");
       });
     }, []);
 
     // Just checking saves is updated correctly
     //    Whenever saves updates, print to console
     useEffect(() => {
-      console.log(data);
       saved_props = {
         results: data.results,
         statusCode: data.statusCode,
@@ -68,9 +77,8 @@ const Home = () => {
         lat: data.lat,
         lng: data.lng,
         address: data.address,
-        updateSaves: appendSave
+        updateSaves: add_or_delete_save
       };
-      console.log(saved_props);
       console.log(saves);
     }, [saves]);
     
@@ -82,7 +90,7 @@ const Home = () => {
       lat: 0,
       lng: 0,
       address: "",
-      updateSaves: appendSave
+      updateSaves: add_or_delete_save
     };
     
     return (
@@ -92,7 +100,7 @@ const Home = () => {
         <NavbarMiddle />
         <MapResult {...data} />
         <ResultBody {...data}/>
-        <h1 >Temporary Separator between Results and Saves </h1>
+        <h1 >------------------------------------- Saves -------------------------------------</h1>
         <ResultBody {...saveFormat}/>
         <NavbarBottom />
       </div>

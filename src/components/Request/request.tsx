@@ -26,7 +26,7 @@ export async function request(city: string, radius_of_results: number, number_of
         lat: 0,
         lng: 0,
         address: "",
-        updateSaves: (res: results) => {console.log(res);}
+        updateSaves: (add_or_delete: boolean, res: results) => {console.log(res);}
     };
     const values = {
         'place': city,
