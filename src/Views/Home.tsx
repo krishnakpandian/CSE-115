@@ -20,12 +20,25 @@ const Home = () => {
       lat: 0,
       lng: 0,
       address: "",
-      setSave: setSaves
+      updateSaves: (res: results) => {console.log(res);}
     });
+
+    // add save
+    const appendSave = (res: results) => {
+      setSaves(oldArray => [...oldArray, res]);
+      console.log(data);
+      data.results.forEach(element => {
+        if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
+          element.saved = true;
+        }
+      });
+      console.log(data);
+      updateData(data);
+    }
 
     // update of data
     const updateData = (res: props) => {
-      res.setSave = setSaves;
+      res.updateSaves = appendSave;
       setData(res);
     }
   
@@ -56,7 +69,7 @@ const Home = () => {
       lat: 0,
       lng: 0,
       address: "",
-      setSave: setSaves
+      updateSaves: appendSave
     };
     
     return (

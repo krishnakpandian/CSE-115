@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
 import "../../bulma.css"
 import "./result-body.css"
+import {createRequest} from "../Request/request";
 
 export interface results {
   cityName: string,
@@ -18,20 +19,29 @@ export interface props {
   lat: number,
   lng: number,
   address: string,
-  setSave: React.Dispatch<React.SetStateAction<results[]>>
+  updateSaves(res: results): void
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address, setSave }: props) => {
-  console.log(typeof results);
+const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address, updateSaves }: props) => {
+  const addSave = (city_name: string, travel_time?: number, distance?: number, average_cost?: number) => {
+    createRequest("gypCsrGv8s3QEk8iuaeP", city_name, travel_time, distance, average_cost).then(res => {
+      console.log(res);
+      const newCard: results = {
+        cityName: city_name,
+        distance: distance,
+        travelTime: travel_time,
+        averageCost: average_cost,
+        saved: true
+      }
+      updateSaves(newCard);
+    });
+  }
+
   return (
     <>
       <div className="result-container">
-<<<<<<< HEAD:src/components/Results/result-body.tsx
-        {results.map((result,i) => {
-=======
         {results.map((result, index) => {
           let cardResult = result;
->>>>>>> origin/result-body:src/components/result-body.tsx
           return (
             <div className="card" key={i}>
               <div className="title">
@@ -43,10 +53,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <li>{travel(result.travelTime)}</li>
               </div>
               <footer className="card-footer">
-                <a className="card-footer-item">
-                  View
-                </a>
-                <a key={index} onClick={() => saveFunc(cardResult)} className="card-footer-item">
+                <a key={index} onClick={() => addSave(result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
                   Save
                 </a>
               </footer>
