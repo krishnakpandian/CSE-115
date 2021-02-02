@@ -26,7 +26,12 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
   return (
     <>
       <div className="result-container">
+<<<<<<< HEAD:src/components/Results/result-body.tsx
         {results.map((result,i) => {
+=======
+        {results.map((result, index) => {
+          let cardResult = result;
+>>>>>>> origin/result-body:src/components/result-body.tsx
           return (
             <div className="card" key={i}>
               <div className="title">
@@ -37,20 +42,28 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <li>{cost(result.averageCost)}</li>
                 <li>{travel(result.travelTime)}</li>
               </div>
-              <a href="#" className="button">
-                View
-              </a>
+              <footer className="card-footer">
+                <a className="card-footer-item">
+                  View
+                </a>
+                <a key={index} onClick={() => saveFunc(cardResult)} className="card-footer-item">
+                  Save
+                </a>
+              </footer>
             </div>
           )
         })}
       </div>
     </>
   )
+  function saveFunc(cardResult) {
+    console.log(cardResult);
+  }
 
   // Checks if the travelTime exists
   function travel(param) {
     if (param != null) {
-      return param + " Minutes"
+      return param
     }
     else {
       return "Time unavailable"
@@ -59,7 +72,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
 
   // Checks if the averageCost exists
   function cost(param) {
-    if (param != null) {
+    if (param != -1) {
       return "$" + param
     }
     else {
