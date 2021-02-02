@@ -10,30 +10,32 @@ import MapResult from '../components/Request/MapResult';
 import {results, props} from "../components/Results/result-body";
 import {getRequest} from "../components/Request/request";
 
+let saved_props: props =  {
+  results: [],
+  statusCode: 0,
+  message:"",
+  lat: 0,
+  lng: 0,
+  address: "",
+  updateSaves: (res: results) => {console.log(res);}
+};
+
 const Home = () => {
     const [saves, setSaves] = useState<results[]>([]);  
 
-    const [data, setData] = useState<props>({
-      results: [],
-      statusCode: 0,
-      message:"",
-      lat: 0,
-      lng: 0,
-      address: "",
-      updateSaves: (res: results) => {console.log(res);}
-    });
+    const [data, setData] = useState<props>(saved_props);
 
     // add save
     const appendSave = (res: results) => {
       setSaves(oldArray => [...oldArray, res]);
-      console.log(data);
-      data.results.forEach(element => {
+      console.log(saved_props);
+      saved_props.results.forEach(element => {
         if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
           element.saved = true;
         }
       });
-      console.log(data);
-      updateData(data);
+      console.log(saved_props);
+      updateData(saved_props);
     }
 
     // update of data
@@ -58,6 +60,17 @@ const Home = () => {
     // Just checking saves is updated correctly
     //    Whenever saves updates, print to console
     useEffect(() => {
+      console.log(data);
+      saved_props = {
+        results: data.results,
+        statusCode: data.statusCode,
+        message: data.message,
+        lat: data.lat,
+        lng: data.lng,
+        address: data.address,
+        updateSaves: appendSave
+      };
+      console.log(saved_props);
       console.log(saves);
     }, [saves]);
     

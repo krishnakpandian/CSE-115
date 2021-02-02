@@ -41,9 +41,8 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
     <>
       <div className="result-container">
         {results.map((result, index) => {
-          let cardResult = result;
           return (
-            <div className="card" key={i}>
+            <div className="card" key={index}>
               <div className="title">
                 {result.cityName}
               </div>
@@ -53,9 +52,19 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <li>{travel(result.travelTime)}</li>
               </div>
               <footer className="card-footer">
-                <a key={index} onClick={() => addSave(result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
-                  Save
+                <a className="card-footer-item">
+                  View
                 </a>
+                { !result.saved &&
+                  <a onClick={() => addSave(result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
+                    Save
+                  </a>
+                }
+                { result.saved &&
+                  <a className="card-footer-item">
+                    Unsave
+                  </a>
+                }
               </footer>
             </div>
           )
