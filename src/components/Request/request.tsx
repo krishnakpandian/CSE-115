@@ -25,7 +25,8 @@ export async function request(city: string, radius_of_results: number, number_of
         message:"",
         lat: 0,
         lng: 0,
-        address: ""
+        address: "",
+        setSave: (() => {return [];})
     };
     const values = {
         'place': city,
@@ -37,7 +38,7 @@ export async function request(city: string, radius_of_results: number, number_of
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
         }).then(res => res.json()).then(data => {
-            response.results = data['results'];
+            response.results = data['results'].map(obj=> ({ ...obj, saved : false}));
             response.statusCode = data['statusCode'];
             response.message = data['message'];
             response.lat = data['lat'];
@@ -100,7 +101,7 @@ export async function getRequest(id: string): Promise<results[]> {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
         }).then(res => res.json()).then(data => {
-            results = data['cards'];
+            results = data['cards'].map(obj => ({ ...obj, saved : true}));
         
     });
     console.log(results);
