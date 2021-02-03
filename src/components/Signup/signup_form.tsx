@@ -14,7 +14,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(); 
 // TODO: pass input for user email and password during registration
-async function newUser(email: string, password: string) {
+async function newUser(email: string, password: string): Promise<void>{
     let uid: string | undefined;
     await firebase.auth().createUserWithEmailAndPassword(email,password)
     .then( (data) => {
