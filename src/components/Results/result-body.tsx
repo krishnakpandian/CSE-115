@@ -104,7 +104,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
   // Checks if the averageCost exists
   function cost(param) {
     if (param != -1) {
-      return "$" + param
+      return "$" + param.toFixed(2)
     }
     else {
       return "Price unavailable"

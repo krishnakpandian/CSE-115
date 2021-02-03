@@ -30,7 +30,6 @@ const Search = params => {
       console.log("blank search");
     } else {
       request(input, radius, people).then(res => {
-        console.log(res);
         params.setData(res);
         setInput(res.address);
       });

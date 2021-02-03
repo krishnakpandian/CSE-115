@@ -15,6 +15,7 @@ const SortDropdown: React.FC<props> = ({ currentSort, setCurrentSort }: props) =
       <div className="control">
         <div className="select is-primary is-rounded">
           <select value={currentSort} onChange={(e) => setCurrentSort(e.target.value)}>
+            <option value='' disabled>Choose a sort</option>
             <option value='cos low high'>Cost (Low to High)</option>
             <option value='cos high low'>Cost (High to Low)</option>
             <option value='dis low high'>Distance (Low to High)</option>
