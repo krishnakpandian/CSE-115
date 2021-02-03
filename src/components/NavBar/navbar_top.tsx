@@ -1,21 +1,46 @@
-import React, { Component } from "react";
+import React, { Component, RefObject } from "react";
+import { useState } from 'react';
+import PropTypes from "prop-types";
 import './navbar_top.css'
-import "../bulma.css"
-import truck_logo from '../assets/moving_truck.png'
-import form_logo from '../assets/form_icon.png'
-import apartment_logo from '../assets/apartment_icon.png'
+import "../../bulma.css"
+import truck_logo from '../../assets/moving_truck.png'
+import form_logo from '../../assets/form_icon.png'
+import apartment_logo from '../../assets/apartment_icon.png'
+import newUser from '../Signup/signup_form'
 
-type state = { collapsed: boolean };
-type props = {};
-class NavbarTop extends React.Component<props,state> {
+type state = { collapsed: boolean,
+              signupCollapsed: boolean,
+              email: string,
+              password: string };
+type props = unknown;
 
+class NavbarTop extends React.Component<any, any> {
+  
   constructor(props) {
     super(props);
-    this.state = { collapsed: true };
+    
+    this.state = { collapsed: true,
+                  signupCollapsed: false,
+                  email: "",
+                  password: "" };
+    this.handleChange = this.handleChange.bind(this);
   }
+  
 
   handleToggle() {
     this.setState({ collapsed: !this.state.collapsed });
+  }
+
+  handleSignup() {
+    this.setState({ signupCollapsed: !this.state.signupCollapsed});
+  }
+
+  handleChange(field){
+    this.setState({ [field.target.name]: field.target.value});
+  }
+
+  signUpClick() {
+    newUser(this.state.email, this.state.password);
   }
 
   render() {
@@ -40,7 +65,7 @@ class NavbarTop extends React.Component<props,state> {
             </div>
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
-                  <button className="button dropdown-item" id="list_button" onClick={this.signUpClick}>Sign Up</button>
+                  <button className="button dropdown-item" id="list_button" onClick={()=>this.handleSignup()}>Sign Up</button>
                   <button className="button dropdown-item" id="list_button" onClick={this.logInClick}>Login</button>
                 </div>
             </div>
@@ -50,14 +75,15 @@ class NavbarTop extends React.Component<props,state> {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <button className="button is-black is-outlined" onClick={this.signUpClick}>Sign Up</button>
+                <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Sign Up</button>
                 <button className="button is-black is-outlined" onClick={this.logInClick}>Login</button>
               </div>
             </div>
           </div>
         </div>
       </nav> 
-      
+      { this.state.signupCollapsed ? <this.Signup /> : null }
+
       <div className="columns is-centered" id="about_section">
         <div className="column is-one-third">
           <div id="info_card">
@@ -99,7 +125,7 @@ class NavbarTop extends React.Component<props,state> {
       <div className="container is-widescreen">
         <div className="notification" id="prompt_bar">
           <h1 className="navbar-item title is-1 is-flex is-horizontal-center" id="prompt_text">
-            Begin Your Search: 
+            Begin Your Search 
           </h1>
         </div>
       </div>
@@ -108,11 +134,36 @@ class NavbarTop extends React.Component<props,state> {
    );
   }
 
+  Signup = () => (
+    <div className="box">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left">
+                <input name="email" type="email" placeholder="test@gmail.com" className="input" required
+                 onChange={this.handleChange}>
+              
+                </input>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left">
+                <input name="password" type="password" placeholder="*******" className="input" required 
+                onChange={this.handleChange}>
+                </input>
+              </div>
+            </div>
+            <div>
+              <button className="button is-success" onClick={() => this.signUpClick()}>
+                Signup
+              </button>
+            </div>
+      </div>
+  );
+
   logInClick() {
     console.log("Login button has been pressed.");
   }
-  signUpClick() {
-    console.log("Sign up button has been pressed.");
-  }
+  
 }
 export default NavbarTop;

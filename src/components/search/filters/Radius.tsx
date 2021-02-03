@@ -1,10 +1,16 @@
+import React from "react";
 import './Radius.css';
 
-const Radius = ({ currentRad, setCurrentRad }) => {
+interface props {
+  currentRad: number;
+  setCurrentRad: any;
+}
+
+const Radius: React.FC<props> = ({ currentRad, setCurrentRad }: props) => {
   return (
     <div className='Radius field has-addons'>
       <div className='control'>
-        <button className='button is-static'>Radius</button>
+        <button className='button is-static RadiusMargin'>Radius</button>
       </div>
       <div className="control">
         <div className="select is-primary is-rounded">

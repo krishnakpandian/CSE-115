@@ -1,6 +1,13 @@
+import React from 'react';
 import './SearchBar.css';
 
-const SearchBar = ({ keyword, setKeyword, buttonClick }) => {
+interface props {
+  keyword: any,
+  setKeyword: any,
+  buttonClick: any
+}
+
+const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props) => {
   return (
     <div className='SearchBar'>
       <div className='field has-addons'>
@@ -14,7 +21,7 @@ const SearchBar = ({ keyword, setKeyword, buttonClick }) => {
           />
         </div>
         <div className='control'>
-          <button className="button is-primary is-medium is-outlined" onClick={() => buttonClick()}>Search</button>
+          <button className="button is-primary is-medium is-outlined ButtonMargin" onClick={() => buttonClick()}>Search</button>
         </div>
       </div>
     </div>

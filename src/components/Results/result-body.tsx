@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
-import "../bulma.css"
+import "../../bulma.css"
 import "./result-body.css"
+import SaveToggle from "./saveToggle";
 
 export interface results {
   cityName: string,
@@ -19,15 +20,15 @@ export interface props {
   address: string
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }) => {
+const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
   console.log(results);
+  <SaveToggle searchState='false' />
   return (
     <>
       <div className="result-container">
-        {results.map((result, index) => {
-          let cardResult = result;
+        {results.map((result, i) => {
           return (
-            <div className="card">
+            <div className="card" key={i}>
               <div className="title">
                 {result.cityName}
               </div>
@@ -40,7 +41,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <a className="card-footer-item">
                   View
                 </a>
-                <a key={index} onClick={() => saveFunc(cardResult)} className="card-footer-item">
+                <a className="card-footer-item">
                   Save
                 </a>
               </footer>
@@ -50,9 +51,6 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
       </div>
     </>
   )
-  function saveFunc(cardResult) {
-    console.log(cardResult);
-  }
 
   // Checks if the travelTime exists
   function travel(param) {

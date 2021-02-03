@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { request } from '../request';
+import React, { useState } from 'react';
+import { request } from '../Request/request';
 import SearchBar from './SearchBar';
 import Radius from './filters/Radius';
 import People from './filters/People';
@@ -32,6 +32,7 @@ const Search = params => {
       request(input, radius, people).then(res => {
         console.log(res);
         params.setData(res);
+        setInput(res.address);
       });
     }
   }
@@ -45,7 +46,7 @@ const Search = params => {
           buttonClick={buttonClick}
         />
       </div>
-      <div className='Filters'>
+      <div className='Inputs'>
         <Radius
           currentRad={radius}
           setCurrentRad={updateRadius}
