@@ -7,9 +7,11 @@ import truck_logo from '../../assets/moving_truck.png'
 import form_logo from '../../assets/form_icon.png'
 import apartment_logo from '../../assets/apartment_icon.png'
 import newUser from '../Signup/signup_form'
+import loginUser from '../Login/login_form'
 
 type state = { collapsed: boolean,
               signupCollapsed: boolean,
+              loginCollapsed: boolean,
               email: string,
               password: string };
 type props = unknown;
@@ -21,6 +23,7 @@ class NavbarTop extends React.Component<any, any> {
     
     this.state = { collapsed: true,
                   signupCollapsed: false,
+                  loginCollapsed: false,
                   email: "",
                   password: "" };
     this.handleChange = this.handleChange.bind(this);
@@ -39,8 +42,16 @@ class NavbarTop extends React.Component<any, any> {
     this.setState({ [field.target.name]: field.target.value});
   }
 
+  handleLogin() {
+    this.setState({ loginCollapsed: !this.state.loginCollapsed});
+  }
+
   signUpClick() {
     newUser(this.state.email, this.state.password);
+  }
+
+  loginClick() {
+    loginUser(this.state.email, this.state.password);
   }
 
   render() {
@@ -66,7 +77,7 @@ class NavbarTop extends React.Component<any, any> {
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
                 <div className="dropdown-content">
                   <button className="button dropdown-item" id="list_button" onClick={()=>this.handleSignup()}>Sign Up</button>
-                  <button className="button dropdown-item" id="list_button" onClick={this.logInClick}>Login</button>
+                  <button className="button dropdown-item" id="list_button" onClick={()=>this.handleLogin()}>Login</button>
                 </div>
             </div>
           </div>
@@ -76,14 +87,14 @@ class NavbarTop extends React.Component<any, any> {
             <div className="navbar-item">
               <div className="buttons">
                 <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Sign Up</button>
-                <button className="button is-black is-outlined" onClick={this.logInClick}>Login</button>
+                <button className="button is-black is-outlined" onClick={()=>this.handleLogin()}>Login</button>
               </div>
             </div>
           </div>
         </div>
       </nav> 
       { this.state.signupCollapsed ? <this.Signup /> : null }
-
+      { this.state.loginCollapsed ? <this.Login /> : null }
       <div className="columns is-centered" id="about_section">
         <div className="column is-one-third">
           <div id="info_card">
@@ -121,15 +132,6 @@ class NavbarTop extends React.Component<any, any> {
             </div>
           </div>
       </div>
-
-      <div className="container is-widescreen">
-        <div className="notification" id="prompt_bar">
-          <h1 className="navbar-item title is-1 is-flex is-horizontal-center" id="prompt_text">
-            Begin Your Search 
-          </h1>
-        </div>
-      </div>
-
       </section>
    );
   }
@@ -161,9 +163,30 @@ class NavbarTop extends React.Component<any, any> {
       </div>
   );
 
-  logInClick() {
-    console.log("Login button has been pressed.");
-  }
-  
+  Login = () => (
+    <div className="box">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left">
+                <input name="email" type="email" placeholder="test@gmail.com" className="input" required
+                 onChange={this.handleChange}>
+                </input>
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left">
+                <input name="password" type="password" placeholder="*******" className="input" required 
+                onChange={this.handleChange}>
+                </input>
+              </div>
+            </div>
+            <div>
+              <button className="button is-success" onClick={() => this.loginClick()}>
+                Login
+              </button>
+            </div>
+      </div>
+  );
 }
 export default NavbarTop;
