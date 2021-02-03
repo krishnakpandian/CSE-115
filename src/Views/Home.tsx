@@ -50,6 +50,7 @@ const Home = () => {
 
     // update of data
     const updateData = (res: props) => {
+      // make sure function is correct
       res.updateSaves = add_or_delete_save;
       setData(res);
     }
@@ -70,6 +71,7 @@ const Home = () => {
 
     // Just checking saves is updated correctly
     //    Whenever saves updates, print to console
+    // Also stores current proprs, so it appears after rerender
     useEffect(() => {
       saved_props = {
         results: data.results,

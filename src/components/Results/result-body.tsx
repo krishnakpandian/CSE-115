@@ -22,7 +22,7 @@ export interface props {
   updateSaves(add_or_delete: boolean, res: results): void
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address, updateSaves }: props) => {
+const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
   // true for add, false for delete
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number) => {
     if(add_or_delete){
@@ -88,9 +88,6 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
       </div>
     </>
   )
-  function saveFunc(cardResult) {
-    console.log(cardResult);
-  }
 
   // Checks if the travelTime exists
   function travel(param) {
