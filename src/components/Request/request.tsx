@@ -49,7 +49,7 @@ export async function request(city: string, radius_of_results: number, number_of
     return response;
 }
 
-export async function createRequest(id: string, city_name: string, travel_time?: number, distance?: number, average_cost?: number): Promise<string>{
+export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number): Promise<string>{
     let message = "";
     const values = {
         'id': id,
@@ -70,7 +70,7 @@ export async function createRequest(id: string, city_name: string, travel_time?:
     return message;
 }
 
-export async function deleteRequest(id: string, city_name: string, travel_time?: number, distance?: number, average_cost?: number): Promise<string>{
+export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number): Promise<string>{
     let message = "";
     const values = {
         'id': id,
@@ -91,7 +91,7 @@ export async function deleteRequest(id: string, city_name: string, travel_time?:
     return message;
 }
 
-export async function getRequest(id: string): Promise<results[]> {
+export async function getRequest(id?: string): Promise<results[]> {
     let results: results[] = [];
     const values = {
         'id': id

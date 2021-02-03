@@ -3,6 +3,7 @@ import { checkServerIdentity } from "tls";
 import "../../bulma.css"
 import "./result-body.css"
 import {createRequest, deleteRequest} from "../Request/request";
+import firebase from 'firebase';
 
 export interface results {
   cityName: string,
@@ -25,8 +26,9 @@ export interface props {
 const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
   // true for add, false for delete
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number) => {
+    if (firebase.auth().currentUser == null) return;
     if(add_or_delete){
-      createRequest("gypCsrGv8s3QEk8iuaeP", city_name, travel_time, distance, average_cost).then(res => {
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
         console.log(res);
         const newCard: results = {
           cityName: city_name,
@@ -38,7 +40,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
         updateSaves(add_or_delete, newCard);
       });
     } else{
-      deleteRequest("gypCsrGv8s3QEk8iuaeP", city_name, travel_time, distance, average_cost).then(res => {
+      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
         console.log(res);
         const oldCard: results = {
           cityName: city_name,

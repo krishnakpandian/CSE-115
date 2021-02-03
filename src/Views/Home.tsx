@@ -10,6 +10,7 @@ import Search from '../components/Search/Search';
 import MapResult from '../components/Request/MapResult';
 import {results, props} from "../components/Results/result-body";
 import {getRequest} from "../components/Request/request";
+import firebase from 'firebase';
 
 let saved_props: props =  {
   results: [],
@@ -60,14 +61,35 @@ const Home = () => {
     useEffect(() => {
       console.log(data);
     }, [data]);
+    
+    /*
+    const getID = () => {
+      if (firebase.auth().currentUser !== null) 
+        return firebase.auth().currentUser?.uid;
+    }*/
 
     // Get saved cards on intial load
     useEffect(() => {
-      getRequest("gypCsrGv8s3QEk8iuaeP").then(res => {
-        setSaves(res);
-        console.log("Loaded Cards");
-      });
+      if (firebase.auth().currentUser != null){
+        getRequest(firebase.auth().currentUser?.uid).then(res => {
+          setSaves(res);
+          console.log("Loaded Cards");
+        });
+      }
     }, []);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        getRequest(user.uid).then(res => {
+          setSaves(res);
+          console.log("Loaded Cards");
+        });
+      } else {
+        // User not logged in or has just logged out.
+        setSaves([]);
+      }
+    });
 
     // Just checking saves is updated correctly
     //    Whenever saves updates, print to console
