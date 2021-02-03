@@ -24,4 +24,4 @@ const MapResult: React.FC<props> = ({ lat, lng, address }: props) => {
   );
 }
 
-export default MapResult;
+export default MapResult; 
