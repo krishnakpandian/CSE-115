@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
 import "../../bulma.css"
 import "./result-body.css"
+import {createRequest, deleteRequest} from "../Request/request";
+import firebase from 'firebase';
 
 export interface results {
   cityName: string,
   distance?: number,
   travelTime?: number,
-  averageCost?: number
+  averageCost?: number,
+  saved: boolean
 }
 
 export interface props {
@@ -16,17 +19,48 @@ export interface props {
   message: string,
   lat: number,
   lng: number,
-  address: string
+  address: string,
+  updateSaves(add_or_delete: boolean, res: results): void
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
-  console.log(results);
+const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
+  // true for add, false for delete
+  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number) => {
+    if (firebase.auth().currentUser == null) return;
+    if(add_or_delete){
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
+        console.log(res);
+        const newCard: results = {
+          cityName: city_name,
+          distance: distance,
+          travelTime: travel_time,
+          averageCost: average_cost,
+          saved: true
+        }
+        updateSaves(add_or_delete, newCard);
+      });
+    } else{
+      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
+        console.log(res);
+        const oldCard: results = {
+          cityName: city_name,
+          distance: distance,
+          travelTime: travel_time,
+          averageCost: average_cost,
+          saved: false
+        }
+        updateSaves(add_or_delete, oldCard);
+      });
+    }
+
+  }
+
   return (
     <>
       <div className="result-container">
-        {results.map((result,i) => {
+        {results.map((result, index) => {
           return (
-            <div className="card" key={i}>
+            <div className="card" key={index}>
               <div className="title">
                 {result.cityName}
               </div>
@@ -35,9 +69,21 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
                 <li>{cost(result.averageCost)}</li>
                 <li>{travel(result.travelTime)}</li>
               </div>
-              <a href="#" className="button">
-                View
-              </a>
+              <footer className="card-footer">
+                <a className="card-footer-item">
+                  View
+                </a>
+                { !result.saved &&
+                  <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
+                    Save
+                  </a>
+                }
+                { result.saved &&
+                  <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
+                    Unsave
+                  </a>
+                }
+              </footer>
             </div>
           )
         })}
@@ -48,7 +94,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
   // Checks if the travelTime exists
   function travel(param) {
     if (param != null) {
-      return param + " Minutes"
+      return param
     }
     else {
       return "Time unavailable"
@@ -57,7 +103,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
 
   // Checks if the averageCost exists
   function cost(param) {
-    if (param != null) {
+    if (param != -1) {
       return "$" + param
     }
     else {

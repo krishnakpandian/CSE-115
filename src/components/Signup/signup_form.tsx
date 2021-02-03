@@ -7,16 +7,20 @@ import {firebaseConfig} from './firebaseConfig'
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(); 
 // TODO: pass input for user email and password during registration
-function newUser(email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error) {
+async function newUser(email: string, password: string): Promise<void>{
+    let uid: string | undefined;
+    await firebase.auth().createUserWithEmailAndPassword(email,password)
+    .then( (data) => {
+        uid = data.user?.uid;
+    })
+    .catch( (error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       window.alert("Error: " + errorCode + errorMessage);
+      return;
     });
-    window.alert(
-      "Creating user!"
-    )
-    db.collection("Users").add({
+    window.alert( "Creating user!");
+    await db.collection("Users").doc(uid).set({
       name: email,
       password: password
     })
@@ -26,6 +30,8 @@ function newUser(email, password) {
     .catch(function(error) {
       console.error("Error adding user: ", error);
     });
+    
+    
 }
 
 export default newUser;
