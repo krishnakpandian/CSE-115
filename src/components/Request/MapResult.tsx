@@ -24,4 +24,4 @@ const MapResult: React.FC<props> = ({ results, statusCode, message, lat, lng, ad
   );
 }
 
-export default MapResult;
+export default MapResult; 

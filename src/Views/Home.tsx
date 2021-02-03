@@ -6,7 +6,7 @@ import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
 import InvalidSearch from '../components/NavBar/invalid_search';
 import ResultBody from '../components/Results/result-body';
-import Search from '../components/search/Search';
+import Search from '../components/Search/Search';
 import MapResult from '../components/Request/MapResult';
 import {results, props} from "../components/Results/result-body";
 import {getRequest} from "../components/Request/request";
