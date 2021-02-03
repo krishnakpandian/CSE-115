@@ -2,8 +2,8 @@ import React from 'react'
 import './People.css';
 
 interface props {
-  currentPeop: any,
-  setCurrentPeop: any
+  currentPeop,
+  setCurrentPeop
 }
 
 const People: React.FC<props> = ({ currentPeop, setCurrentPeop }: props) => {

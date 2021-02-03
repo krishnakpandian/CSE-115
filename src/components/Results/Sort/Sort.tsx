@@ -1,7 +1,5 @@
-import React from 'react';
-import SortCost from './SortCost';
-import SortDistance from './SortDistance';
-import SortTime from './SortTime';
+import React, { useState } from 'react';
+import SortDropdown from './SortDropdown';
 import './Sort.css'
 
 interface props {
@@ -9,12 +7,25 @@ interface props {
   setData
 }
 
+let display;
+
 const Sort: React.FC<props> = ({ data, setData }: props) => {
+  const [input, setInput] = useState('cost low high');
+
+  const updateSort = (input) => {
+    setInput(input);
+  }
+
+  display = data.address && (
+    <SortDropdown
+      currentSort={input}
+      setCurrentSort={updateSort}
+    />
+  );
+
   return (
     <div className='Sort'>
-      <SortCost />
-      <SortDistance />
-      <SortTime />
+      {display}
     </div>
   );
 };

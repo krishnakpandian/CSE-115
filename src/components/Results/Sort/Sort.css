@@ -1,3 +1,9 @@
 .Sort {
-  /* nothing yet */
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+}
+
+.SortMargin {
+  margin: 0%;
 }

@@ -5,7 +5,7 @@ import { props } from "../Results/result-body";
 
 let map;
 
-const MapResult: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
+const MapResult: React.FC<props> = ({ lat, lng, address }: props) => {
   map = address && (
     <div className="googleMap columns">
       <GoogleMapReact
