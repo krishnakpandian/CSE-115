@@ -6,7 +6,7 @@ import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
 import InvalidSearch from '../components/NavBar/invalid_search';
 import ResultBody from '../components/Results/result-body';
-import Search from '../components/Search/Search';
+import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import {results, props} from "../components/Results/result-body";
 import {getRequest} from "../components/Request/request";
@@ -61,35 +61,32 @@ const Home = () => {
     useEffect(() => {
       console.log(data);
     }, [data]);
-    
-    /*
-    const getID = () => {
-      if (firebase.auth().currentUser !== null) 
-        return firebase.auth().currentUser?.uid;
-    }*/
 
-    // Get saved cards on intial load
+    // Get saved cards on intial load if user is logged in
+    // Adds a listener to user state; if user logsin/logsout change saves state
     useEffect(() => {
       if (firebase.auth().currentUser != null){
         getRequest(firebase.auth().currentUser?.uid).then(res => {
+          console.log("Loading Cards");
           setSaves(res);
           console.log("Loaded Cards");
         });
       }
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          // User logged in already or has just logged in.
+          getRequest(user.uid).then(res => {
+            console.log("Loading Cards");
+            setSaves(res);
+            console.log("Loaded Cards");
+          });
+        } else {
+          // User not logged in or has just logged out.
+          console.log("Not logged in");
+          setSaves([]);
+        }
+      });
     }, []);
-
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        // User logged in already or has just logged in.
-        getRequest(user.uid).then(res => {
-          setSaves(res);
-          console.log("Loaded Cards");
-        });
-      } else {
-        // User not logged in or has just logged out.
-        setSaves([]);
-      }
-    });
 
     // Just checking saves is updated correctly
     //    Whenever saves updates, print to console
