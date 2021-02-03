@@ -36,6 +36,7 @@ class NavbarTop extends React.Component<any, any> {
 
   handleSignup() {
     this.setState({ signupCollapsed: !this.state.signupCollapsed});
+    this.setState({ loginCollapsed: false});
   }
 
   handleChange(field){
@@ -44,6 +45,7 @@ class NavbarTop extends React.Component<any, any> {
 
   handleLogin() {
     this.setState({ loginCollapsed: !this.state.loginCollapsed});
+    this.setState({ signupCollapsed: false});
   }
 
   signUpClick() {
@@ -137,7 +139,7 @@ class NavbarTop extends React.Component<any, any> {
   }
 
   Signup = () => (
-    <div className="box">
+    <div className="box column is-quarter is-pulled-right has-background-white">
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left">
@@ -164,7 +166,7 @@ class NavbarTop extends React.Component<any, any> {
   );
 
   Login = () => (
-    <div className="box">
+    <div className="box column is-quarter is-pulled-right has-background-white">
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left">
