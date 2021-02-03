@@ -5,6 +5,7 @@ import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
 import InvalidSearch from '../components/NavBar/invalid_search';
+import Sort from '../components/Results/Sort/Sort';
 import ResultBody from '../components/Results/result-body';
 import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
@@ -38,6 +39,7 @@ const Home = () => {
         <InvalidSearch {...data} />
         <NavbarMiddle {...data} />
         <MapResult {...data} />
+        <Sort data={data} setData={updateData} />
         <ResultBody {...data}/>
         <NavbarBottom />
       </div>
