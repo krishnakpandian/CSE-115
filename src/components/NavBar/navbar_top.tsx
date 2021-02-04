@@ -8,6 +8,11 @@ import form_logo from '../../assets/form_icon.png'
 import apartment_logo from '../../assets/apartment_icon.png'
 import newUser from '../Signup/signup_form'
 import loginUser from '../Login/login_form'
+import firebase from 'firebase';
+import checkLogin from "../Login/check_login";
+import userEvent from "@testing-library/user-event";
+import { isThisTypeNode } from "typescript";
+
 
 type state = { collapsed: boolean,
               signupCollapsed: boolean,
@@ -25,10 +30,30 @@ class NavbarTop extends React.Component<any, any> {
                   signupCollapsed: false,
                   loginCollapsed: false,
                   email: "",
-                  password: "" };
+                  password: "",
+                  userLogged: this.getUserStatus(),
+                  userEmail: this.getUserEmail()
+    }
     this.handleChange = this.handleChange.bind(this);
   }
+
+  getUserEmail(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log("USER EMAIL SEEN");
+        console.log("The user in email: ", user.email);
+        this.setState({userEmail: user.email});
+      } else {
+        console.log("No user found")
+        this.setState({userEmail: ""});
+      }
+    });
+    
+  }
   
+  getUserStatus(){
+    this.setState({userLogged: checkLogin()});
+  }
 
   handleToggle() {
     this.setState({ collapsed: !this.state.collapsed });
@@ -66,7 +91,7 @@ class NavbarTop extends React.Component<any, any> {
               We-Locate
             </h1>
           </div>
-           
+
           <div className={"navbar-burger dropdown is-right" + (this.state.collapsed ? "" : " is-active")} onClick={() => this.handleToggle()} aria-label="menu"
             aria-haspopup="true" aria-controls="dropdown-menu" aria-expanded="false">
             <div className="dropdown-trigger">
@@ -77,21 +102,13 @@ class NavbarTop extends React.Component<any, any> {
               
             </div>
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
-                <div className="dropdown-content">
-                  <button className="button dropdown-item" id="list_button" onClick={()=>this.handleSignup()}>Sign Up</button>
-                  <button className="button dropdown-item" id="list_button" onClick={()=>this.handleLogin()}>Login</button>
-                </div>
+              { this.state.userLogged ? <this.menuShown /> : <this.userMenuShown /> }
             </div>
           </div>
         </div>
         <div id="navbarButtons" className="navbar-menu">
           <div className="navbar-end">
-            <div className="navbar-item">
-              <div className="buttons">
-                <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Sign Up</button>
-                <button className="button is-black is-outlined" onClick={()=>this.handleLogin()}>Login</button>
-              </div>
-            </div>
+            { this.state.userLogged ? <this.buttonsShown /> : <this.userShown /> }
           </div>
         </div>
       </nav> 
@@ -137,6 +154,41 @@ class NavbarTop extends React.Component<any, any> {
       </section>
    );
   }
+
+  userMenuShown = () => (
+    <div className="dropdown-content">
+      { this.state.userLogged ? this.state.userEmail : this.state.userEmail }
+      <button className="button dropdown-item" id="list_button" onClick={()=>this.handleLogin()}>Log Out</button>
+    </div>
+  );
+
+  menuShown = () => (
+    <div className="dropdown-content">
+      <button className="button dropdown-item" id="list_button" onClick={()=>this.handleSignup()}>Sign Up</button>
+      <button className="button dropdown-item" id="list_button" onClick={()=>this.handleLogin()}>Login</button>
+    </div>
+  );
+
+  userShown = () => (
+    <div className="navbar-item">
+              <div id="Username">
+                Welcome, { this.state.userLogged ? this.state.userEmail 
+                                                 : this.state.userEmail }
+              </div>
+              <div className="buttons">
+                <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Log out</button>
+              </div>
+    </div>
+  );
+
+  buttonsShown = () => (
+  <div className="navbar-item">
+    <div className="buttons">
+      <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Sign Up</button>
+      <button className="button is-black is-outlined" onClick={()=>this.handleLogin()}>Login</button>
+    </div>
+  </div>
+  );
 
   Signup = () => (
     <div className="box column is-quarter is-pulled-right has-background-white">
