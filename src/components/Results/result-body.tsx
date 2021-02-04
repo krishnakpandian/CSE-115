@@ -23,7 +23,6 @@ export interface props {
 }
 
 const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address, viewState, currentState }: props) => {
-  console.log(results);
   if (viewState == currentState) {
     return (
       <>

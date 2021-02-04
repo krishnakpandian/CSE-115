@@ -37,7 +37,7 @@ const Home = () => {
       <Search data={data} setData={updateData} />
       <NavbarMiddle />
       <MapResult {...data} />
-      <SaveToggle searchState={'search'} {...data} />
+      <SaveToggle {...data} />
       <NavbarBottom />
     </div>
   );
