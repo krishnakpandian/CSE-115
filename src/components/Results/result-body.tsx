@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
 import "../../bulma.css"
+import Search from "../search/Search";
 import "./result-body.css"
-import SaveToggle from "./saveToggle";
 
 export interface results {
   cityName: string,
@@ -17,40 +17,46 @@ export interface props {
   message: string,
   lat: number,
   lng: number,
-  address: string
+  address: string,
+  viewState?: string,
+  currentState?: string
 }
 
-const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address }: props) => {
+const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, address, viewState, currentState }: props) => {
   console.log(results);
-  <SaveToggle searchState='false' />
-  return (
-    <>
-      <div className="result-container">
-        {results.map((result, i) => {
-          return (
-            <div className="card" key={i}>
-              <div className="title">
-                {result.cityName}
+  if (viewState == currentState) {
+    return (
+      <>
+        <div className="result-container">
+          {results.map((result, i) => {
+            return (
+              <div className="card" key={i}>
+                <div className="title">
+                  {result.cityName}
+                </div>
+                <div className="card-content">
+                  <li>{result.distance} Miles</li>
+                  <li>{cost(result.averageCost)}</li>
+                  <li>{travel(result.travelTime)}</li>
+                </div>
+                <footer className="card-footer">
+                  <a className="card-footer-item">
+                    View
+                  </a>
+                  <a className="card-footer-item">
+                    Save
+                  </a>
+                </footer>
               </div>
-              <div className="card-content">
-                <li>{result.distance} Miles</li>
-                <li>{cost(result.averageCost)}</li>
-                <li>{travel(result.travelTime)}</li>
-              </div>
-              <footer className="card-footer">
-                <a className="card-footer-item">
-                  View
-                </a>
-                <a className="card-footer-item">
-                  Save
-                </a>
-              </footer>
-            </div>
-          )
-        })}
-      </div>
-    </>
-  )
+            )
+          })}
+        </div>
+      </>
+    )
+  }
+  else {
+    return null
+  }
 
   // Checks if the travelTime exists
   function travel(param) {
@@ -65,7 +71,7 @@ const ResultBody: React.FC<props> = ({ results, statusCode, message, lat, lng, a
   // Checks if the averageCost exists
   function cost(param) {
     if (param != -1) {
-      return "$" + param
+      return "$" + (Math.round(param * 100) / 100).toFixed(2);
     }
     else {
       return "Price unavailable"
