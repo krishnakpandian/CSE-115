@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SortDropdown from './SortDropdown';
 import './Sort.css'
 
@@ -9,13 +9,12 @@ interface props {
 
 let display;
 
-/*
-  change back to no sort after each search
-  fix travel time sort
-*/
-
 const Sort: React.FC<props> = ({ data, setData }: props) => {
   const [input, setInput] = useState('');
+
+  useEffect(() => {
+    setInput('')
+  }, [data.address]);
 
   const updateSort = (input) => {
     setInput(input);
