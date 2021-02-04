@@ -10,9 +10,7 @@ import newUser from '../Signup/signup_form'
 import loginUser from '../Login/login_form'
 import firebase from 'firebase';
 import checkLogin from "../Login/check_login";
-import userEvent from "@testing-library/user-event";
-import { isThisTypeNode } from "typescript";
-
+import logoutUser from "../Login/logout_form";
 
 type state = { collapsed: boolean,
               signupCollapsed: boolean,
@@ -40,19 +38,24 @@ class NavbarTop extends React.Component<any, any> {
   getUserEmail(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("USER EMAIL SEEN");
-        console.log("The user in email: ", user.email);
         this.setState({userEmail: user.email});
       } else {
-        console.log("No user found")
         this.setState({userEmail: ""});
+        this.setState({userLogged: true});
       }
-    });
-    
+    });  
   }
   
   getUserStatus(){
-    this.setState({userLogged: checkLogin()});
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User logged in already or has just logged in.
+        this.setState({userLogged: false});
+      } else {
+        // User not logged in or has just logged out.
+        this.setState({userLogged: true});
+      }  
+    });
   }
 
   handleToggle() {
@@ -73,12 +76,27 @@ class NavbarTop extends React.Component<any, any> {
     this.setState({ signupCollapsed: false});
   }
 
+  handleLogout() {
+    logoutUser();
+    this.setState({userLogged: checkLogin()});
+  }
+
   signUpClick() {
+    this.setState({signupCollapsed: false});
+    this.setState({loginCollapsed: false});
     newUser(this.state.email, this.state.password);
   }
 
-  loginClick() {
-    loginUser(this.state.email, this.state.password);
+  async loginClick() {
+    this.setState({signupCollapsed: false});
+    this.setState({loginCollapsed: false});
+    const check = await loginUser(this.state.email, this.state.password);
+    if(check == false){
+      this.setState({userLogged: false});
+    } else {
+      this.setState({userLogged: false});
+    }
+    this.getUserEmail();
   }
 
   render() {
@@ -158,7 +176,7 @@ class NavbarTop extends React.Component<any, any> {
   userMenuShown = () => (
     <div className="dropdown-content">
       { this.state.userLogged ? this.state.userEmail : this.state.userEmail }
-      <button className="button dropdown-item" id="list_button" onClick={()=>this.handleLogin()}>Log Out</button>
+      <button className="button dropdown-item" id="list_button" onClick={()=>this.handleLogout()}>Log Out</button>
     </div>
   );
 
@@ -176,7 +194,7 @@ class NavbarTop extends React.Component<any, any> {
                                                  : this.state.userEmail }
               </div>
               <div className="buttons">
-                <button className={"button is-black is-outlined"} onClick={()=>this.handleSignup()}>Log out</button>
+                <button className={"button is-black is-outlined"} onClick={()=>this.handleLogout()}>Log out</button>
               </div>
     </div>
   );

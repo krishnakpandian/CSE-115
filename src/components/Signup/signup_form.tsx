@@ -19,18 +19,18 @@ async function newUser(email: string, password: string): Promise<void>{
       window.alert("Error: " + errorCode + errorMessage);
       return;
     });
-    window.alert( "Creating user!");
+    window.alert( "Creating user in database!");
     await db.collection("Users").doc(uid).set({
       name: email,
       password: password
     })
     .then(function() {
-      window.alert("Successfully Checked In!")
+      window.alert("Doc completion notification.")
     })
     .catch(function(error) {
       console.error("Error adding user: ", error);
     });
-    
+    window.alert("Done w/acc creation.")
     
 }
 
