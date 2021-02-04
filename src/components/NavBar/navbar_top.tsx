@@ -78,7 +78,8 @@ class NavbarTop extends React.Component<any, any> {
 
   handleLogout() {
     logoutUser();
-    this.setState({userLogged: checkLogin()});
+    this.setState({userLogged: false});
+    this.setState({userEmail: ""});
   }
 
   signUpClick() {
