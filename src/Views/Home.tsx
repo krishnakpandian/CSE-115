@@ -12,7 +12,7 @@ import { results, props } from "../components/Results/result-body";
 
 const Home = () => {
   const [data, setData] = useState<props>({
-    results: [{ cityName: "Test", distance: 5, travelTime: "", averageCost: -1 }],
+    results: [],
     statusCode: 0,
     message: "",
     lat: 0,
