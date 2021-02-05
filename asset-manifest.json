@@ -1,25 +1,29 @@
 {
   "files": {
-    "main.css": "/CSE-115-frontend/static/css/main.700aae6d.chunk.css",
-    "main.js": "/CSE-115-frontend/static/js/main.0b104708.chunk.js",
-    "main.js.map": "/CSE-115-frontend/static/js/main.0b104708.chunk.js.map",
-    "runtime-main.js": "/CSE-115-frontend/static/js/runtime-main.7c028046.js",
-    "runtime-main.js.map": "/CSE-115-frontend/static/js/runtime-main.7c028046.js.map",
-    "static/js/2.159fdd75.chunk.js": "/CSE-115-frontend/static/js/2.159fdd75.chunk.js",
-    "static/js/2.159fdd75.chunk.js.map": "/CSE-115-frontend/static/js/2.159fdd75.chunk.js.map",
-    "static/js/3.6c79eb48.chunk.js": "/CSE-115-frontend/static/js/3.6c79eb48.chunk.js",
-    "static/js/3.6c79eb48.chunk.js.map": "/CSE-115-frontend/static/js/3.6c79eb48.chunk.js.map",
+    "main.css": "/CSE-115-frontend/static/css/main.6f9e7fc1.chunk.css",
+    "main.js": "/CSE-115-frontend/static/js/main.07b13692.chunk.js",
+    "main.js.map": "/CSE-115-frontend/static/js/main.07b13692.chunk.js.map",
+    "runtime-main.js": "/CSE-115-frontend/static/js/runtime-main.b02e78de.js",
+    "runtime-main.js.map": "/CSE-115-frontend/static/js/runtime-main.b02e78de.js.map",
+    "static/js/2.ae00e67e.chunk.js": "/CSE-115-frontend/static/js/2.ae00e67e.chunk.js",
+    "static/js/2.ae00e67e.chunk.js.map": "/CSE-115-frontend/static/js/2.ae00e67e.chunk.js.map",
+    "static/js/3.fe7ec9e0.chunk.js": "/CSE-115-frontend/static/js/3.fe7ec9e0.chunk.js",
+    "static/js/3.fe7ec9e0.chunk.js.map": "/CSE-115-frontend/static/js/3.fe7ec9e0.chunk.js.map",
     "index.html": "/CSE-115-frontend/index.html",
-    "static/css/main.700aae6d.chunk.css.map": "/CSE-115-frontend/static/css/main.700aae6d.chunk.css.map",
-    "static/js/2.159fdd75.chunk.js.LICENSE.txt": "/CSE-115-frontend/static/js/2.159fdd75.chunk.js.LICENSE.txt",
+    "static/css/main.6f9e7fc1.chunk.css.map": "/CSE-115-frontend/static/css/main.6f9e7fc1.chunk.css.map",
+    "static/js/2.ae00e67e.chunk.js.LICENSE.txt": "/CSE-115-frontend/static/js/2.ae00e67e.chunk.js.LICENSE.txt",
     "static/media/apartment_icon.452c387f.png": "/CSE-115-frontend/static/media/apartment_icon.452c387f.png",
+    "static/media/dmitry.5b1c9899.jpg": "/CSE-115-frontend/static/media/dmitry.5b1c9899.jpg",
+    "static/media/dog.a44b79b0.jpg": "/CSE-115-frontend/static/media/dog.a44b79b0.jpg",
     "static/media/jonah.8d595db6.jpeg": "/CSE-115-frontend/static/media/jonah.8d595db6.jpeg",
-    "static/media/krishna.439e6788.jpg": "/CSE-115-frontend/static/media/krishna.439e6788.jpg"
+    "static/media/krishna.439e6788.jpg": "/CSE-115-frontend/static/media/krishna.439e6788.jpg",
+    "static/media/manav.bf34ae74.jpg": "/CSE-115-frontend/static/media/manav.bf34ae74.jpg",
+    "static/media/wayland.07e57d1e.jpg": "/CSE-115-frontend/static/media/wayland.07e57d1e.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7c028046.js",
-    "static/js/2.159fdd75.chunk.js",
-    "static/css/main.700aae6d.chunk.css",
-    "static/js/main.0b104708.chunk.js"
+    "static/js/runtime-main.b02e78de.js",
+    "static/js/2.ae00e67e.chunk.js",
+    "static/css/main.6f9e7fc1.chunk.css",
+    "static/js/main.07b13692.chunk.js"
   ]
 }
