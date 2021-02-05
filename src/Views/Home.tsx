@@ -118,8 +118,8 @@ const Home = () => {
   };
 
   const card = {
-    saved: data,
-    actual: saveFormat
+    saved: saveFormat,
+    actual: data
   }
 
   return (
