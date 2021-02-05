@@ -2,6 +2,7 @@ import Krishna from '../../../assets/krishna.jpg';
 import Jonah from '../../../assets/jonah.jpeg';
 import Dmitry from '../../../assets/dmitry.jpg';
 import Dog from '../../../assets/dog.jpg';
+import Manav from '../../../assets/manav.jpg';
 
 export const developers = [
         {
@@ -19,11 +20,11 @@ export const developers = [
             "image": Dog
         },
         {
-            "name": "",
-            "major": "",
-            "description": "",
-            "profile": "",
-            "image": "n/a"
+            "name": "Manav Bhatia",
+            "major": "Computer Science",
+            "description": "Hi, I'm a third year CS major at UCSC. My interests lie in Database Systems and Distributed Systems as well as Data Visualization.",
+            "profile": "https://www.linkedin.com/in/manav-b-a2a397b4/",
+            "image": "Manav"
         },
         {
             "name": "",
