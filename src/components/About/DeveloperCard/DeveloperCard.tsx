@@ -16,7 +16,7 @@ const DeveloperCard: React.FC<props> = ( prop: props) => {
                 <div className="name">{prop.name}</div>
                 <div className="major">{prop.major}</div>
                 <div className="description">{prop.description}</div>
-                <a href={prop.profile}><button>Visit Profile</button></a>
+                <a href={prop.profile} target="_blank" rel="noopener noreferrer"><button>Visit Profile</button></a>
             </div>
         </div>
       </>
