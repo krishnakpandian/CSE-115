@@ -36,7 +36,7 @@ export async function request(city: string, radius_of_results: number, number_of
         'radius': radius_of_results,
         'people': number_of_people
     };
-    await fetch('/places', {
+    await fetch(process.env.REACT_APP_BACKEND + '/places', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
