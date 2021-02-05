@@ -5,6 +5,7 @@ import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
 import InvalidSearch from '../components/NavBar/invalid_search';
+import AboutProduct from '../components/NavBar/AboutProduct';
 import Sort from '../components/Results/Sort/Sort';
 import ResultBody from '../components/Results/result-body';
 import Search from '../components/search/Search';
@@ -119,6 +120,7 @@ const Home = () => {
     return (
       <div className="App">
         <NavbarTop />
+        <AboutProduct/>
         <Search data={data} setData={updateData} />
         <InvalidSearch {...data} />
         <NavbarMiddle {...data} />
