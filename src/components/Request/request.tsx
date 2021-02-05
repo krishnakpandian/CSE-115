@@ -112,7 +112,7 @@ export async function getRequest(id?: string): Promise<results[]> {
     const values = {
         'id': id
     };
-    await fetch(process.env.BACKEND + '/cards', {
+    await fetch(process.env.REACT_APP_BACKEND + '/cards', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
