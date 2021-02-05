@@ -1,5 +1,4 @@
 {
-  "proxy": "https://cors-anywhere.herokuapp.com/https://cse-115-backend.herokuapp.com",
   "homepage": "http://krishnakpandian.github.io/CSE-115-frontend",
   "name": "relocation115",
   "version": "0.1.0",
