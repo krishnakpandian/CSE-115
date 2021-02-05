@@ -1,6 +1,7 @@
 import Krishna from '../../../assets/krishna.jpg';
 import Jonah from '../../../assets/jonah.jpeg';
 import Dmitry from '../../../assets/dmitry.jpg';
+import Dog from '../../../assets/dog.jpg';
 
 export const developers = [
         {
@@ -11,11 +12,11 @@ export const developers = [
             "image": Krishna
         },
         {
-            "name": "",
-            "major": "",
-            "description": "",
-            "profile": "",
-            "image": "n/a"
+            "name": "Alex Ngo",
+            "major": "Computer Science",
+            "description": "Hello, I am a third year Computer Science major at UCSC. I somewhat like coding.",
+            "profile": "https://www.linkedin.com/in/alkngo/",
+            "image": Dog
         },
         {
             "name": "",
