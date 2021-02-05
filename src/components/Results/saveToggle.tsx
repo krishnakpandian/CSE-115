@@ -5,17 +5,22 @@ import ResultBody from "./result-body"
 export interface results {
     cityName: string,
     distance?: number,
-    travelTime?: number,
+    travelTime?: string,
     averageCost?: number
 }
 
-export interface props {
+export interface card {
     results: results[],
     statusCode: number,
     message: string,
     lat: number,
     lng: number,
     address: string
+}
+
+export interface props {
+    saved: card,
+    actual: card
 }
 
 type state = {
@@ -38,7 +43,8 @@ class SaveToggle extends Component<props, state> {
                         <option value='saved'>Saved Results</option>
                     </select>
                 </div>
-                <ResultBody viewState="search" currentState={this.state.searchState} {...this.props} />
+                <ResultBody viewState="search" currentState={this.state.searchState} {...this.props.actual} />
+                <ResultBody viewState="saved" currentState={this.state.searchState} {...this.props.saved} />
             </div >
         )
     }

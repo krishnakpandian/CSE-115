@@ -7,7 +7,7 @@ import "./result-body.css"
 export interface results {
   cityName: string,
   distance?: number,
-  travelTime?: number,
+  travelTime?: string,
   averageCost?: number
 }
 

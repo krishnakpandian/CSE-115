@@ -12,7 +12,7 @@ import { results, props } from "../components/Results/result-body";
 
 const Home = () => {
   const [data, setData] = useState<props>({
-    results: [{ cityName: "Test", distance: 5, travelTime: 5, averageCost: -1 }],
+    results: [{ cityName: "Test", distance: 5, travelTime: "", averageCost: -1 }],
     statusCode: 0,
     message: "",
     lat: 0,
@@ -31,13 +31,19 @@ const Home = () => {
     console.log(data);
   }, [data]);
 
+
+  const card = {
+    saved: data,
+    actual: data
+  }
+
   return (
     <div className="App">
       <NavbarTop />
       <Search data={data} setData={updateData} />
       <NavbarMiddle />
       <MapResult {...data} />
-      <SaveToggle {...data} />
+      <SaveToggle {...card} />
       <NavbarBottom />
     </div>
   );
