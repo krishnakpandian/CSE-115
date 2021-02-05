@@ -46,7 +46,6 @@ class SaveToggle extends Component<props, state> {
                     </select>
                 </div>
                 <ResultBody viewState="search" currentState={this.state.searchState} {...this.props.actual} />
-                <h1 >------------------------------------- Saves -------------------------------------</h1>
                 <ResultBody viewState="saved" currentState={this.state.searchState} {...this.props.saved} />
             </div >
         )
