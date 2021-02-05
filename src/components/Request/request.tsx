@@ -50,7 +50,6 @@ export async function request(city: string, radius_of_results: number, number_of
             response.lng = data['lng'];
             response.address = data['address'];
     });
-    console.log(process.env.REACT_APP_BACKEND + '/places');
     return response;
 }
 
