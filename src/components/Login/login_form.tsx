@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 // TODO: pass input for user email and password during registration
-async function loginUser(email: string, password: string): Promise<void>{
+async function loginUser(email: string, password: string): Promise<boolean>{
     await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -14,8 +14,10 @@ async function loginUser(email: string, password: string): Promise<void>{
     if (user) {
       console.log("User stuff: ", user.email);
       console.log("User ID: ", user.uid);
+      return true;
     } else {
-      // No user is signed in.
+      window.alert("Wrong email/password for login");
+      return false;
     }
 
 }
