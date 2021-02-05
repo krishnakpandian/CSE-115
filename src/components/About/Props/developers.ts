@@ -24,7 +24,7 @@ export const developers = [
             "major": "Computer Science",
             "description": "Hi, I'm a third year CS major at UCSC. My interests lie in Database Systems and Distributed Systems as well as Data Visualization.",
             "profile": "https://www.linkedin.com/in/manav-b-a2a397b4/",
-            "image": "Manav"
+            "image": Manav
         },
         {
             "name": "",
