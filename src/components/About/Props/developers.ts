@@ -3,6 +3,7 @@ import Jonah from '../../../assets/jonah.jpeg';
 import Dmitry from '../../../assets/dmitry.jpg';
 import Dog from '../../../assets/dog.jpg';
 import Manav from '../../../assets/manav.jpg';
+import Wayland from '../../../assets/wayland.jpg';
 
 export const developers = [
         {
@@ -27,11 +28,11 @@ export const developers = [
             "image": Manav
         },
         {
-            "name": "",
-            "major": "",
-            "description": "",
-            "profile": "",
-            "image": "n/a"
+            "name": "Wayland Li",
+            "major": "Computer Science",
+            "description": "Hey, I'm a fourth year Computer Science Major from UCSC. I'm interested in expanding my knowledge and work skills",
+            "profile": "www.linkedin.com/in/wayland-li-ucsc",
+            "image": Wayland
         },
         {
             "name": "Jonah Kulakofsky",
