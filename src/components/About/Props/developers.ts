@@ -1,5 +1,6 @@
 import Krishna from '../../../assets/krishna.jpg';
 import Jonah from '../../../assets/jonah.jpeg';
+import Wayland from '../../../assets/wayland.jpg';
 
 export const developers = [
         {
@@ -24,11 +25,11 @@ export const developers = [
             "image": "n/a"
         },
         {
-            "name": "",
-            "major": "",
-            "description": "",
-            "profile": "",
-            "image": "n/a"
+            "name": "Wayland Li",
+            "major": "Computer Science",
+            "description": "Hey, I'm a fourth year Computer Science Major from UCSC. I'm interested in expanding my knowledge and work skills",
+            "profile": "www.linkedin.com/in/wayland-li-ucsc",
+            "image": Wayland
         },
         {
             "name": "Jonah Kulakofsky",
@@ -38,10 +39,10 @@ export const developers = [
             "image": Jonah
         },
         {
-            "name": "Wayland Li",
-            "major": "Computer Science",
-            "description": "Hey, I'm a fourth year Computer Science Major from UCSC. I'm interested in expanding my knowledge and work skills",
-            "profile": "www.linkedin.com/in/wayland-li-ucsc",
+            "name": "",
+            "major": "",
+            "description": "",
+            "profile": "",
             "image": "n/a"
         }
     ]
