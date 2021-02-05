@@ -64,7 +64,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost
     };
-    await fetch('/add', {
+    await fetch(process.env.REACT_APP_BACKEND + '/add', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -89,7 +89,7 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost
     };
-    await fetch('/delete', {
+    await fetch(process.env.REACT_APP_BACKEND + '/delete', {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -110,7 +110,7 @@ export async function getRequest(id?: string): Promise<results[]> {
     const values = {
         'id': id
     };
-    await fetch('/cards', {
+    await fetch(process.env.REACT_APP_BACKEND + '/cards', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
