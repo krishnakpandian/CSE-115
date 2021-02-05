@@ -38,10 +38,10 @@ export const developers = [
             "image": Jonah
         },
         {
-            "name": "",
-            "major": "",
-            "description": "",
-            "profile": "",
+            "name": "Wayland Li",
+            "major": "Computer Science",
+            "description": "Hey, I'm a fourth year Computer Science Major from UCSC. I'm interested in expanding my knowledge and work skills",
+            "profile": "www.linkedin.com/in/wayland-li-ucsc",
             "image": "n/a"
         }
     ]
