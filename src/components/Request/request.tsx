@@ -38,7 +38,7 @@ export async function request(city: string, radius_of_results: number, number_of
         'radius': radius_of_results,
         'people': number_of_people
     };
-    await fetch('/places', {
+    await fetch(process.env.REACT_APP_BACKEND + '/places', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -50,6 +50,7 @@ export async function request(city: string, radius_of_results: number, number_of
             response.lng = data['lng'];
             response.address = data['address'];
     });
+    console.log(process.env.REACT_APP_BACKEND + '/places');
     return response;
 }
 
@@ -66,7 +67,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost
     };
-    await fetch('/add', {
+    await fetch(process.env.REACT_APP_BACKEND +  '/add', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -91,7 +92,7 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost
     };
-    await fetch('/delete', {
+    await fetch(process.env.REACT_APP_BACKEND + '/delete', {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -112,7 +113,7 @@ export async function getRequest(id?: string): Promise<results[]> {
     const values = {
         'id': id
     };
-    await fetch('/cards', {
+    await fetch(process.env.BACKEND + '/cards', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
