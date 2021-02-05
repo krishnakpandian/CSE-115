@@ -21,6 +21,8 @@ interface props {
 // request() Sends a request to the backend to get information of surrounding cities
 //         paramters: city and filters
 //         returns:  a promise
+
+
 export async function request(city: string, radius_of_results: number, number_of_people: number): Promise<props>{
     const response: props = {
         results: [],
@@ -36,7 +38,7 @@ export async function request(city: string, radius_of_results: number, number_of
         'radius': radius_of_results,
         'people': number_of_people
     };
-    await fetch(process.env.REACT_APP_BACKEND + '/places', {
+    await fetch('/places', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -64,7 +66,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost
     };
-    await fetch(process.env.REACT_APP_BACKEND + '/add', {
+    await fetch('/add', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -89,7 +91,7 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost
     };
-    await fetch(process.env.REACT_APP_BACKEND + '/delete', {
+    await fetch('/delete', {
             method: 'DELETE',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
@@ -110,7 +112,7 @@ export async function getRequest(id?: string): Promise<results[]> {
     const values = {
         'id': id
     };
-    await fetch(process.env.REACT_APP_BACKEND + '/cards', {
+    await fetch('/cards', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
