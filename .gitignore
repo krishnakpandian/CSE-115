@@ -24,4 +24,3 @@ yarn-error.log*
 
 .eslintcache
 .env
-/src/components/Signup/firebaseConfig.tsx
