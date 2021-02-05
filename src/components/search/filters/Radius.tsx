@@ -2,8 +2,8 @@ import React from "react";
 import './Radius.css';
 
 interface props {
-  currentRad: number;
-  setCurrentRad: any;
+  currentRad: number,
+  setCurrentRad
 }
 
 const Radius: React.FC<props> = ({ currentRad, setCurrentRad }: props) => {

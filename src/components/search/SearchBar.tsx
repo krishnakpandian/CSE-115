@@ -2,9 +2,9 @@ import React from 'react';
 import './SearchBar.css';
 
 interface props {
-  keyword: any,
-  setKeyword: any,
-  buttonClick: any
+  keyword,
+  setKeyword,
+  buttonClick
 }
 
 const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props) => {
