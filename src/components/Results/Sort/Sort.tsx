@@ -41,21 +41,90 @@ const Sort: React.FC<props> = ({ data, setData }: props) => {
   }
 
   const getTime = (results, range) => {
-    // temporary but need to break down string into appropriate time int
+    // convert each travel time from string to minutes
+    results.forEach(function (item) {
+      item['travelTime'] = convert(item['travelTime']);
+    });
 
+    // sort
+    let sorted;
     if (range == 'tim low high') {
-      // sort from low travel time to high
-      const newList = results.sort(function (a, b) {
-        return parseInt(a['travelTime']) - parseInt(b['travelTime']);
-      });
-      return newList;
+      sorted = sort(results, 'travelTime', 'low high');
     }
     else {
-      // sort from high travel time to low
-      const newList = results.sort(function (a, b) {
-        return parseInt(b['travelTime']) - parseInt(a['travelTime']);
-      });
-      return newList;
+      sorted = sort(results, 'travelTime', 'high low');
+    }
+
+    // convert travel time from minutes back to string
+    sorted.forEach(function (item) {
+      item['travelTime'] = convert(item['travelTime']);
+    });
+
+    return sorted;
+  }
+
+  const convert = (time) => {
+    if (isNaN(time)) {
+      // convert from string to number of minutes
+      let sum = 0;
+      const str = time.split(" ");
+      sum += convertString(parseInt(str[0]), str[1]);
+      if (str.length > 2) {
+        sum += convertString(parseInt(str[2]), str[3]);
+      }
+      return sum;
+    }
+    else {
+      // convert from number of minutes to string
+      let str = '';
+
+      // days
+      const days = Math.trunc(time / (60 * 24));
+      if (days > 0) {
+        if (days > 1) {
+          str += days + ' days '
+        }
+        else {
+          str += days + ' day '
+        }
+        time = time % (60 * 24);
+      }
+
+      // hours
+      const hours = Math.trunc(time / 60);
+      if (hours > 0) {
+        if (hours > 1) {
+          str += hours + ' hours '
+        }
+        else {
+          str += hours + ' hour '
+        }
+        time = time % 60;
+      }
+
+      // minutes
+      if (time > 0) {
+        if (time > 1) {
+          str += time + ' mins'
+        }
+        else {
+          str += time + ' min'
+        }
+      }
+
+      return str;
+    }
+  }
+
+  const convertString = (time, unit) => {
+    if (unit.includes('min')) {
+      return time;
+    }
+    else if (unit.includes('hour')) {
+      return time * 60;
+    }
+    else if (unit.includes('day')) {
+      return time * 24 * 60;
     }
   }
 
