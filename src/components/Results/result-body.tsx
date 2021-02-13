@@ -3,6 +3,7 @@ import { checkServerIdentity } from "tls";
 import "../../bulma.css"
 import "./result-body.css"
 import { createRequest, deleteRequest } from "../Request/request";
+import ImageModal from "../Modals/Modals";
 import firebase from 'firebase';
 
 export interface results {
@@ -72,9 +73,10 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
                   <li>{travel(result.travelTime)}</li>
                 </div>
                 <footer className="card-footer">
-                  <a className="card-footer-item">
-                    View
-                </a>
+                  {/* <div className="card-footer-item" >
+                    Views
+                </div> */}
+                <ImageModal {...result}/>
                   {!result.saved &&
                     <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
                       Save
