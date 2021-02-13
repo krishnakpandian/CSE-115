@@ -1,11 +1,8 @@
 import firebase from 'firebase';
-import {firebaseConfig} from './firebaseConfig'
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
-const db = firebase.firestore(); 
-
-async function newGoogleUser() {
+async function loginGoogleUser(): Promise<boolean> {
   let uid: string | undefined;
   firebase.auth().signInWithRedirect(provider);
 
@@ -21,10 +18,6 @@ async function newGoogleUser() {
       }
       // The signed-in user info.
       const user = result.user;
-      uid = result.user?.uid;
-      db.collection("Users").doc(uid).set({
-        name: "Google User!"
-      })
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -33,6 +26,13 @@ async function newGoogleUser() {
       
       const credential = error.credential;
     });
+
+    const user = firebase.auth().currentUser;
+    if (user) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-export default newGoogleUser;
+export default loginGoogleUser;
