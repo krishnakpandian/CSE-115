@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+.about-container.title {
+    margin-top: 5vh;
+}
+
 .developer-list {
     display: flex;
     max-width: 1000px;

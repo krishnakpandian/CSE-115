@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { checkServerIdentity } from "tls";
 import "../../bulma.css"
 import "./result-body.css"
-import {createRequest, deleteRequest} from "../Request/request";
+import { createRequest, deleteRequest } from "../Request/request";
+import ImageModal from "../Modals/Modals";
 import firebase from 'firebase';
 
 export interface results {
@@ -21,10 +22,12 @@ export interface props {
   lat: number,
   lng: number,
   address: string,
+  viewState?: string,
+  currentState?: string,
   updateSaves(add_or_delete: boolean, res: results): void
 }
 
-const ResultBody: React.FC<props> = ({ results, address, updateSaves }: props) => {
+const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState, currentState }: props) => {
   // true for add, false for delete
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, search_address: string) => {
     if (firebase.auth().currentUser == null) return;
@@ -41,7 +44,7 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves }: props) =
         }
         updateSaves(add_or_delete, newCard);
       });
-    } else{
+    } else {
       deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
         console.log(res);
         const oldCard: results = {
@@ -57,43 +60,49 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves }: props) =
     }
 
   }
+  if (viewState == currentState) {
+    return (
+      <>
+        <div className="result-container">
+          {results.map((result, index) => {
+            return (
+              <div className="card" key={index}>
+                <div className="title">
+                  {result.cityName}
+                </div>
+                <div className="card-content">
+                  <li>{result.distance} Miles</li>
+                  <li>{cost(result.averageCost)}</li>
+                  <li>{travel(result.travelTime)}</li>
+                  <li>From: {address}</li>
+                </div>
+                <footer className="card-footer">
+                  {/* <div className="card-footer-item" >
+                    Views
+                </div> */}
+                <ImageModal {...result}/>
+                  {!result.saved &&
+                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
+                      Save
+                  </a>
+                  }
+                  {result.saved &&
+                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
+                      Unsave
+                  </a>
+                  }
+                </footer>
+              </div>
+            )
+          })}
+        </div>
+      </>
+    )
+  }
+  else {
+    return null
+  }
 
-  return (
-    <>
-      <div className="result-container">
-        {results.map((result, index) => {
-          return (
-            <div className="card" key={index}>
-              <div className="title">
-                {result.cityName}
-              </div>
-              <div className="card-content">
-                <li>{result.distance} Miles</li>
-                <li>{cost(result.averageCost)}</li>
-                <li>{travel(result.travelTime)}</li>
-                <li>From: {address}</li>
-              </div>
-              <footer className="card-footer">
-                <a className="card-footer-item">
-                  View
-                </a>
-                { !result.saved &&
-                  <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
-                    Save
-                  </a>
-                }
-                { result.saved &&
-                  <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
-                    Unsave
-                  </a>
-                }
-              </footer>
-            </div>
-          )
-        })}
-      </div>
-    </>
-  )
 
   // Checks if the travelTime exists
   function travel(param) {

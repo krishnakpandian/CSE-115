@@ -1,23 +1,14 @@
-import React, { Component, RefObject } from "react";
-import { useState } from 'react';
-import PropTypes from "prop-types";
+import React from "react";
 import './navbar_top.css'
 import "../../bulma.css"
-import truck_logo from '../../assets/moving_truck.png'
-import form_logo from '../../assets/form_icon.png'
-import apartment_logo from '../../assets/apartment_icon.png'
 import newUser from '../Signup/signup_form'
 import loginUser from '../Login/login_form'
 import firebase from 'firebase';
-import checkLogin from "../Login/check_login";
 import logoutUser from "../Login/logout_form";
+import newGoogleUser from '../Signup/google_signup'
+import loginGoogleUser from '../Login/google_login'
+import google_logo from '../../assets/google_icon.png'
 
-type state = { collapsed: boolean,
-              signupCollapsed: boolean,
-              loginCollapsed: boolean,
-              email: string,
-              password: string };
-type props = unknown;
 
 class NavbarTop extends React.Component<any, any> {
   
@@ -88,12 +79,30 @@ class NavbarTop extends React.Component<any, any> {
     newUser(this.state.email, this.state.password);
   }
 
+  async googleSignUpClick() {
+    this.setState({signupCollapsed: false});
+    this.setState({loginCollapsed: false});
+    newGoogleUser();
+  }
+
+  async googleLoginClick() {
+    this.setState({signupCollapsed: false});
+    this.setState({loginCollapsed: false});
+    const check = await loginGoogleUser();
+    if(check == false){
+      this.setState({userLogged: true});
+    } else {
+      this.setState({userLogged: false});
+    }
+    this.getUserEmail();
+  }
+
   async loginClick() {
     this.setState({signupCollapsed: false});
     this.setState({loginCollapsed: false});
     const check = await loginUser(this.state.email, this.state.password);
     if(check == false){
-      this.setState({userLogged: false});
+      this.setState({userLogged: true});
     } else {
       this.setState({userLogged: false});
     }
@@ -133,43 +142,6 @@ class NavbarTop extends React.Component<any, any> {
       </nav> 
       { this.state.signupCollapsed ? <this.Signup /> : null }
       { this.state.loginCollapsed ? <this.Login /> : null }
-      <div className="columns is-centered" id="about_section">
-        <div className="column is-one-third">
-          <div id="info_card">
-            <div className='is-flex is-horizontal-center'>
-              <figure className='image is-64x64'><img src={form_logo}></img></figure>
-            </div>
-            <h1 className="title is-2"> Search </h1>
-            <p className="is-size-4">Enter an address to receive vital information
-              about cost of living, traffic, and distances to 
-              places to visit.
-            </p>
-            </div>
-        </div>
-        <div className="column is-one-third">
-          <div id="info_card">
-            <div className='is-flex is-horizontal-center'>
-              <figure className='image is-64x64'><img src={apartment_logo}></img></figure>
-            </div>
-            <h1 className="title is-2"> Choose </h1>
-            <p className="is-size-4">Pick a place that fits your creteria from the results
-              and save it along with other relevant links. 
-            </p>
-          </div>
-        </div>
-        <div className="column is-one-third">
-          <div id="info_card">
-              <div className='is-flex is-horizontal-center'>
-                <figure className='image is-64x64'><img src={truck_logo}></img></figure>
-              </div>
-              <h1 className="title is-2"> Relocate </h1>
-              <p className="is-size-4">Now that you are informed and prepared, it is time to make your 
-                life-changing move. 
-              </p>
-              
-            </div>
-          </div>
-      </div>
       </section>
    );
   }
@@ -211,12 +183,15 @@ class NavbarTop extends React.Component<any, any> {
 
   Signup = () => (
     <div className="box column is-quarter is-pulled-right has-background-white">
+            <button className='is-square button is-success' id="google_img" onClick={() => this.googleSignUpClick()}>
+              <img className="image is-16x16" src={google_logo}></img>
+              Sign Up with Google
+            </button>
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left">
                 <input name="email" type="email" placeholder="test@gmail.com" className="input" required
                  onChange={this.handleChange}>
-              
                 </input>
               </div>
             </div>
@@ -238,6 +213,11 @@ class NavbarTop extends React.Component<any, any> {
 
   Login = () => (
     <div className="box column is-quarter is-pulled-right has-background-white">
+            <button className='is-square button is-success' id="google_img" onClick={() => this.googleLoginClick()}>
+              <img className="image is-16x16" src={google_logo}></img>
+              Login with Google
+            </button>
+
             <div className="field">
               <label className="label">Email</label>
               <div className="control has-icons-left">

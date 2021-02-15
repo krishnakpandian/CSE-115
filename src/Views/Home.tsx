@@ -5,6 +5,7 @@ import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
 import InvalidSearch from '../components/NavBar/invalid_search';
+import AboutProduct from '../components/NavBar/AboutProduct';
 import Sort from '../components/Results/Sort/Sort';
 import ResultBody from '../components/Results/result-body';
 import Search from '../components/search/Search';
@@ -12,6 +13,7 @@ import MapResult from '../components/Request/MapResult';
 import {results, props} from "../components/Results/result-body";
 import {getRequest} from "../components/Request/request";
 import firebase from 'firebase';
+import SaveToggle from "../components/Results/saveToggle";
 
 let saved_props: props =  {
   results: [],
@@ -115,18 +117,22 @@ const Home = () => {
       address: "",
       updateSaves: add_or_delete_save
     };
+
+    const card = {
+      actual: data,
+      saved: saveFormat
+    }
     
     return (
       <div className="App">
         <NavbarTop />
+        <AboutProduct/>
         <Search data={data} setData={updateData} />
         <InvalidSearch {...data} />
         <NavbarMiddle {...data} />
         <MapResult {...data} />
         <Sort data={data} setData={updateData} />
-        <ResultBody {...data}/>
-        <h1 >------------------------------------- Saves -------------------------------------</h1>
-        <ResultBody {...saveFormat}/>
+        <SaveToggle {...card} />
         <NavbarBottom />
       </div>
     );

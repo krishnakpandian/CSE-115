@@ -1,5 +1,5 @@
 import {results, props} from "../Results/result-body";
-
+import {ModalInfoProps} from "../Modals/Modals";
 /* These are the interfaces definitions
 interface results {
     cityName: string,
@@ -142,4 +142,31 @@ export async function getRequest(id?: string): Promise<results[]> {
     });
     console.log(results);
     return results;
+}
+
+
+
+// getRequest() Sends a request to the backend to get the users list of saved cards
+//         parameters: user id
+//         returns:  a promise
+export async function getModalView(city: string): Promise<ModalInfoProps> {
+    let result: ModalInfoProps = {
+        cleanliness: -1,
+        airPollution: -1,
+        safety: -1,
+        healthcare: -1
+    };
+    const values = {
+        'city': city
+    };
+    await fetch(process.env.REACT_APP_BACKEND + '/views', {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify(values),
+        }).then(res => res.json()).then(data => {
+            if (data['statusCode'] == 200) {
+                result = data.results;
+            }
+    });
+    return result;
 }
