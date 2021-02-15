@@ -10,6 +10,7 @@ export interface results {
   distance?: number,
   travelTime?: number,
   averageCost?: number,
+  searchAddress: string,
   saved: boolean
 }
 
@@ -23,18 +24,19 @@ export interface props {
   updateSaves(add_or_delete: boolean, res: results): void
 }
 
-const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
+const ResultBody: React.FC<props> = ({ results, address, updateSaves }: props) => {
   // true for add, false for delete
-  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number) => {
+  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, search_address: string) => {
     if (firebase.auth().currentUser == null) return;
     if(add_or_delete){
-      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, search_address).then(res => {
         console.log(res);
         const newCard: results = {
           cityName: city_name,
           distance: distance,
           travelTime: travel_time,
           averageCost: average_cost,
+          searchAddress: search_address,
           saved: true
         }
         updateSaves(add_or_delete, newCard);
@@ -47,6 +49,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
           distance: distance,
           travelTime: travel_time,
           averageCost: average_cost,
+          searchAddress: search_address,
           saved: false
         }
         updateSaves(add_or_delete, oldCard);
@@ -68,18 +71,19 @@ const ResultBody: React.FC<props> = ({ results, updateSaves }: props) => {
                 <li>{result.distance} Miles</li>
                 <li>{cost(result.averageCost)}</li>
                 <li>{travel(result.travelTime)}</li>
+                <li>From: {address}</li>
               </div>
               <footer className="card-footer">
                 <a className="card-footer-item">
                   View
                 </a>
                 { !result.saved &&
-                  <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
+                  <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
                     Save
                   </a>
                 }
                 { result.saved &&
-                  <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost)} className="card-footer-item">
+                  <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
                     Unsave
                   </a>
                 }

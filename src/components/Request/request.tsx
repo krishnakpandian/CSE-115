@@ -49,6 +49,9 @@ export async function request(city: string, radius_of_results: number, number_of
             response.lat = data['lat'];
             response.lng = data['lng'];
             response.address = data['address'];
+    }).catch(error => {
+        console.error("Error getting requests: ", error);
+        return response;
     });
     return response;
 }
@@ -56,7 +59,7 @@ export async function request(city: string, radius_of_results: number, number_of
 // createRequest() Sends a request to the backend to save a card to firestore
 //         paramters: user id, city information
 //         returns:  a promise
-export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number): Promise<string>{
+export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, search_address?: string): Promise<string>{
     console.log(id);
     let message = "";
     const values = {
@@ -64,7 +67,8 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         'cityName': city_name,
         'travelTime': travel_time,
         'distance': distance,
-        'averageCost': average_cost
+        'averageCost': average_cost,
+        'searchAddress': search_address
     };
     await fetch(process.env.REACT_APP_BACKEND +  '/add', {
             method: 'POST',
@@ -73,6 +77,9 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         }).then(res => res.json()).then(data => {
             message = data['success'];
         
+    }).catch(error => {
+        console.error("Error saving card to firestore: ", error);
+        return message;
     });
     console.log(message);
     return message;
@@ -81,7 +88,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
 // deleteRequest() Sends a request to the backend to delete the save in firestore
 //         paramters: user id, city information
 //         returns:  a promise
-export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number): Promise<string>{
+export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, search_address?: string): Promise<string>{
     console.log(id);
     let message = "";
     const values = {
@@ -89,7 +96,8 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         'cityName': city_name,
         'travelTime': travel_time,
         'distance': distance,
-        'averageCost': average_cost
+        'averageCost': average_cost,
+        'searchAddress': search_address
     };
     await fetch(process.env.REACT_APP_BACKEND + '/delete', {
             method: 'DELETE',
@@ -98,6 +106,9 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         }).then(res => res.json()).then(data => {
             message = data['success'];
         
+    }).catch(error => {
+        console.error("Error deleting card in firestore: ", error);
+        return message;
     });
     console.log(message);
     return message;
@@ -125,6 +136,9 @@ export async function getRequest(id?: string): Promise<results[]> {
                     results = [];
                 }  
             }    
+    }).catch(error => {
+        console.error("Error getting cards from firestore: ", error);
+        return results;
     });
     console.log(results);
     return results;
