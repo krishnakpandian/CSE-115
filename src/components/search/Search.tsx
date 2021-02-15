@@ -25,13 +25,14 @@ const Search = params => {
     setPeople(parseInt(people));
   }
 
-  const buttonClick = () => {
+  const buttonClick = (setLoading) => {
     if (input === '') {
       console.log("blank search");
     } else {
       request(input, radius, people).then(res => {
         params.setData(res);
         setInput(res.address);
+        setLoading(false);
       });
     }
   }
