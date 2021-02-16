@@ -35,7 +35,7 @@ const Home = () => {
       if(add_or_delete){
         setSaves(oldArray => [...oldArray, res]);
         saved_props.results.forEach(element => {
-          if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
+          if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime && element.travelSeconds == res.travelSeconds){
             element.saved = true;
           }
         });
@@ -43,7 +43,7 @@ const Home = () => {
       }else{
         setSaves(oldArray => oldArray.filter(oldArray => {return oldArray.cityName != res.cityName && oldArray.distance != res.distance}));
         saved_props.results.forEach(element => {
-          if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime){
+          if(element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime && element.travelSeconds == res.travelSeconds){
             element.saved = false;
           }
         });
