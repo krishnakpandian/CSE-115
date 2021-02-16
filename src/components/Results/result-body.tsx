@@ -10,6 +10,7 @@ export interface results {
   cityName: string,
   distance?: number,
   travelTime?: number,
+  travelSeconds?: number,
   averageCost?: number,
   saved: boolean
 }
