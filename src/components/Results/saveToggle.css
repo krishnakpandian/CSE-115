@@ -1,9 +1,6 @@
 .SaveToggle {
   display: flex;
   justify-content: center;
-  margin-top: 0.8rem;
-}
-
-.DisplayMargin {
-  margin: 0;
+  margin: auto;
+  width: 90%;
 }

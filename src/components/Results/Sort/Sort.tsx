@@ -6,12 +6,13 @@ interface props {
   data,
   setData,
   saves,
-  sortSaves
+  sortSaves,
+  view
 }
 
 let display;
 
-const Sort: React.FC<props> = ({ data, setData, saves, sortSaves }: props) => {
+const Sort: React.FC<props> = ({ data, setData, saves, sortSaves, view }: props) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const Sort: React.FC<props> = ({ data, setData, saves, sortSaves }: props) => {
     }
   }
 
-  display = data.address && (
+  display = (data.address || (view == 'saved')) && (
     <SortDropdown
       currentSort={input}
       setCurrentSort={updateSort}
