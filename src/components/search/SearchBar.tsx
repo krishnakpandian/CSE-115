@@ -40,7 +40,7 @@ const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props)
           <div >
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'search location',
                 className: 'input is-primary is-medium is-rounded',
               })}
             />
