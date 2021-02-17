@@ -72,7 +72,7 @@ const Sort: React.FC<props> = ({ data, setData, saves, sortSaves, view }: props)
     }
   }
 
-  display = (data.address || ((view == 'saved') && (saves.length > 0))) && (
+  display = ((data.address && (view == 'search')) || ((view == 'saved') && (saves.length > 0))) && (
     <SortDropdown
       currentSort={input}
       setCurrentSort={updateSort}
