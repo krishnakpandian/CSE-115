@@ -153,9 +153,9 @@ const Home = () => {
       <Search data={data} setData={updateData} />
       <SaveToggle view={view} setView={updateView} />
       <InvalidSearch data={data} view={view} />
-      <NavbarMiddle {...data} />
-      <MapResult {...data} />
-      <Sort data={data} setData={updateData} saves={saves} sortSaves={sortSaves} />
+      <NavbarMiddle data={data} view={view} />
+      <MapResult data={data} view={view} />
+      <Sort data={data} setData={updateData} saves={saves} sortSaves={sortSaves} view={view} />
       <div>
         {searchDisplay}
         {savedDisplay}

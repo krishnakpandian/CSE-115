@@ -25,7 +25,7 @@ const SaveToggle: React.FC<props> = ({ view, setView }: props) => {
                     Search Results
                 </RadioButton>
                 <RadioButton value='saved' iconSize={20} checked={val === 'saved'}>
-                    Saved Cards
+                    Saved Results
                 </RadioButton>
             </RadioGroup>
         </div>
