@@ -1,6 +1,9 @@
 import React from "react";
 import { useState, useEffect } from 'react';
+import { results, props } from "../components/Results/result-body";
+import { getRequest } from "../components/Request/request";
 import "../bulma.css"
+import firebase from 'firebase';
 import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
@@ -9,9 +12,6 @@ import AboutProduct from '../components/NavBar/AboutProduct';
 import Sort from '../components/Results/Sort/Sort';
 import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
-import { results, props } from "../components/Results/result-body";
-import { getRequest } from "../components/Request/request";
-import firebase from 'firebase';
 import SaveToggle from "../components/Results/saveToggle";
 
 let saved_props: props = {
