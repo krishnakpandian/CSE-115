@@ -136,16 +136,14 @@ const Home = () => {
     saved: saveFormat
   }
 
+  // display for search results
   const searchDisplay = data.address && (
     <ResultBody viewState="search" currentState={view} {...card.actual} />
   );
 
+  // display for saved cards
   const savedDisplay = (view == 'saved') && (
     <ResultBody viewState="saved" currentState={view} {...card.saved} />
-  );
-
-  const invalidSearchText = (view == 'search') && (
-    <InvalidSearch {...data} />
   );
 
   return (
@@ -154,7 +152,7 @@ const Home = () => {
       <AboutProduct />
       <Search data={data} setData={updateData} />
       <SaveToggle view={view} setView={updateView} />
-      {invalidSearchText}
+      <InvalidSearch data={data} view={view} />
       <NavbarMiddle {...data} />
       <MapResult {...data} />
       <Sort data={data} setData={updateData} saves={saves} sortSaves={sortSaves} />
