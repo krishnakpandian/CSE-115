@@ -37,7 +37,8 @@ const Home = () => {
     if (add_or_delete) {
       setSaves(oldArray => [...oldArray, res]);
       saved_props.results.forEach(element => {
-        if (element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime && element.travelSeconds == res.travelSeconds) {
+        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress) {
+          console.log("Saved: " + element.cityName);
           element.saved = true;
         }
       });
@@ -45,7 +46,7 @@ const Home = () => {
     } else {
       setSaves(oldArray => oldArray.filter(oldArray => { return oldArray.cityName != res.cityName && oldArray.distance != res.distance }));
       saved_props.results.forEach(element => {
-        if (element.averageCost == res.averageCost && element.cityName == res.cityName && element.distance == res.distance && element.travelTime == res.travelTime && element.travelSeconds == res.travelSeconds) {
+        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress) {
           element.saved = false;
         }
       });
@@ -95,6 +96,8 @@ const Home = () => {
           console.log("Loading Cards");
           setSaves(res);
           console.log("Loaded Cards");
+        }).catch(error => {
+          console.error("Error Getting Cards: ", error);
         });
       } else {
         // User not logged in or has just logged out.
