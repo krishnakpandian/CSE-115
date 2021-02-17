@@ -4,12 +4,14 @@ import './Sort.css'
 
 interface props {
   data,
-  setData
+  setData,
+  saves,
+  sortSaves
 }
 
 let display;
 
-const Sort: React.FC<props> = ({ data, setData }: props) => {
+const Sort: React.FC<props> = ({ data, setData, saves, sortSaves }: props) => {
   const [input, setInput] = useState('');
 
   useEffect(() => {
@@ -18,29 +20,38 @@ const Sort: React.FC<props> = ({ data, setData }: props) => {
 
   const updateSort = (input) => {
     setInput(input);
-    let sorted;
+
+    let sortedResults;
+    let sortedSaves;
 
     switch (input) {
       case 'cos low high':
-        sorted = sort(data.results, 'averageCost', 'low high');
+        sortedResults = sort(data.results, 'averageCost', 'low high');
+        sortedSaves = sort(saves, 'averageCost', 'low high');
         break;
       case 'cos high low':
-        sorted = sort(data.results, 'averageCost', 'high low');
+        sortedResults = sort(data.results, 'averageCost', 'high low');
+        sortedSaves = sort(saves, 'averageCost', 'high low');
         break;
       case 'dis low high':
-        sorted = sort(data.results, 'distance', 'low high');
+        sortedResults = sort(data.results, 'distance', 'low high');
+        sortedSaves = sort(saves, 'distance', 'low high');
         break;
       case 'dis high low':
-        sorted = sort(data.results, 'distance', 'high low');
+        sortedResults = sort(data.results, 'distance', 'high low');
+        sortedSaves = sort(saves, 'distance', 'high low');
         break;
       case 'tim low high':
-        sorted = sort(data.results, 'travelSeconds', 'low high');
+        sortedResults = sort(data.results, 'travelSeconds', 'low high');
+        sortedSaves = sort(saves, 'travelSeconds', 'low high');
         break;
       default:
-        sorted = sort(data.results, 'travelSeconds', 'high low');
+        sortedResults = sort(data.results, 'travelSeconds', 'high low');
+        sortedSaves = sort(saves, 'travelSeconds', 'high low');
     }
 
-    setData({ ...data, results: sorted });
+    setData({ ...data, results: sortedResults });
+    sortSaves(sortedSaves);
   }
 
   const sort = (results, dataType, direction) => {
