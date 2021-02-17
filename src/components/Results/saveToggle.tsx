@@ -1,83 +1,29 @@
-import React, { Component } from "react";
-import { isConstructorDeclaration, isPropertySignature, setConstantValue } from "typescript";
-import ResultBody from "./result-body"
+import React from "react";
+import { RadioGroup, RadioButton } from 'react-radio-buttons';
 import './saveToggle.css'
 
-export interface results {
-    cityName: string,
-    distance?: number,
-    travelTime?: number,
-    averageCost?: number,
-    saved: boolean
-}
-
-export interface card {
-    results: results[],
-    statusCode: number,
-    message: string,
-    lat: number,
-    lng: number,
-    address: string,
-    updateSaves(add_or_delete: boolean, res: results): void
-}
-
 export interface props {
-    saved: card,
-    actual: card
+    view,
+    setView
 }
 
-type state = {
-    searchState: any
-}
-
-class SaveToggle extends Component<props, state> {
-    constructor(props) {
-        super(props);
-        this.state = { searchState: "search" };
+const SaveToggle: React.FC<props> = ({ view, setView }: props) => {
+    const updateView = (input) => {
+        setView(input)
     }
 
-    render() {
-        const displayToggle = this.props.actual.address && (
-            <div className='field has-addons'>
-                <div className='control'>
-                    <button className='button is-static DisplayMargin'>Display</button>
-                </div>
-                <div className="control">
-                    <div className="select is-primary is-rounded">
-                        <div className="select is-primary is-rounded">
-                            <select onChange={(e) => this.changeState(e.target.value)}>
-                                <option value='search'>Search Results</option>
-                                <option value='saved'>Saved Results</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-
-        const cardDisplay = this.props.actual.address && (
-            <div>
-                <ResultBody viewState="search" currentState={this.state.searchState} {...this.props.actual} />
-                <ResultBody viewState="saved" currentState={this.state.searchState} {...this.props.saved} />
-            </div>
-        );
-
-        return (
-            <div>
-                <div className='SaveToggle'>
-                    {displayToggle}
-                </div >
-                {cardDisplay}
-            </div>
-        )
-    }
-
-    changeState(params: any) {
-        this.setState({
-            searchState: params
-        })
-        console.log(this.state.searchState)
-    }
+    return (
+        <div className='SaveToggle'>
+            <RadioGroup onChange={updateView.bind(this)} horizontal>
+                <RadioButton value="search">
+                    Search Results
+                </RadioButton>
+                <RadioButton value="saved">
+                    Saved Cards
+                </RadioButton>
+            </RadioGroup>
+        </div>
+    );
 }
 
 export default SaveToggle;

@@ -13,6 +13,7 @@ import Sort from '../components/Results/Sort/Sort';
 import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import SaveToggle from "../components/Results/saveToggle";
+import ResultBody from '../components/Results/result-body';
 
 let saved_props: props = {
   results: [],
@@ -28,6 +29,8 @@ const Home = () => {
   const [saves, setSaves] = useState<results[]>([]);
 
   const [data, setData] = useState<props>(saved_props);
+
+  const [view, setView] = useState('search');
 
   // add or delete save; true for add, false for delete
   const add_or_delete_save = (add_or_delete: boolean, res: results) => {
@@ -62,6 +65,11 @@ const Home = () => {
   // sort saved cards
   const sortSaves = (orderedSaves) => {
     setSaves(orderedSaves);
+  }
+
+  // update view for search or saved cards
+  const updateView = (view) => {
+    setView(view)
   }
 
   // Just checking data is updated correctly
@@ -128,16 +136,28 @@ const Home = () => {
     saved: saveFormat
   }
 
+  const searchDisplay = data.address && (
+    <ResultBody viewState="search" currentState={view} {...card.actual} />
+  );
+
+  const savedDisplay = (view == 'saved') && (
+    <ResultBody viewState="saved" currentState={view} {...card.saved} />
+  );
+
   return (
     <div className="App">
       <NavbarTop />
       <AboutProduct />
       <Search data={data} setData={updateData} />
+      <SaveToggle view={view} setView={updateView} />
       <InvalidSearch {...data} />
       <NavbarMiddle {...data} />
       <MapResult {...data} />
       <Sort data={data} setData={updateData} saves={saves} sortSaves={sortSaves} />
-      <SaveToggle {...card} />
+      <div>
+        {searchDisplay}
+        {savedDisplay}
+      </div>
       <NavbarBottom />
     </div>
   );
