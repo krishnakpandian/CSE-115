@@ -144,13 +144,17 @@ const Home = () => {
     <ResultBody viewState="saved" currentState={view} {...card.saved} />
   );
 
+  const invalidSearchText = (view == 'search') && (
+    <InvalidSearch {...data} />
+  );
+
   return (
     <div className="App">
       <NavbarTop />
       <AboutProduct />
       <Search data={data} setData={updateData} />
       <SaveToggle view={view} setView={updateView} />
-      <InvalidSearch {...data} />
+      {invalidSearchText}
       <NavbarMiddle {...data} />
       <MapResult {...data} />
       <Sort data={data} setData={updateData} saves={saves} sortSaves={sortSaves} />
