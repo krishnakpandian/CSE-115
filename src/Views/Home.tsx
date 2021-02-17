@@ -35,6 +35,7 @@ const Home = () => {
       setSaves(oldArray => [...oldArray, res]);
       saved_props.results.forEach(element => {
         if (element.cityName == res.cityName && element.searchAddress == res.searchAddress) {
+          console.log("Saved: " + element.cityName);
           element.saved = true;
         }
       });

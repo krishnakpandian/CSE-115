@@ -1,22 +1,5 @@
 import {results, props} from "../Results/result-body";
 import {ModalInfoProps} from "../Modals/Modals";
-/* These are the interfaces definitions
-interface results {
-    cityName: string,
-    distance?: number,
-    travelTime?: number,
-    averageCost?: number
-}
-  
-interface props {
-    results: results[],
-    statusCode: number,
-    message: string,
-    lat: number,
-    lng: number,
-    address: string
-}
-*/
 
 // request() Sends a request to the backend to get information of surrounding cities
 //         paramters: city and filters
@@ -53,6 +36,7 @@ export async function request(city: string, radius_of_results: number, number_of
         console.error("Error getting requests: ", error);
         return response;
     });
+    console.error(response);
     return response;
 }
 

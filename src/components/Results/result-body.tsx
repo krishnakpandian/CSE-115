@@ -28,10 +28,11 @@ export interface props {
   updateSaves(add_or_delete: boolean, res: results): void
 }
 
-const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState, currentState }: props) => {
+const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentState }: props) => {
   // true for add, false for delete
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number, search_address?: string) => {
     if (firebase.auth().currentUser == null) return;
+    console.log("Search Address: " + search_address);
     if (add_or_delete) {
       createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
         console.log(res);
@@ -73,7 +74,7 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState,
                 <div className="title">
                   {result.cityName}
                 </div>
-                <p className="address">From {address}</p>
+                <p className="address">From {result.searchAddress}</p>
                 <div className="card-content">
                   <li>{result.distance} Miles</li>
                   <li>{cost(result.averageCost)}</li>
@@ -85,12 +86,12 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState,
                 </div> */}
                 <ImageModal {...result}/>
                   {!result.saved &&
-                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, address)} className="card-footer-item">
+                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.searchAddress)} className="card-footer-item">
                       Save
                   </a>
                   }
                   {result.saved &&
-                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, address)} className="card-footer-item">
+                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.searchAddress)} className="card-footer-item">
                       Unsave
                   </a>
                   }
