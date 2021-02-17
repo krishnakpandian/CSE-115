@@ -8,9 +8,10 @@ import firebase from 'firebase';
 
 export interface results {
   cityName: string,
-  distance?: number,
   travelTime?: number,
+  distance?: number,
   averageCost?: number,
+  travelSeconds?: number,
   searchAddress?: string,
   saved: boolean
 }
@@ -29,15 +30,16 @@ export interface props {
 
 const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState, currentState }: props) => {
   // true for add, false for delete
-  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, search_address?: string) => {
+  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number, search_address?: string) => {
     if (firebase.auth().currentUser == null) return;
-    if(add_or_delete){
-      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, search_address).then(res => {
+    if (add_or_delete) {
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
         console.log(res);
         const newCard: results = {
           cityName: city_name,
           distance: distance,
           travelTime: travel_time,
+          travelSeconds: travel_seconds,
           averageCost: average_cost,
           searchAddress: search_address,
           saved: true
@@ -45,12 +47,13 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState,
         updateSaves(add_or_delete, newCard);
       });
     } else {
-      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost).then(res => {
+      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
         console.log(res);
         const oldCard: results = {
           cityName: city_name,
           distance: distance,
           travelTime: travel_time,
+          travelSeconds: travel_seconds,
           averageCost: average_cost,
           searchAddress: search_address,
           saved: false
@@ -82,12 +85,12 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState,
                 </div> */}
                 <ImageModal {...result}/>
                   {!result.saved &&
-                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
+                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, address)} className="card-footer-item">
                       Save
                   </a>
                   }
                   {result.saved &&
-                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, address)} className="card-footer-item">
+                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, address)} className="card-footer-item">
                       Unsave
                   </a>
                   }

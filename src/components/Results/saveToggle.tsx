@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { isConstructorDeclaration, setConstantValue } from "typescript";
+import { isConstructorDeclaration, isPropertySignature, setConstantValue } from "typescript";
 import ResultBody from "./result-body"
+import './saveToggle.css'
 
 export interface results {
     cityName: string,
@@ -30,24 +31,44 @@ type state = {
 }
 
 class SaveToggle extends Component<props, state> {
-
     constructor(props) {
         super(props);
         this.state = { searchState: "search" };
     }
 
     render() {
-        return (
-            <div>
-                <div className="select is-primary is-rounded">
-                    <select onChange={(e) => this.changeState(e.target.value)}>
-                        <option value='search'>Search Results</option>
-                        <option value='saved'>Saved Results</option>
-                    </select>
+        const displayToggle = this.props.actual.address && (
+            <div className='field has-addons'>
+                <div className='control'>
+                    <button className='button is-static DisplayMargin'>Display</button>
                 </div>
+                <div className="control">
+                    <div className="select is-primary is-rounded">
+                        <div className="select is-primary is-rounded">
+                            <select onChange={(e) => this.changeState(e.target.value)}>
+                                <option value='search'>Search Results</option>
+                                <option value='saved'>Saved Results</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const cardDisplay = this.props.actual.address && (
+            <div>
                 <ResultBody viewState="search" currentState={this.state.searchState} {...this.props.actual} />
                 <ResultBody viewState="saved" currentState={this.state.searchState} {...this.props.saved} />
-            </div >
+            </div>
+        );
+
+        return (
+            <div>
+                <div className='SaveToggle'>
+                    {displayToggle}
+                </div >
+                {cardDisplay}
+            </div>
         )
     }
 
@@ -57,6 +78,6 @@ class SaveToggle extends Component<props, state> {
         })
         console.log(this.state.searchState)
     }
-
 }
+
 export default SaveToggle;
