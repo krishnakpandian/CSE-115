@@ -8,10 +8,10 @@ import firebase from 'firebase';
 
 export interface results {
   cityName: string,
-  distance?: number,
   travelTime?: number,
-  travelSeconds?: number,
+  distance?: number,
   averageCost?: number,
+  travelSeconds?: number,
   saved: boolean
 }
 
@@ -32,7 +32,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number) => {
     if (firebase.auth().currentUser == null) return;
     if (add_or_delete) {
-      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, travel_seconds, distance, average_cost).then(res => {
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds).then(res => {
         console.log(res);
         const newCard: results = {
           cityName: city_name,
@@ -45,7 +45,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
         updateSaves(add_or_delete, newCard);
       });
     } else {
-      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, travel_seconds, distance, average_cost).then(res => {
+      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds).then(res => {
         console.log(res);
         const oldCard: results = {
           cityName: city_name,
