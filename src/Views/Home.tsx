@@ -73,6 +73,8 @@ const Home = () => {
           console.log("Loading Cards");
           setSaves(res);
           console.log("Loaded Cards");
+        }).catch(error => {
+          console.error("Error Getting Cards: ", error);
         });
       }
       firebase.auth().onAuthStateChanged((user) => {
@@ -82,6 +84,8 @@ const Home = () => {
             console.log("Loading Cards");
             setSaves(res);
             console.log("Loaded Cards");
+          }).catch(error => {
+            console.error("Error Getting Cards: ", error);
           });
         } else {
           // User not logged in or has just logged out.

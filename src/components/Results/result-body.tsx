@@ -11,7 +11,7 @@ export interface results {
   distance?: number,
   travelTime?: number,
   averageCost?: number,
-  searchAddress: string,
+  searchAddress?: string,
   saved: boolean
 }
 
@@ -29,7 +29,7 @@ export interface props {
 
 const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState, currentState }: props) => {
   // true for add, false for delete
-  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, search_address: string) => {
+  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, search_address?: string) => {
     if (firebase.auth().currentUser == null) return;
     if(add_or_delete){
       createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, search_address).then(res => {
@@ -70,11 +70,11 @@ const ResultBody: React.FC<props> = ({ results, address, updateSaves, viewState,
                 <div className="title">
                   {result.cityName}
                 </div>
+                <p className="address">From {address}</p>
                 <div className="card-content">
                   <li>{result.distance} Miles</li>
                   <li>{cost(result.averageCost)}</li>
                   <li>{travel(result.travelTime)}</li>
-                  <li>From: {address}</li>
                 </div>
                 <footer className="card-footer">
                   {/* <div className="card-footer-item" >
