@@ -9,14 +9,22 @@
 
 .card {
   width: 350px;
-  height: 348px;
+  height: 360px;
   margin-top: 5vh;
   margin-bottom: 5vh;
   border-style: solid;
 }
 
+.address{
+  font-size: small;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
 .title {
   margin-top: 2vh;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .card-content {
