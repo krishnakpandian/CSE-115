@@ -3,12 +3,13 @@ import './Modals.css'
 import Modal from '@material-ui/core/Modal';
 import { results } from '../Results/result-body';
 import { getModalView } from '../Request/request';
+import "../../bulma.css"
 
 export interface ModalInfoProps {
-    cleanliness: number | null,
-    airPollution: number | null,
-    safety: number | null,
-    healthcare: number | null
+    cleanliness: number,
+    airPollution: number,
+    safety: number,
+    healthcare: number
 }
 
 
@@ -24,6 +25,8 @@ const ImageModal: React.FC<results> = (props: results) => {
     const [data, setData] = useState<ModalInfoProps>();
     const handleOpen = () => {
         setOpen(true);
+        console.log(props);
+        console.log(data);
     };
 
     const handleClose = () => {
@@ -32,6 +35,7 @@ const ImageModal: React.FC<results> = (props: results) => {
 
     useEffect(() => {
         console.log(props.cityName);
+        
         getModalView(props.cityName).then(res => setData(res[0]))
     },[])
 
@@ -46,20 +50,25 @@ const ImageModal: React.FC<results> = (props: results) => {
                 aria-describedby="simple-modal-description"
                 open={open}
                 onClose={handleClose}
+
             >
                 { data != null ? 
-                <div className="modal-container">
+                <div className="modal-container ">
+                    <div className="modal-content column is-half">
                     <div>Simple React Modal</div>
-                    <div>Air Pollution {data ? <ResultBar color={"red"} value={79} upper= {100} lower={0}/>: 'N/A'}</div>
-                    <div>Cleanliness {data ? <ResultBar color={"blue"} value={23} upper= {100} lower={0} />: 'N/A'}</div>
-                    <div>Safety {data ? <ResultBar color={"yellow"} value={46} upper= {100} lower={0}/>: 'N/A'}</div>
-                    <div>Healthcare {data ? <ResultBar color={"green"} value={1.43} upper= {2} lower={-2}/>: 'N/A'}</div>
+                        <div>Air Pollution {data ? <ResultBar color={"red"} value={data.airPollution} upper= {2} lower={-2}/>: 'N/A'}</div>
+                        <div>Cleanliness {data ? <ResultBar color={"blue"} value={data.cleanliness} upper= {100} lower={0} />: 'N/A'}</div>
+                        <div>Safety {data ? <ResultBar color={"yellow"} value={data.safety} upper= {100} lower={0}/>: 'N/A'}</div>
+                        <div>Healthcare {data ? <ResultBar color={"green"} value={data.healthcare} upper= {100} lower={0}/>: 'N/A'}</div>
+                    </div>
                 </div>
+                
                 :
                 <div className="modal-container">
                     <div>Sorry No Data Exists</div>
                 </div>             
                 }
+                
             </Modal>
         </div>
     );
