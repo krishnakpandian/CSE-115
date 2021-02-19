@@ -76,7 +76,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
                 </div>
                 <p className="address">From {result.searchAddress}</p>
                 <div className="card-content">
-                  <li>{result.distance} Miles</li>
+                  <li>{result.distance} km</li>
                   <li>{cost(result.averageCost)}</li>
                   <li>{travel(result.travelTime)}</li>
                 </div>
