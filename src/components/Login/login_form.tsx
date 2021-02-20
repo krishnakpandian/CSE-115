@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from '../Signup/firebaseConfig'
 
 // TODO: pass input for user email and password during registration
 async function loginUser(email: string, password: string): Promise<boolean>{

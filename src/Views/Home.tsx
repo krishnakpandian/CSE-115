@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { results, props } from "../components/Results/result-body";
 import { getRequest } from "../components/Request/request";
 import "../bulma.css"
-import firebase from 'firebase';
+import firebase from '../components/Signup/firebaseConfig'
 import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
