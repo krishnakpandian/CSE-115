@@ -4,7 +4,7 @@ import "../../bulma.css"
 import "./result-body.css"
 import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
-import firebase from 'firebase';
+import firebase from '../Signup/firebaseConfig'
 
 export interface results {
   cityName: string,
