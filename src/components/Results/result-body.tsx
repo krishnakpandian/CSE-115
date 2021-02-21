@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { checkServerIdentity } from "tls";
+import React from "react";
 import "../../bulma.css"
 import "./result-body.css"
 import { createRequest, deleteRequest } from "../Request/request";

@@ -25,7 +25,7 @@ let saved_props: props = {
   updateSaves: (add_or_delete: boolean, res: results) => { console.log(res); }
 };
 
-const Home = () => {
+const Home:React.FC = () => {
   const [saves, setSaves] = useState<results[]>([]);
 
   const [data, setData] = useState<props>(saved_props);

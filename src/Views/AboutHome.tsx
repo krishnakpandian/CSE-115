@@ -4,7 +4,7 @@ import NavbarBottom from '../components/NavBar/navbar_bottom';
 import About from '../components/About/About';
 
 
-const AboutHome = () => {
+const AboutHome: React.FC = () => {
     return(
         <div className="App">
         <NavbarTop />

@@ -18,23 +18,112 @@ import Search from './components/search/Search';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-test('Main App Rendering', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/We-Locate/i);
-  expect(linkElement).toBeInTheDocument();
+
+describe("App", () => {
+  test('Main App Rendering', () => {
+    const { getByText } = render(<App />);
+    const linkElement = getByText(/We-Locate/i);
+    expect(linkElement).toBeInTheDocument();
+  });
 });
 
-test('Home Rendering', () => {
-  const { getByText } = render(<Home />);
-  const linkElement = getByText(/We-Locate/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("Views", () => {
+  test('Home Rendering', () => {
+    const { getByText } = render(<Home />);
+    const linkElement = getByText(/We-Locate/i);
+    expect(linkElement).toBeInTheDocument();
+  });
+  
+  test("About Page Rendering", () => {
+    const { getByText } = render(<AboutHome/>);
+    const linkElement = getByText(/About Us/i);
+    expect(linkElement).toBeInTheDocument();
+  });
+})
 
-test('About Page Rendering', () => {
-  const { getByText } = render(<AboutHome/>);
-  const linkElement = getByText(/About Us/i);
-  expect(linkElement).toBeInTheDocument();
-});
+// describe("About Component", () => {
+//   test('About Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+
+//   test('Developer Card Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+// })
+
+// describe("Login Component", () => {
+//   test('About Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+  
+//   test('Developer Card Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+// })
+
+// describe("Modal Component", () => {
+//   test('About Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+  
+//   test('Developer Card Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+// })
+
+// describe("Navbar Component", () => {
+//   test('About Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+  
+//   test('Developer Card Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+// })
+
+// describe("Results Component", () => {
+//   test('About Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+  
+//   test('Developer Card Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+// })
+
+// describe("Search Component", () => {
+//   test('About Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+  
+//   test('Developer Card Rendering', () => {
+//     const { getByText } = render(<Home />);
+//     const linkElement = getByText(/We-Locate/i);
+//     expect(linkElement).toBeInTheDocument();
+//   });
+// })
 
 
 
