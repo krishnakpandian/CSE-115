@@ -56,10 +56,10 @@ const ImageModal: React.FC<results> = (props: results) => {
                 <div className="modal-container ">
                     <div className="modal-content column is-half">
                     <div>Simple React Modal</div>
-                        <div>Air Pollution {data ? <ResultBar color={"red"} value={data.airPollution} upper= {2} lower={-2}/>: 'N/A'}</div>
-                        <div>Cleanliness {data ? <ResultBar color={"blue"} value={data.cleanliness} upper= {100} lower={0} />: 'N/A'}</div>
-                        <div>Safety {data ? <ResultBar color={"yellow"} value={data.safety} upper= {100} lower={0}/>: 'N/A'}</div>
-                        <div>Healthcare {data ? <ResultBar color={"green"} value={data.healthcare} upper= {100} lower={0}/>: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium">Air Pollution Index {data ? <ResultBar color={"red"} value={data.airPollution} upper= {2} lower={-2}/>: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium" >Cleanliness Index {data ? <ResultBar color={"blue"} value={data.cleanliness} upper= {2} lower={-2} />: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium">Safety Index {data ? <ResultBar color={"yellow"} value={data.safety} upper= {100} lower={0}/>: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium">Healthcare Index {data ? <ResultBar color={"green"} value={data.healthcare} upper= {100} lower={0}/>: 'N/A'}</div>
                     </div>
                 </div>
                 
@@ -90,10 +90,11 @@ const ResultBar:React.FC<dataBar> = ({color, upper, lower, value}: dataBar) => {
     else {
         percentage = (value * 100/(upper - lower))
     }
-    
+    percentage = Math.round(percentage * 100) / 100
     const percent = `${percentage}%`;
     return(
         <>
+            <div className="column is-half" style = {{paddingLeft: percent}}>{percent}</div>
             <div className="progress-bar-container">
                 <div className="filled" style = {{width: percent, background: color}} />
             </div>
