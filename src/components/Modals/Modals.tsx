@@ -14,6 +14,7 @@ export interface ModalInfoProps {
 
 
 interface dataBar{
+    name: string,
     color: string,
     upper: number,
     lower: number,
@@ -54,13 +55,28 @@ const ImageModal: React.FC<results> = (props: results) => {
             >
                 { data != null ? 
                 <div className="modal-container ">
-                    <div className="modal-content column is-half">
+                    <div className="modal-content">
+                       
+                    <div className="column is-half" id="data_bars">
                     <div>Simple React Modal</div>
-                        <div id="bar" className="mgt-medium">Air Pollution Index {data ? <ResultBar color={"red"} value={data.airPollution} upper= {2} lower={-2}/>: 'N/A'}</div>
-                        <div id="bar" className="mgt-medium" >Cleanliness Index {data ? <ResultBar color={"blue"} value={data.cleanliness} upper= {2} lower={-2} />: 'N/A'}</div>
-                        <div id="bar" className="mgt-medium">Safety Index {data ? <ResultBar color={"yellow"} value={data.safety} upper= {100} lower={0}/>: 'N/A'}</div>
-                        <div id="bar" className="mgt-medium">Healthcare Index {data ? <ResultBar color={"green"} value={data.healthcare} upper= {100} lower={0}/>: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium"> {data ? <ResultBar name={"Air Pollution Index"} color={"darkturquoise"} value={data.airPollution} upper= {2} lower={-2}/>: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium"> {data ? <ResultBar name={"Cleanliness Index"} color={"darkturquoise"} value={data.cleanliness} upper= {2} lower={-2} />: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium">{data ? <ResultBar name={"Safety Index"} color={"darkturquoise"} value={data.safety} upper= {100} lower={0}/>: 'N/A'}</div>
+                        <div id="bar" className="mgt-medium">{data ? <ResultBar  name={"Healthcare Index"} color={"darkturquoise"} value={data.healthcare} upper= {100} lower={0}/>: 'N/A'}</div>
                     </div>
+                    <div className="column is-half" id="legend">
+                        <h1>Legend</h1>
+                        <p>90-100%: Exceptional</p>
+                        <p>80-89%: Very Good</p>
+                        <p>70-79%: Good</p>
+                        <p>60-69%: Decent</p>
+                        <p>50-59%: Okay</p>
+                        <p>0-49%: Low Quality</p>
+                    </div>
+                   
+
+                    </div>
+                    
                 </div>
                 
                 :
@@ -78,7 +94,7 @@ export default ImageModal;
 
 
 
-const ResultBar:React.FC<dataBar> = ({color, upper, lower, value}: dataBar) => {
+const ResultBar:React.FC<dataBar> = ({name, color, upper, lower, value}: dataBar) => {
 
     const updateNegative = (val,diff) => {
         return val -= diff
@@ -95,9 +111,12 @@ const ResultBar:React.FC<dataBar> = ({color, upper, lower, value}: dataBar) => {
     return(
         <>
             <div className="column is-half" style = {{paddingLeft: percent}}>{percent}</div>
+            
             <div className="progress-bar-container">
                 <div className="filled" style = {{width: percent, background: color}} />
             </div>
+            <div className="column is-half"id="barName" style= {{paddingLeft: 0}}>{name}</div>
+            
         </>
     );
 }
