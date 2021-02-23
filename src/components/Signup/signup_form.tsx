@@ -1,7 +1,5 @@
-import firebase from 'firebase';
-import {firebaseConfig} from './firebaseConfig'
+import firebase from './firebaseConfig'
 
-firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(); 
 // TODO: pass input for user email and password during registration
 async function newUser(email: string, password: string): Promise<void>{

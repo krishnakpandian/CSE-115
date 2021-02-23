@@ -3,7 +3,7 @@ import './navbar_top.css'
 import "../../bulma.css"
 import newUser from '../Signup/signup_form'
 import loginUser from '../Login/login_form'
-import firebase from 'firebase';
+import firebase from '../Signup/firebaseConfig'
 import logoutUser from "../Login/logout_form";
 import newGoogleUser from '../Signup/google_signup'
 import loginGoogleUser from '../Login/google_login'

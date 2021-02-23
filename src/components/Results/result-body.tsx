@@ -4,7 +4,7 @@ import "../../bulma.css"
 import "./result-body.css"
 import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
-import firebase from 'firebase';
+import firebase from '../Signup/firebaseConfig'
 
 export interface results {
   cityName: string,
@@ -76,7 +76,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
                 </div>
                 <p className="address">From {result.searchAddress}</p>
                 <div className="card-content">
-                  <li>{result.distance} Miles</li>
+                  <li>{result.distance} km</li>
                   <li>{cost(result.averageCost)}</li>
                   <li>{travel(result.travelTime)}</li>
                 </div>
