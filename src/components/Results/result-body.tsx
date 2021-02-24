@@ -5,6 +5,7 @@ import "./result-body.css"
 import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
 import firebase from '../Signup/firebaseConfig'
+import Fade from 'react-reveal/Fade';
 
 export interface results {
   cityName: string,
@@ -70,6 +71,8 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
         <div className="result-container">
           {results.map((result, index) => {
             return (
+              <>
+              <Fade down delay={250} distance={"0.5em"}>
               <div className="card" key={index}>
                 <div className="title">
                   {result.cityName}
@@ -97,6 +100,8 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
                   }
                 </footer>
               </div>
+              </Fade>
+              </>
             )
           })}
         </div>
