@@ -20,6 +20,7 @@
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
+    "react-geocode": "^0.2.3",
     "react-places-autocomplete": "^7.3.0",
     "react-radio-buttons": "^1.2.2",
     "react-reveal": "^1.2.2",
