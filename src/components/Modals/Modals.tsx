@@ -58,14 +58,14 @@ const ImageModal: React.FC<results> = (props: results) => {
                     <div className="modal-content">
                        
                     <div className="column is-half" id="data_bars">
-                    <div>Simple React Modal</div>
+                    <div><h1>City Indeces Information</h1></div>
                         <div id="bar" className="mgt-medium"> {data ? <ResultBar name={"Air Pollution Index"} color={"darkturquoise"} value={data.airPollution} upper= {2} lower={-2}/>: 'N/A'}</div>
                         <div id="bar" className="mgt-medium"> {data ? <ResultBar name={"Cleanliness Index"} color={"darkturquoise"} value={data.cleanliness} upper= {2} lower={-2} />: 'N/A'}</div>
                         <div id="bar" className="mgt-medium">{data ? <ResultBar name={"Safety Index"} color={"darkturquoise"} value={data.safety} upper= {100} lower={0}/>: 'N/A'}</div>
                         <div id="bar" className="mgt-medium">{data ? <ResultBar  name={"Healthcare Index"} color={"darkturquoise"} value={data.healthcare} upper= {100} lower={0}/>: 'N/A'}</div>
                     </div>
                     <div className="column is-half" id="legend">
-                        <h1>Legend</h1>
+                        <h2>Legend</h2>
                         <p>90-100%: Exceptional</p>
                         <p>80-89%: Very Good</p>
                         <p>70-79%: Good</p>
