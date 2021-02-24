@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
 
 #prompt_bar {
   background-color: white;
@@ -8,13 +7,12 @@
 #top_navbar {
   height: 6rem !important;
   min-height: unset;
-  box-shadow:
-      0px 5px 30px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 5px 30px 10px rgba(0, 0, 0, 0.5);
   background-color: ghostwhite;
 }
 
 #logo_title {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 #list_button {
@@ -27,8 +25,8 @@
 #about_section {
   margin-top: 12rem;
   margin-bottom: 12rem;
-  margin-left:2rem;
-  margin-right:2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .is-horizontal-center {
@@ -36,6 +34,18 @@
 }
 
 #info_card {
-  border-bottom-left-radius:
-      0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.CenterTitle {
+  margin: 0 !important;
+  align-items: unset !important;
+}
+
+.HeightFix {
+  height: 6rem !important;
+}
+
+.ButtonAlign {
+  margin-bottom: 0 !important;
 }
