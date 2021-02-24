@@ -70,7 +70,7 @@ const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props)
           </PlacesAutocomplete>
         </div>
         <div className='control'>
-          <button className="button is-primary is-medium is-outlined ButtonMargin" disabled={load}
+          <button className="button is-primary is-medium is-outlined ButtonMargin" disabled={load || !keyword}
           onClick={onButtonClick}>
             {load ? "Loading" : "Search"}</button>
         </div>
