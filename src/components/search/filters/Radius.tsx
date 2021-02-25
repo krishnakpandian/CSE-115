@@ -8,7 +8,7 @@ interface props {
 
 const Radius: React.FC<props> = ({ currentRad, setCurrentRad }: props) => {
   return (
-    <div className='Radius field has-addons'>
+    <div className='Radius field has-addons MarginRadiusFix'>
       <div className='control'>
         <button className='button is-static RadiusMargin'>Radius</button>
       </div>

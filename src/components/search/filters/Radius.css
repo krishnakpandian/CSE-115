@@ -5,3 +5,7 @@
 .RadiusMargin {
   margin: 0;
 }
+
+.MarginRadiusFix {
+  margin: 1rem !important;
+}
