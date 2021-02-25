@@ -1,9 +1,12 @@
 import React from "react";
-import './Statistics.css'
+import './Analytics.css'
+import firebase from '../Signup/firebaseConfig'
 
-const Statistics = () => {
+const analytics = firebase.analytics();
+
+const Analysis = () => {
     return(
-        <div className="Statistics">
+        <div className="Analysis">
             <h1 className="mostSaved">Most Searched Result</h1>
             Card Data here
             <h1>Most Saved Result</h1>
@@ -12,4 +15,4 @@ const Statistics = () => {
     )
 }
 
-export default Statistics
+export default Analysis

@@ -1,17 +1,17 @@
 import React from "react";
 import NavbarTop from '../components/NavBar/navbar_top';
 import NavbarBottom from '../components/NavBar/navbar_bottom';
-import Statistics from '../components/Statistics/Statistics'
+import Analysis from '../components/Analytics/Analytics'
 
 
-const StatisticsHome = () => {
+const AnalyticsHome = () => {
     return(
-        <div className="StatisticsHome">
+        <div className="AnalyticsHome">
             <NavbarTop />
-            <Statistics/>
+            <Analysis/>
             <NavbarBottom/>
         </div>
     )
 }
 
-export default StatisticsHome
+export default AnalyticsHome
