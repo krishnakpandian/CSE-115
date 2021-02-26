@@ -1,7 +1,14 @@
 import firebase from './firebaseConfig'
 
-const db = firebase.firestore(); 
-// TODO: pass input for user email and password during registration
+//Get firestore database
+const db = firebase.firestore();
+
+/* Function creates a newUser in the firebase database
+   Takes in email and password in string forms
+   Returns nothing
+   Creates a firebase auth account and
+   a database collectionn based on that user's ID 
+*/
 async function newUser(email: string, password: string): Promise<void>{
     let uid: string | undefined;
     await firebase.auth().createUserWithEmailAndPassword(email,password)
@@ -12,7 +19,7 @@ async function newUser(email: string, password: string): Promise<void>{
           password: password
         })
         .then(function() {
-          window.alert("Doc completion notification.")
+          console.log("Database document completed.");
         })
         .catch(function(error) {
           console.error("Error adding user: ", error);
@@ -24,9 +31,6 @@ async function newUser(email: string, password: string): Promise<void>{
       window.alert("Error: " + errorCode + errorMessage);
       return;
     });
-    window.alert( "Creating user in database!");
-    window.alert("Done w/acc creation.")
-    
 }
 
 export default newUser;

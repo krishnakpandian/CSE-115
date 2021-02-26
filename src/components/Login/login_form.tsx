@@ -1,6 +1,10 @@
 import firebase from '../Signup/firebaseConfig'
 
-// TODO: pass input for user email and password during registration
+/* Function logs in existing user
+  Takes in email password as args
+  Return true if logged in properly, false otherwise
+  Displays window alert for false log in
+*/ 
 async function loginUser(email: string, password: string): Promise<boolean>{
     await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       const errorCode = error.code;
@@ -16,10 +20,8 @@ async function loginUser(email: string, password: string): Promise<boolean>{
       console.log("User ID: ", user.uid);
       return true;
     } else {
-      window.alert("Wrong email/password for login");
       return false;
     }
-
 }
 
 export default loginUser;

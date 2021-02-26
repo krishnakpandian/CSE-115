@@ -1,6 +1,9 @@
 import firebase from '../Signup/firebaseConfig'
 
-// TODO: pass input for user email and password during registration
+/* Function logs out user
+   Takes no arguments and returns nothing
+   Logs user out from their account
+*/
 async function logoutUser(): Promise<void>{
     try {
         await firebase.auth().signOut();
