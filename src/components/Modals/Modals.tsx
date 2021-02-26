@@ -37,18 +37,19 @@ const ImageModal: React.FC<results> = (props: results) => {
         setOpen(true);
         console.log(props);
         console.log(data);
-        Geocode.fromAddress(props.cityName).then(
-            (response) => {
-              const { lat, lng } = response.results[0].geometry.location;
-              console.log(lat, lng);
-              setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-        console.log('https://maps.googleapis.com/maps/api/geocode/json?address=' + props.cityName + '&key=' + `${process.env.REACT_APP_GMAPS_API_KEY}`)
-        await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + props.cityName + '&key=' + `${process.env.REACT_APP_GMAPS_API_KEY}`).then(res => setURL(res))
+        setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + props.lat + "," + props.lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
+        // Geocode.fromAddress(props.cityName).then(
+        //     (response) => {
+        //       const { lat, lng } = response.results[0].geometry.location;
+        //       console.log(lat, lng);
+        //       setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + props.lat + "," + props.lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
+        //     },
+        //     (error) => {
+        //       console.error(error);
+        //     }
+        //   );
+        // console.log('https://maps.googleapis.com/maps/api/geocode/json?address=' + props.cityName + '&key=' + `${process.env.REACT_APP_GMAPS_API_KEY}`)
+        // await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + props.cityName + '&key=' + `${process.env.REACT_APP_GMAPS_API_KEY}`).then(res => setURL(res))
     };
 
     const handleClose = () => {
