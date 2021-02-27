@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { checkServerIdentity } from "tls";
-import "../../bulma.css"
 import "./result-body.css"
+import { checkServerIdentity } from "tls";
 import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
 import firebase from '../Signup/firebaseConfig'
