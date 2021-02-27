@@ -1,6 +1,6 @@
 import React from "react";
 import './navbar_top.css'
-import "../../bulma.css"
+import { Link } from "react-router-dom";
 import newUser from '../Signup/signup_form'
 import loginUser from '../Login/login_form'
 import firebase from '../Signup/firebaseConfig'
@@ -8,7 +8,6 @@ import logoutUser from "../Login/logout_form";
 import newGoogleUser from '../Signup/google_signup'
 import loginGoogleUser from '../Login/google_login'
 import google_logo from '../../assets/google_icon.png'
-
 
 class NavbarTop extends React.Component<any, any> {
 
@@ -116,9 +115,11 @@ class NavbarTop extends React.Component<any, any> {
         <nav className="navbar has-shadow" id="top_navbar" role="navigation" aria-label="main navigation">
           <div className="navbar-brand HeightFix">
             <div className="navbar-brand">
-              <h1 className="navbar-item title is-1 CenterTitle" id="logo_title">
-                We-Locate
-            </h1>
+              <Link to="/">
+                <h1 className="navbar-item title is-1 CenterTitle" id="logo_title">
+                  We-Locate
+              </h1>
+              </Link>
             </div>
 
             <div className={"navbar-burger dropdown is-right HeightFix" + (this.state.collapsed ? "" : " is-active")} onClick={() => this.handleToggle()} aria-label="menu"

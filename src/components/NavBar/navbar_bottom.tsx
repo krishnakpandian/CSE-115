@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import './navbar_bottom.css'
-import "../../bulma.css"
 import { Link, useLocation } from "react-router-dom";
 
 const NavbarBottom: React.FC = () => {
