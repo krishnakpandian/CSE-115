@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { results, props } from "../components/Results/result-body";
 import { getRequest } from "../components/Request/request";
-import "../bulma.css"
 import firebase from '../components/Signup/firebaseConfig'
 import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
@@ -26,10 +25,13 @@ let saved_props: props = {
 };
 
 const Home = () => {
+  // state for saved cards
   const [saves, setSaves] = useState<results[]>([]);
 
+  // state for data of search
   const [data, setData] = useState<props>(saved_props);
 
+  // state for viewing either searched results or saved cards
   const [view, setView] = useState('search');
 
   // add or delete save; true for add, false for delete

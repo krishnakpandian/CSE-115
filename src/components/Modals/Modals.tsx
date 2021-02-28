@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './Modals.css'
-import Modal from '@material-ui/core/Modal';
 import { results } from '../Results/result-body';
 import { getModalView } from '../Request/request';
-import "../../bulma.css"
 import { resourceLimits } from 'worker_threads';
+import Modal from '@material-ui/core/Modal';
 import Geocode from "react-geocode";
 
 Geocode.setApiKey(process.env.REACT_APP_GMAPS_API_KEY);
