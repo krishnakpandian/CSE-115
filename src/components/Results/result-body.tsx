@@ -36,7 +36,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
     if (firebase.auth().currentUser == null) return;
     console.log("Search Address: " + search_address);
     if (add_or_delete) {
-      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address, lat, lng).then(res => {
         console.log(res);
         const newCard: results = {
           cityName: city_name,
@@ -52,7 +52,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
         updateSaves(add_or_delete, newCard);
       });
     } else {
-      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
+      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address, lat, lng).then(res => {
         console.log(res);
         const oldCard: results = {
           cityName: city_name,
