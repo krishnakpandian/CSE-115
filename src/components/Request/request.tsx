@@ -43,7 +43,7 @@ export async function request(city: string, radius_of_results: number, number_of
 // createRequest() Sends a request to the backend to save a card to firestore
 //         paramters: user id, city information
 //         returns:  a promise
-export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?:number, search_address?: string): Promise<string>{
+export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?:number, search_address?: string, lat?: number, lng?: number): Promise<string>{
     console.log(id);
     let message = "";
     const values = {
@@ -53,7 +53,9 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost,
         'searchAddress': search_address,
-        'travelSeconds': travelSeconds
+        'travelSeconds': travelSeconds,
+        'lat': lat,
+        'lng': lng
     };
     await fetch(process.env.REACT_APP_BACKEND +  '/add', {
             method: 'POST',
@@ -73,7 +75,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
 // deleteRequest() Sends a request to the backend to delete the save in firestore
 //         paramters: user id, city information
 //         returns:  a promise
-export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?: number, search_address?: string): Promise<string>{
+export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?: number, search_address?: string, lat?: number, lng?: number): Promise<string>{
     console.log(id);
     let message = "";
     const values = {
@@ -83,7 +85,9 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         'distance': distance,
         'averageCost': average_cost,
         'searchAddress': search_address,
-        'travelSeconds': travelSeconds
+        'travelSeconds': travelSeconds,
+        'lat': lat,
+        'lng': lng
     };
     await fetch(process.env.REACT_APP_BACKEND + '/delete', {
             method: 'DELETE',

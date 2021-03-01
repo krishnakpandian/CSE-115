@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import './navbar_bottom.css'
-import "../../bulma.css"
 import { Link, useLocation } from "react-router-dom";
 
 const NavbarBottom: React.FC = () => {
@@ -13,11 +12,11 @@ const NavbarBottom: React.FC = () => {
           </p>
         {location.pathname != "/about" ?
           <Link to="/about">
-            Click here to Learn More
+            Click Here To Learn More
           </Link>
           :
           <Link to="/">
-            Check Out our Product
+            Check Out Our Product
           </Link>
         }
       </div>

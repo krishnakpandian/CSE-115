@@ -8,12 +8,15 @@ export interface props {
 }
 
 const SaveToggle: React.FC<props> = ({ view, setView }: props) => {
+    // state for display if its on search or saved results
     const [val, setVal] = useState('search');
 
+    // update view state
     const updateView = (input) => {
         setView(input)
     }
 
+    // on view state change, set view
     useEffect(() => {
         setVal(view);
     }, [view])

@@ -6,8 +6,13 @@ import People from './filters/People';
 import './Search.css';
 
 const Search = params => {
+  // state for user input of search bar
   const [input, setInput] = useState('');
+
+  // state for radius filter
   const [radius, setRadius] = useState(10);
+
+  // state for people filter
   const [people, setPeople] = useState(1);
 
   // live update of search bar
@@ -25,6 +30,7 @@ const Search = params => {
     setPeople(parseInt(people));
   }
 
+  // called for a new search when search button clicked
   const buttonClick = (setLoading) => {
     if (input === '') {
       console.log("blank search");

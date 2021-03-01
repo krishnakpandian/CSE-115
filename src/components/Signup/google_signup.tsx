@@ -1,9 +1,15 @@
 import firebase from './firebaseConfig';
 
+//get google auth provider
 const provider = new firebase.auth.GoogleAuthProvider();
 
+//get firebase database 
 const db = firebase.firestore(); 
 
+/* Function logs in user with their google email
+   Has no arguments and returns nothing
+   Creates a database entry for that user
+*/
 async function newGoogleUser() {
   let uid: string | undefined;
 
@@ -22,18 +28,18 @@ async function newGoogleUser() {
     db.collection("Users").doc(uid).set({
       name: "Google User!"
     }).then(function() {
-      window.alert("Doc completion notification.")
+      console.log("Doc completion notification.")
     });
-    // ...
+  
   }).catch((error) => {
-    // Handle Errors here.
+    // Errors
     const errorCode = error.code;
     const errorMessage = error.message;
     // The email of the user's account used.
     const email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     const credential = error.credential;
-    // ...
+  
   });
 }
 

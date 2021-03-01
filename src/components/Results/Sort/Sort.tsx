@@ -13,12 +13,15 @@ interface props {
 let display;
 
 const Sort: React.FC<props> = ({ data, setData, saves, sortSaves, view }: props) => {
+  // state for input of type of sort
   const [input, setInput] = useState('');
 
+  // on address change, reset the sort
   useEffect(() => {
     setInput('')
   }, [data.address]);
 
+  // update the sort on saved cards and search results
   const updateSort = (input) => {
     setInput(input);
 
@@ -55,6 +58,7 @@ const Sort: React.FC<props> = ({ data, setData, saves, sortSaves, view }: props)
     sortSaves(sortedSaves);
   }
 
+  // do the sort on the cards passed in
   const sort = (results, dataType, direction) => {
     if (direction == 'low high') {
       // sort from increasing value
@@ -72,6 +76,7 @@ const Sort: React.FC<props> = ({ data, setData, saves, sortSaves, view }: props)
     }
   }
 
+  // display sort dropdown depending on view state
   display = ((data.address && (view == 'search')) || ((view == 'saved') && (saves.length > 0))) && (
     <SortDropdown
       currentSort={input}

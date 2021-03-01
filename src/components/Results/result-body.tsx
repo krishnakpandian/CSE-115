@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { checkServerIdentity } from "tls";
-import "../../bulma.css"
 import "./result-body.css"
+import { checkServerIdentity } from "tls";
 import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
 import firebase from '../Signup/firebaseConfig'
@@ -14,6 +13,8 @@ export interface results {
   averageCost?: number,
   travelSeconds?: number,
   searchAddress?: string,
+  lat?: number,
+  lng?: number,
   saved: boolean
 }
 
@@ -31,11 +32,11 @@ export interface props {
 
 const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentState }: props) => {
   // true for add, false for delete
-  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number, search_address?: string) => {
+  const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number, search_address?: string, lat?: number, lng?:number) => {
     if (firebase.auth().currentUser == null) return;
     console.log("Search Address: " + search_address);
     if (add_or_delete) {
-      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
+      createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address, lat, lng).then(res => {
         console.log(res);
         const newCard: results = {
           cityName: city_name,
@@ -44,12 +45,14 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
           travelSeconds: travel_seconds,
           averageCost: average_cost,
           searchAddress: search_address,
+          lat: lat,
+          lng: lng,
           saved: true
         }
         updateSaves(add_or_delete, newCard);
       });
     } else {
-      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address).then(res => {
+      deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, search_address, lat, lng).then(res => {
         console.log(res);
         const oldCard: results = {
           cityName: city_name,
@@ -58,6 +61,8 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
           travelSeconds: travel_seconds,
           averageCost: average_cost,
           searchAddress: search_address,
+          lat: lat,
+          lng: lng,
           saved: false
         }
         updateSaves(add_or_delete, oldCard);
@@ -89,12 +94,12 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
                 </div> */}
                 <ImageModal {...result}/>
                   {!result.saved &&
-                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.searchAddress)} className="card-footer-item">
+                    <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
                       Save
                   </a>
                   }
                   {result.saved &&
-                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.searchAddress)} className="card-footer-item">
+                    <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
                       Unsave
                   </a>
                   }

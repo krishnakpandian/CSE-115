@@ -18,6 +18,23 @@ import Search from './components/search/Search';
 
 Enzyme.configure({ adapter: new Adapter() });
 
+
+jest.mock('firebase', () => ({
+  initializeApp: jest.fn(),
+  analytics: jest.fn(),
+  firestore: () => ({
+    collection: jest.fn(path => ({
+      doc: jest.fn(queryString => ({
+        set: {}
+      }))
+    })) 
+   }),
+   auth: jest.fn()
+}))
+
+
+
+
 test('Main App Rendering', () => {
   const { getByText } = render(<App />);
   const linkElement = getByText(/We-Locate/i);

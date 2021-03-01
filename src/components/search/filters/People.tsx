@@ -8,7 +8,7 @@ interface props {
 
 const People: React.FC<props> = ({ currentPeop, setCurrentPeop }: props) => {
   return (
-    <div className='People field has-addons'>
+    <div className='People field has-addons MarginPeopleFix'>
       <div className='control'>
         <button className='button is-static PeopleMargin'>People</button>
       </div>

@@ -8,7 +8,7 @@ const About: React.FC = () => {
   return (
     <>
       <div className="about-container">
-        <h1 className="navbar-item title is-1 is-flex is-horizontal-center" id="prompt_text">
+        <h1 className="navbar-item title is-1 is-flex is-horizontal-center AboutMargin" id="prompt_text">
           About Us
         </h1>
         <Fade down delay={500} distance={"0.5em"}>

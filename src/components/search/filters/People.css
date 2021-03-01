@@ -5,3 +5,7 @@
 .PeopleMargin {
   margin: 0;
 }
+
+.MarginPeopleFix {
+  margin: 1rem !important;
+}

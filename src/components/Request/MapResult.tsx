@@ -10,9 +10,11 @@ interface props {
 let map;
 
 const MapResult: React.FC<props> = ({ data, view }: props) => {
+  // set lat and lng for map component
   const lat = data.lat;
   const lng = data.lng;
 
+  // create map component with lat and lng and update with new address
   map = data.address && (view == 'search') && (
     <div className="googleMap columns">
       <GoogleMapReact
