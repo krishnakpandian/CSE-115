@@ -4,6 +4,8 @@ import SearchBar from './SearchBar';
 import Radius from './filters/Radius';
 import People from './filters/People';
 import './Search.css';
+import {analytics} from '../Signup/firebaseConfig'
+
 
 const Search = params => {
   // state for user input of search bar
@@ -35,6 +37,7 @@ const Search = params => {
     if (input === '') {
       console.log("blank search");
     } else {
+      analytics.logEvent("search_Request_Made")
       request(input, radius, people).then(res => {
         params.setData(res);
         setInput(res.address);

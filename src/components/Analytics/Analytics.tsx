@@ -1,18 +1,10 @@
 import React from "react";
-import { useEffect } from 'react';
 import './Analytics.css'
-import {analytics} from '../Signup/firebaseConfig'
 
-const Analysis = () => {
-
-    useEffect(()=> { 
-        console.log("test")
-        analytics.logEvent("Analytics_page_visited")
-    })
-    
+const Analysis = () => { 
     return(
         <div className="Analysis">
-            <h1 className="mostSearched">Most Searched Result</h1>
+            <h1>Most Searched Result</h1>
             Card Data here
             <h1>Most Saved Result</h1>
             Card Data here
