@@ -40,15 +40,15 @@ const Home = () => {
     if (add_or_delete) {
       setSaves(oldArray => [...oldArray, res]);
       saved_props.results.forEach(element => {//&& element.averageCost == res.averageCost
-        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress ) {
+        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = true;
         }
       });
       updateData(saved_props);
     } else {//&& oldArray.averageCost != res.averageCost
-      setSaves(oldArray => oldArray.filter(oldArray => { return oldArray.cityName != res.cityName || oldArray.searchAddress != res.searchAddress  }));
+      setSaves(oldArray => oldArray.filter(oldArray => { return !(oldArray.cityName == res.cityName && oldArray.searchAddress == res.searchAddress && oldArray.numberPeople == res.numberPeople)  }));
       saved_props.results.forEach(element => {
-        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress) {
+        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = false;
         }
       });
@@ -71,7 +71,7 @@ const Home = () => {
     saves.forEach(save => {
       if(save.searchAddress == res.address)
         res.results.forEach( city => {
-          if(save.cityName == city.cityName) {
+          if(save.numberPeople == city.numberPeople && save.cityName == city.cityName) {
             city.saved = true;
           }
         });
