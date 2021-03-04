@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Modals.css'
 import { results } from '../Results/result-body';
 import { getModalView } from '../Request/request';
-import { resourceLimits } from 'worker_threads';
 import Modal from '@material-ui/core/Modal';
 import Geocode from "react-geocode";
 
 Geocode.setApiKey(process.env.REACT_APP_GMAPS_API_KEY);
 
-
-// set response language. Defaults to english.
+// set response language, defaults to english
 Geocode.setLanguage("en");
 
 export interface ModalInfoProps {
@@ -18,7 +16,6 @@ export interface ModalInfoProps {
     safety: number,
     healthcare: number
 }
-
 
 interface dataBar {
     name: string,
@@ -32,23 +29,10 @@ const ImageModal: React.FC<results> = (props: results) => {
     const [open, setOpen] = useState(false);
     const [data, setData] = useState<ModalInfoProps>();
     const [url, setURL] = useState<any>('');
+
     const handleOpen = async () => {
         setOpen(true);
-        // console.log(props);
-        // console.log(data);
         setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + props.lat + "," + props.lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
-        // Geocode.fromAddress(props.cityName).then(
-        //     (response) => {
-        //       const { lat, lng } = response.results[0].geometry.location;
-        //       console.log(lat, lng);
-        //       setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + props.lat + "," + props.lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
-        //     },
-        //     (error) => {
-        //       console.error(error);
-        //     }
-        //   );
-        // console.log('https://maps.googleapis.com/maps/api/geocode/json?address=' + props.cityName + '&key=' + `${process.env.REACT_APP_GMAPS_API_KEY}`)
-        // await fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + props.cityName + '&key=' + `${process.env.REACT_APP_GMAPS_API_KEY}`).then(res => setURL(res))
     };
 
     const handleClose = () => {
@@ -56,7 +40,6 @@ const ImageModal: React.FC<results> = (props: results) => {
     };
 
     useEffect(() => {
-        // console.log(props.cityName);
         getModalView(props.cityName).then(res => setData(res[0]))
     }, [])
 
@@ -71,7 +54,6 @@ const ImageModal: React.FC<results> = (props: results) => {
                 aria-describedby="simple-modal-description"
                 open={open}
                 onClose={handleClose}
-
             >
                 {data != null ?
                     <div className="modal-container ">
@@ -94,15 +76,12 @@ const ImageModal: React.FC<results> = (props: results) => {
                                 <p>0-49%: Low Quality</p>
                             </div>
                         </div>
-
                     </div>
-
                     :
                     <div className="modal-container">
                         <div>Sorry No Data Exists</div>
                     </div>
                 }
-
             </Modal>
         </div>
     );
@@ -110,22 +89,23 @@ const ImageModal: React.FC<results> = (props: results) => {
 
 export default ImageModal;
 
-
-
 const ResultBar: React.FC<dataBar> = ({ name, color, upper, lower, value }: dataBar) => {
-
     const updateNegative = (val, diff) => {
         return val -= diff
     }
+
     let percentage = 0;
+
     if (lower < 0) {
         percentage = (updateNegative(value, lower) * 100 / (updateNegative(upper, lower)))
     }
     else {
         percentage = (value * 100 / (upper - lower))
     }
+
     percentage = Math.round(percentage * 100) / 100
     const percent = `${percentage}%`;
+
     if (percentage < 50) {
         color = "red";
     }
@@ -141,14 +121,15 @@ const ResultBar: React.FC<dataBar> = ({ name, color, upper, lower, value }: data
         const g = percent > 50 ? 255 : Math.floor((percent * 2) * 255 / 100);
         return 'rgb(' + r + ',' + g + ',0)';
     }
+
     const newColor = getGreenToRed(percentage);
+
     return (
         <>
             <div className="progress-bar-container">
                 <div className="filled" style={{ width: percent, background: newColor }} />
             </div>
             <div className="barName" id="barName">{name}: {percent}</div>
-
         </>
     );
 }
