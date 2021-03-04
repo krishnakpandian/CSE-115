@@ -132,3 +132,8 @@ img.modal-map {
     max-height: 10.9rem;
   }
 }
+
+.CenterViewButton {
+  margin: 3.8rem;
+  vertical-align: -0.7rem !important;
+}

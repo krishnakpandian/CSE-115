@@ -45,9 +45,9 @@ const ImageModal: React.FC<results> = (props: results) => {
 
     return (
         <div className="modal-button-container">
-            <button onClick={handleOpen}>
+            <a className='CenterViewButton' onClick={handleOpen}>
                 View
-            </button>
+            </a>
 
             <Modal
                 aria-labelledby="simple-modal-title"

@@ -86,16 +86,16 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
                     <div className="title">
                       {result.cityName}
                     </div>
+
                     <p className="address">From {result.searchAddress} with {numPeople(result.numberPeople)}</p>
+
                     <div className="card-content">
                       <li>{result.distance} km</li>
                       <li>{cost(result.averageCost)}</li>
                       <li>{travel(result.travelTime)}</li>
                     </div>
+
                     <footer className="card-footer">
-                      {/* <div className="card-footer-item" >
-                    Views
-                </div> */}
                       <ImageModal {...result} />
                       {!result.saved &&
                         <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.numberPeople, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
