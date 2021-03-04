@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     background-color: aliceblue;
-    min-height: 500px;
+    min-height: 30rem;
     min-width: min-content;
     flex-direction: column;
 }
@@ -15,6 +15,7 @@
     font-size: 25px;
     font-weight: 600;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-bottom: 1rem;
 }
 
 .barName {

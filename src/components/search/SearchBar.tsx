@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './SearchBar.css';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import {
@@ -27,9 +27,6 @@ const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props)
     setLoad(true);
     await buttonClick(setLoad);
   }
-
-  // print to console with load state change
-  // useEffect(() => console.log(load), [load]);
 
   return (
     <div className='SearchBar'>
