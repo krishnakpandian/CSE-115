@@ -28,7 +28,7 @@ async function newGoogleUser() {
     db.collection("Users").doc(uid).set({
       name: "Google User!"
     }).then(function() {
-      console.log("Doc completion notification.")
+      // console.log("Doc completion notification.")
     });
   
   }).catch((error) => {

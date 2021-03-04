@@ -34,8 +34,8 @@ const ImageModal: React.FC<results> = (props: results) => {
     const [url, setURL] = useState<any>('');
     const handleOpen = async () => {
         setOpen(true);
-        console.log(props);
-        console.log(data);
+        // console.log(props);
+        // console.log(data);
         setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + props.lat + "," + props.lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
         // Geocode.fromAddress(props.cityName).then(
         //     (response) => {
@@ -56,7 +56,7 @@ const ImageModal: React.FC<results> = (props: results) => {
     };
 
     useEffect(() => {
-        console.log(props.cityName);
+        // console.log(props.cityName);
         
         getModalView(props.cityName).then(res => setData(res[0]))
     },[])

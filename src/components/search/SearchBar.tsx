@@ -29,7 +29,7 @@ const SearchBar: React.FC<props> = ({ keyword, setKeyword, buttonClick }: props)
   }
 
   // print to console with load state change
-  useEffect(() => console.log(load), [load]);
+  // useEffect(() => console.log(load), [load]);
 
   return (
     <div className='SearchBar'>

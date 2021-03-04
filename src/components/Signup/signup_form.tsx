@@ -19,7 +19,7 @@ async function newUser(email: string, password: string): Promise<void>{
           password: password
         })
         .then(function() {
-          console.log("Database document completed.");
+          // console.log("Database document completed.");
         })
         .catch(function(error) {
           console.error("Error adding user: ", error);

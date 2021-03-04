@@ -35,10 +35,10 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
   // true for add, false for delete
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number, number_people?: number, search_address?: string, lat?: number, lng?:number) => {
     if (firebase.auth().currentUser == null) return;
-    console.log("Search Address: " + search_address);
+    // console.log("Search Address: " + search_address);
     if (add_or_delete) {
       createRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, number_people, search_address, lat, lng).then(res => {
-        console.log(res);
+        // console.log(res);
         const newCard: results = {
           cityName: city_name,
           distance: distance,
@@ -55,7 +55,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
       });
     } else {
       deleteRequest(firebase.auth().currentUser?.uid, city_name, travel_time, distance, average_cost, travel_seconds, number_people, search_address, lat, lng).then(res => {
-        console.log(res);
+        // console.log(res);
         const oldCard: results = {
           cityName: city_name,
           distance: distance,
@@ -80,7 +80,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
           {results.map((result, index) => {
             return (
               <>
-              <Fade down delay={250} distance={"0.5em"}>
+              <Fade down delay={50} distance={"0.5em"}>
               <div className="card" key={index}>
                 <div className="title">
                   {result.cityName}

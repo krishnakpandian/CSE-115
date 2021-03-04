@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { results, props } from "../components/Results/result-body";
 import { getRequest } from "../components/Request/request";
-import firebase from '../components/Signup/firebaseConfig'
+import firebase from '../components/Signup/firebaseConfig';
 import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
@@ -13,7 +13,6 @@ import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import SaveToggle from "../components/Results/saveToggle";
 import ResultBody from '../components/Results/result-body';
-import { createImportTypeNode } from "typescript";
 
 let saved_props: props = {
   results: [],
@@ -22,10 +21,10 @@ let saved_props: props = {
   lat: 0,
   lng: 0,
   address: "",
-  updateSaves: (add_or_delete: boolean, res: results) => { console.log(res); }
+  updateSaves: (add_or_delete: boolean, res: results) => null
 };
 
-const Home = () => {
+const Home: React.FC = () => {
   // state for saved cards
   const [saves, setSaves] = useState<results[]>([]);
 
@@ -45,8 +44,8 @@ const Home = () => {
         }
       });
       updateData(saved_props);
-    } else {//&& oldArray.averageCost != res.averageCost
-      setSaves(oldArray => oldArray.filter(oldArray => { return !(oldArray.cityName == res.cityName && oldArray.searchAddress == res.searchAddress && oldArray.numberPeople == res.numberPeople)  }));
+    } else { // && oldArray.averageCost != res.averageCost
+      setSaves(oldArray => oldArray.filter(oldArray => { return !(oldArray.cityName == res.cityName && oldArray.searchAddress == res.searchAddress && oldArray.numberPeople == res.numberPeople) }));
       saved_props.results.forEach(element => {
         if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = false;
@@ -69,9 +68,9 @@ const Home = () => {
     // Iterate though each save
     // If a save's searchAddress matches the search input, check if the cityName matches
     saves.forEach(save => {
-      if(save.searchAddress == res.address)
-        res.results.forEach( city => {
-          if(save.numberPeople == city.numberPeople && save.cityName == city.cityName) {
+      if (save.searchAddress == res.address)
+        res.results.forEach(city => {
+          if (save.numberPeople == city.numberPeople && save.cityName == city.cityName) {
             city.saved = true;
           }
         });
