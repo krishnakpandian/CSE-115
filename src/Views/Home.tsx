@@ -13,6 +13,7 @@ import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import SaveToggle from "../components/Results/saveToggle";
 import ResultBody from '../components/Results/result-body';
+import { createImportTypeNode } from "typescript";
 
 let saved_props: props = {
   results: [],
@@ -38,17 +39,16 @@ const Home = () => {
   const add_or_delete_save = (add_or_delete: boolean, res: results) => {
     if (add_or_delete) {
       setSaves(oldArray => [...oldArray, res]);
-      saved_props.results.forEach(element => {
-        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress) {
-          console.log("Saved: " + element.cityName);
+      saved_props.results.forEach(element => {//&& element.averageCost == res.averageCost
+        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = true;
         }
       });
       updateData(saved_props);
-    } else {
-      setSaves(oldArray => oldArray.filter(oldArray => { return oldArray.cityName != res.cityName && oldArray.distance != res.distance }));
+    } else {//&& oldArray.averageCost != res.averageCost
+      setSaves(oldArray => oldArray.filter(oldArray => { return !(oldArray.cityName == res.cityName && oldArray.searchAddress == res.searchAddress && oldArray.numberPeople == res.numberPeople)  }));
       saved_props.results.forEach(element => {
-        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress) {
+        if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = false;
         }
       });
@@ -57,12 +57,28 @@ const Home = () => {
 
   }
 
-  // update of data
+  // update of data from save / un save
   const updateData = (res: props) => {
     // make sure function is correct
     res.updateSaves = add_or_delete_save;
     setData(res);
-    console.log("TEST", saves);
+  }
+
+  // update of data from search
+  const updateDataSearch = (res: props) => {
+    // Iterate though each save
+    // If a save's searchAddress matches the search input, check if the cityName matches
+    saves.forEach(save => {
+      if(save.searchAddress == res.address)
+        res.results.forEach( city => {
+          if(save.numberPeople == city.numberPeople && save.cityName == city.cityName) {
+            city.saved = true;
+          }
+        });
+    });
+    // make sure function is correct
+    res.updateSaves = add_or_delete_save;
+    setData(res);
   }
 
   // sort saved cards
@@ -78,7 +94,7 @@ const Home = () => {
   // Just checking data is updated correctly
   //    Whenever data updates, print to console
   useEffect(() => {
-    console.log(data);
+    //console.log(data);
   }, [data]);
 
   // Get saved cards on intial load if user is logged in
@@ -86,24 +102,19 @@ const Home = () => {
   useEffect(() => {
     if (firebase.auth().currentUser != null) {
       getRequest(firebase.auth().currentUser?.uid).then(res => {
-        console.log("Loading Cards");
         setSaves(res);
-        console.log("Loaded Cards");
       });
     }
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User logged in already or has just logged in.
         getRequest(user.uid).then(res => {
-          console.log("Loading Cards");
           setSaves(res);
-          console.log("Loaded Cards");
         }).catch(error => {
           console.error("Error Getting Cards: ", error);
         });
       } else {
         // User not logged in or has just logged out.
-        console.log("Not logged in");
         setSaves([]);
       }
     });
@@ -122,7 +133,6 @@ const Home = () => {
       address: data.address,
       updateSaves: add_or_delete_save
     };
-    console.log(saves);
   }, [saves]);
 
   // necessary because of result-body props parameters, might have to change this
@@ -155,7 +165,7 @@ const Home = () => {
     <div className="App">
       <NavbarTop />
       <AboutProduct />
-      <Search data={data} setData={updateData} />
+      <Search data={data} setData={updateDataSearch} />
       <SaveToggle view={view} setView={updateView} />
       <InvalidSearch data={data} view={view} />
       <NavbarMiddle data={data} view={view} />
