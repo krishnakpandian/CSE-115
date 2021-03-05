@@ -13,6 +13,7 @@ import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import SaveToggle from "../components/Results/saveToggle";
 import ResultBody from '../components/Results/result-body';
+import {analytics} from '../components/Signup/firebaseConfig'
 
 let saved_props: props = {
   results: [],

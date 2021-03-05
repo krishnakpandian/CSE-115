@@ -11,6 +11,6 @@ export const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-firebase.analytics()
+export const analytics = firebase.analytics()
 
 export default firebase;

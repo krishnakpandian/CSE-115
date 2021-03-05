@@ -4,6 +4,7 @@ import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
 import firebase from '../Signup/firebaseConfig'
 import Fade from 'react-reveal/Fade';
+import {analytics} from '../Signup/firebaseConfig'
 
 export interface results {
   cityName: string,
@@ -51,6 +52,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
           lng: lng,
           saved: true
         }
+        analytics.logEvent("saved_Card")
         updateSaves(add_or_delete, newCard);
       });
 
@@ -69,6 +71,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
           lng: lng,
           saved: false
         }
+        analytics.logEvent("unsaved_Card")
         updateSaves(add_or_delete, oldCard);
       });
     }
