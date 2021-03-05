@@ -89,19 +89,10 @@ const Home: React.FC = () => {
     setView(view)
   }
 
-<<<<<<< HEAD
-  // Just checking data is updated correctly
-  //    Whenever data updates, print to console
-  useEffect(() => {
-    analytics.logEvent("pageVisited_Home")
-    console.log(data);
-  }, [data]);
-=======
   // whenever data updates, print to console
   // useEffect(() => {
   //   console.log(data);
   // }, [data]);
->>>>>>> origin
 
   // get saved cards on initial load if user is logged in
   // adds a listener to user state, if user logs in or logs out change saves state

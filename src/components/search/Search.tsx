@@ -37,7 +37,7 @@ const Search = params => {
     if (input === '') {
       // blank search
     } else {
-      analytics.logEvent("search_Request_Made")
+      analytics.logEvent("search_Request_" + people + "_People")
       request(input, radius, people).then(res => {
         params.setData(res);
         setInput(res.address);

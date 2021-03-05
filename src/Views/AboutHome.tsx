@@ -5,19 +5,11 @@ import About from '../components/About/About';
 import {analytics} from '../components/Signup/firebaseConfig'
 
 
-<<<<<<< HEAD
-
-const AboutHome = () => {
-
-    useEffect(() => {
-        analytics.logEvent("pageVisited_About")
-    })
-
-    return(
-=======
 const AboutHome: React.FC = () => {
+    useEffect(() => {
+        analytics.logEvent("page_visited_About")
+    })
     return (
->>>>>>> origin
         <div className="App">
             <NavbarTop />
             <About />
