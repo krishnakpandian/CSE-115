@@ -14,7 +14,7 @@ export async function request(city: string, radius_of_results: number, number_of
         lat: 0,
         lng: 0,
         address: "",
-        updateSaves: (add_or_delete: boolean, res: results) => {console.log(res);}
+        updateSaves: (add_or_delete: boolean, res: results) => null
     };
     const values = {
         'place': city,
@@ -44,7 +44,7 @@ export async function request(city: string, radius_of_results: number, number_of
 //         paramters: user id, city information
 //         returns:  a promise
 export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?:number, number_people?: number, search_address?: string, lat?: number, lng?: number): Promise<string>{
-    console.log(id);
+    // console.log(id);
     let message = "";
     const values = {
         'id': id,
@@ -69,7 +69,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
         console.error("Error saving card to firestore: ", error);
         return message;
     });
-    console.log(message);
+    // console.log(message);
     return message;
 }
 
@@ -77,7 +77,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
 //         paramters: user id, city information
 //         returns:  a promise
 export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?: number, number_people?: number, search_address?: string, lat?: number, lng?: number): Promise<string>{
-    console.log(id);
+    // console.log(id);
     let message = "";
     const values = {
         'id': id,
@@ -102,7 +102,7 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
         console.error("Error deleting card in firestore: ", error);
         return message;
     });
-    console.log(message);
+    // console.log(message);
     return message;
 }
 
@@ -110,7 +110,7 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
 //         paramters: user id
 //         returns:  a promise
 export async function getRequest(id?: string): Promise<results[]> {
-    console.log(id);
+    // console.log(id);
     let results: results[] = [];
     const values = {
         'id': id
@@ -120,7 +120,7 @@ export async function getRequest(id?: string): Promise<results[]> {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(values),
         }).then(res => res.json()).then(data => {
-            console.log(data);
+            // console.log(data);
             if(data){
                 if('cards' in data){
                     results = data['cards'].map(obj => ({ ...obj, saved : true}));
@@ -132,7 +132,7 @@ export async function getRequest(id?: string): Promise<results[]> {
         console.error("Error getting cards from firestore: ", error);
         return results;
     });
-    console.log(results);
+    // console.log(results);
     return results;
 }
 

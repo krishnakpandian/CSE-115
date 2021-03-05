@@ -7,9 +7,9 @@ import firebase from '../Signup/firebaseConfig'
 async function logoutUser(): Promise<void>{
     try {
         await firebase.auth().signOut();
-        console.log("signed out!");
+        // console.log("signed out!");
     } catch (e){
-        console.log("Couldn't log out!");
+        // console.log("Couldn't log out!");
     } 
 }
 

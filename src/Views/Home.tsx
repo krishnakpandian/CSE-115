@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { results, props } from "../components/Results/result-body";
 import { getRequest } from "../components/Request/request";
-import firebase from '../components/Signup/firebaseConfig'
+import firebase from '../components/Signup/firebaseConfig';
 import NavbarTop from "../components/NavBar/navbar_top";
 import NavbarBottom from "../components/NavBar/navbar_bottom";
 import NavbarMiddle from "../components/NavBar/navbar_middle";
@@ -13,7 +13,6 @@ import Search from '../components/search/Search';
 import MapResult from '../components/Request/MapResult';
 import SaveToggle from "../components/Results/saveToggle";
 import ResultBody from '../components/Results/result-body';
-import { createImportTypeNode } from "typescript";
 
 let saved_props: props = {
   results: [],
@@ -22,10 +21,10 @@ let saved_props: props = {
   lat: 0,
   lng: 0,
   address: "",
-  updateSaves: (add_or_delete: boolean, res: results) => { console.log(res); }
+  updateSaves: (add_or_delete: boolean, res: results) => null
 };
 
-const Home = () => {
+const Home: React.FC = () => {
   // state for saved cards
   const [saves, setSaves] = useState<results[]>([]);
 
@@ -39,14 +38,15 @@ const Home = () => {
   const add_or_delete_save = (add_or_delete: boolean, res: results) => {
     if (add_or_delete) {
       setSaves(oldArray => [...oldArray, res]);
-      saved_props.results.forEach(element => {//&& element.averageCost == res.averageCost
+      saved_props.results.forEach(element => {
         if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = true;
         }
       });
       updateData(saved_props);
-    } else {//&& oldArray.averageCost != res.averageCost
-      setSaves(oldArray => oldArray.filter(oldArray => { return !(oldArray.cityName == res.cityName && oldArray.searchAddress == res.searchAddress && oldArray.numberPeople == res.numberPeople)  }));
+
+    } else {
+      setSaves(oldArray => oldArray.filter(oldArray => { return !(oldArray.cityName == res.cityName && oldArray.searchAddress == res.searchAddress && oldArray.numberPeople == res.numberPeople) }));
       saved_props.results.forEach(element => {
         if (element.cityName == res.cityName && element.searchAddress == res.searchAddress && element.numberPeople == res.numberPeople) {
           element.saved = false;
@@ -54,29 +54,26 @@ const Home = () => {
       });
       updateData(saved_props);
     }
-
   }
 
-  // update of data from save / un save
+  // update of data from save - unsave
   const updateData = (res: props) => {
-    // make sure function is correct
     res.updateSaves = add_or_delete_save;
     setData(res);
   }
 
   // update of data from search
   const updateDataSearch = (res: props) => {
-    // Iterate though each save
-    // If a save's searchAddress matches the search input, check if the cityName matches
+    // if a save's searchAddress matches the search input, check if the cityName matches
     saves.forEach(save => {
-      if(save.searchAddress == res.address)
-        res.results.forEach( city => {
-          if(save.numberPeople == city.numberPeople && save.cityName == city.cityName) {
+      if (save.searchAddress == res.address)
+        res.results.forEach(city => {
+          if (save.numberPeople == city.numberPeople && save.cityName == city.cityName) {
             city.saved = true;
           }
         });
     });
-    // make sure function is correct
+
     res.updateSaves = add_or_delete_save;
     setData(res);
   }
@@ -91,38 +88,37 @@ const Home = () => {
     setView(view)
   }
 
-  // Just checking data is updated correctly
-  //    Whenever data updates, print to console
-  useEffect(() => {
-    //console.log(data);
-  }, [data]);
+  // whenever data updates, print to console
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
 
-  // Get saved cards on intial load if user is logged in
-  // Adds a listener to user state; if user logsin/logsout change saves state
+  // get saved cards on initial load if user is logged in
+  // adds a listener to user state, if user logs in or logs out change saves state
   useEffect(() => {
     if (firebase.auth().currentUser != null) {
       getRequest(firebase.auth().currentUser?.uid).then(res => {
         setSaves(res);
       });
     }
+
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // User logged in already or has just logged in.
+        // user logged in already or has just logged in
         getRequest(user.uid).then(res => {
           setSaves(res);
         }).catch(error => {
           console.error("Error Getting Cards: ", error);
         });
+
       } else {
-        // User not logged in or has just logged out.
+        // user not logged in or has just logged out
         setSaves([]);
       }
     });
   }, []);
 
-  // Just checking saves is updated correctly
-  //    Whenever saves updates, print to console
-  // Also stores current proprs, so it appears after rerender
+  // whenever saves updates, stores current props so it appears after re-render
   useEffect(() => {
     saved_props = {
       results: data.results,
@@ -135,7 +131,7 @@ const Home = () => {
     };
   }, [saves]);
 
-  // necessary because of result-body props parameters, might have to change this
+  // necessary because of result-body props parameters
   const saveFormat = {
     results: saves,
     statusCode: 200,
