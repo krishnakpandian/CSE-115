@@ -1,7 +1,7 @@
 import firebase from '../Signup/firebaseConfig'
 
 //get google auth provider
-const provider = new firebase.auth.GoogleAuthProvider();
+
 
 /* Function logs in google user
   Takes no arguments
@@ -9,9 +9,9 @@ const provider = new firebase.auth.GoogleAuthProvider();
   Same login as when signing up google user, except
   a database doc is not created
 */
-async function loginGoogleUser(): Promise<boolean> {
+export async function loginGoogleUser(): Promise<boolean> {
   let uid: string | undefined;
-
+  const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
