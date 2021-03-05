@@ -11,13 +11,13 @@ async function loginUser(email: string, password: string): Promise<boolean>{
       const errorMessage = error.message;
       window.alert("Error: " + errorCode + errorMessage);
     });
-    console.log("Successful login?");
+    // console.log("Successful login?");
 
     const user = firebase.auth().currentUser;
 
     if (user) {
-      console.log("User stuff: ", user.email);
-      console.log("User ID: ", user.uid);
+      // console.log("User stuff: ", user.email);
+      // console.log("User ID: ", user.uid);
       return true;
     } else {
       return false;

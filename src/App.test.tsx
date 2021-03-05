@@ -16,8 +16,19 @@ import NavbarMiddle from './components/NavBar/navbar_middle';
 import ResultBody from './components/Results/result-body';
 import Search from './components/search/Search';
 
+
+import firebase from './components/Signup/firebaseConfig';
+import routeData from 'react-router';
+import newGoogleUser from './components/Signup/google_signup';
 Enzyme.configure({ adapter: new Adapter() });
 
+
+jest.mock('firebase', () => {
+  const auth = jest.fn();
+  auth.GoogleAuthProvider = jest.fn();
+  auth.Auth = jest.fn();
+  return { auth };
+});
 
 jest.mock('firebase', () => ({
   initializeApp: jest.fn(),
@@ -33,48 +44,96 @@ jest.mock('firebase', () => ({
 }))
 
 
+describe('App Renders', () => {
+
+  jest.mock('firebase', () => {
+    const auth = jest.fn();
+    const mAuth = { signInWithRedirect: jest.fn() };
+    // @ts-ignore
+    auth.GoogleAuthProvider = jest.fn();
+    // @ts-ignore
+    auth.Auth = jest.fn(() => mAuth);
+    return { auth };
+  });
 
 
-test('Main App Rendering', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/We-Locate/i);
-  expect(linkElement).toBeInTheDocument();
+  it('Home renders', () => {
+    shallow(<App />);
+  });
+})
+
+describe("Analytics Renders", () => {
+  it("Analytics Renders", () => {
+    shallow(<Home/>);
+  });
 });
 
-test('Home Rendering', () => {
-  const { getByText } = render(<Home />);
-  const linkElement = getByText(/We-Locate/i);
-  expect(linkElement).toBeInTheDocument();
+describe('Views Renders', () => {
+  const mockLocation = {
+    pathname: '/',
+    hash: '',
+    search: '',
+    state: ''
+  }
+  beforeEach(() => {
+    jest.spyOn(routeData, 'useLocation').mockReturnValue(mockLocation)
+  });
+  it('Home renders', () => {
+    shallow(<AboutHome />);
+  });
+})
+
+describe("Footer Renders", () => {
+  const mockLocation = {
+    pathname: '/',
+    hash: '',
+    search: '',
+    state: ''
+  }
+  beforeEach(() => {
+    jest.spyOn(routeData, 'useLocation').mockReturnValue(mockLocation)
+  });
+  it("Footer Renders", () => {
+    shallow(<NavbarBottom/>);
+  });
 });
 
-test('About Page Rendering', () => {
-  const { getByText } = render(<AboutHome/>);
-  const linkElement = getByText(/About Us/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Navbar Renders", () => {
+  const mockLocation = {
+    pathname: '/',
+    hash: '',
+    search: '',
+    state: ''
+  }
+  beforeEach(() => {
+    jest.spyOn(routeData, 'useLocation').mockReturnValue(mockLocation)
+  });
+  it("Navbar Renders", () => {
+    shallow(<NavbarTop/>);
+  });
 });
 
+describe("About Render", () => {
+  it('About Renders', () =>{
+    shallow(<About/>);
+  })
+})
 
+describe("NavbarMiddle Render", () => {
+  it('NavbarMiddle Renders', () =>{
+    shallow(<NavbarMiddle {...{}}/>);
+  })
+})
 
-// test('About Rendering', () => {
-//   const { getByText } = render(<About />);
-//   const linkElement = getByText(/We-Locate/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+describe("ResultBody Render", () => {
+  it('ResultBody Renders', () =>{
+    shallow(<ResultBody/>);
+  })
+})
 
-// test('NavBar Rendering', () => {
-//   const { getByText } = render(<Home />);
-//   const linkElement = getByText(/We-Locate/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+describe("Search Render", () => {
+  it('Search Renders', () =>{
+    shallow(<Search/>);
+  })
+})
 
-// test('Result Rendering', () => {
-//   const { getByText } = render(<ResultBody {...data}/>);
-//   const linkElement = getByText(/About Us/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
-// test('Search Rendering', () => {
-//   const { getByText } = render(<AboutHome/>);
-//   const linkElement = getByText(/About Us/i);
-//   expect(linkElement).toBeInTheDocument();
-// });

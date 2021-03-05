@@ -5,6 +5,7 @@ import About from '../components/About/About';
 import {analytics} from '../components/Signup/firebaseConfig'
 
 
+<<<<<<< HEAD
 
 const AboutHome = () => {
 
@@ -13,13 +14,16 @@ const AboutHome = () => {
     })
 
     return(
+=======
+const AboutHome: React.FC = () => {
+    return (
+>>>>>>> origin
         <div className="App">
-        <NavbarTop />
-        <About/>
-        <NavbarBottom/>
+            <NavbarTop />
+            <About />
+            <NavbarBottom />
         </div>
     )
 }
-
 
 export default AboutHome;

@@ -35,7 +35,7 @@ const Search = params => {
   // called for a new search when search button clicked
   const buttonClick = (setLoading) => {
     if (input === '') {
-      console.log("blank search");
+      // blank search
     } else {
       analytics.logEvent("search_Request_Made")
       request(input, radius, people).then(res => {

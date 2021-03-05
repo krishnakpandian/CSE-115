@@ -19,11 +19,14 @@ class NavbarTop extends React.Component<any, any> {
       signupCollapsed: false,
       loginCollapsed: false,
       email: "",
-      password: "",
-      userLogged: this.getUserStatus(),
-      userEmail: this.getUserEmail()
+      password: ""
     }
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.getUserStatus();
+    this.getUserEmail();
   }
 
   getUserEmail() {

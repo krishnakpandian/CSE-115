@@ -3,9 +3,9 @@ import "./App.css";
 import "./bulma.css"
 import Routes from './Routes/Route';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Routes/>
+    <Routes />
   );
 }
 

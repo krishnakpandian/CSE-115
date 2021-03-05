@@ -1,7 +1,5 @@
 import firebase from './firebaseConfig';
 
-//get google auth provider
-const provider = new firebase.auth.GoogleAuthProvider();
 
 //get firebase database 
 const db = firebase.firestore(); 
@@ -10,9 +8,9 @@ const db = firebase.firestore();
    Has no arguments and returns nothing
    Creates a database entry for that user
 */
-async function newGoogleUser() {
+export async function newGoogleUser() {
   let uid: string | undefined;
-
+  const provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()
   .signInWithPopup(provider)
@@ -28,7 +26,7 @@ async function newGoogleUser() {
     db.collection("Users").doc(uid).set({
       name: "Google User!"
     }).then(function() {
-      console.log("Doc completion notification.")
+      // console.log("Doc completion notification.")
     });
   
   }).catch((error) => {
