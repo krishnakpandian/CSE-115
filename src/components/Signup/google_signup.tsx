@@ -8,7 +8,7 @@ const db = firebase.firestore();
    Has no arguments and returns nothing
    Creates a database entry for that user
 */
-export async function newGoogleUser() {
+export async function newGoogleUser(): Promise<void> {
   let uid: string | undefined;
   const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -16,12 +16,9 @@ export async function newGoogleUser() {
   .signInWithPopup(provider)
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
-    const credential = result.credential as firebase.auth.OAuthCredential;
 
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
+    
+    
     uid = result.user?.uid;
     db.collection("Users").doc(uid).set({
       name: "Google User!"
@@ -31,12 +28,10 @@ export async function newGoogleUser() {
   
   }).catch((error) => {
     // Errors
-    const errorCode = error.code;
-    const errorMessage = error.message;
+ 
+    console.log(error.message);
     // The email of the user's account used.
-    const email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    const credential = error.credential;
+  
   
   });
 }
