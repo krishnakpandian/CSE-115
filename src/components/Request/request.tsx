@@ -14,7 +14,7 @@ export async function request(city: string, radius_of_results: number, number_of
         lat: 0,
         lng: 0,
         address: "",
-        updateSaves: (add_or_delete: boolean, res: results) => null
+        updateSaves: () => null
     };
     const values = {
         'place': city,
@@ -36,7 +36,7 @@ export async function request(city: string, radius_of_results: number, number_of
         console.error("Error getting requests: ", error);
         return response;
     });
-    console.error(response);
+    //console.error(response);
     return response;
 }
 

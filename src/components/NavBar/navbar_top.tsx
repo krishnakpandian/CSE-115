@@ -9,9 +9,20 @@ import newGoogleUser from '../Signup/google_signup'
 import loginGoogleUser from '../Login/google_login'
 import google_logo from '../../assets/google_icon.png'
 
-class NavbarTop extends React.Component<any, any> {
 
-  constructor(props) {
+// type myprops = {
+//   collapsed: boolean,
+//   signupCollapsed: boolean,
+//   loginCollapsed: boolean,
+//   email: string,
+//   password: string,
+//   userEmail: string | null,
+//   userLogged: boolean | null
+// }
+
+class NavbarTop extends React.Component<React.FC, any> { 
+
+  constructor(props) { 
     super(props);
 
     this.state = {
@@ -24,12 +35,12 @@ class NavbarTop extends React.Component<any, any> {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount():void {
     this.getUserStatus();
     this.getUserEmail();
   }
 
-  getUserEmail() {
+  getUserEmail():void {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ userEmail: user.email });
@@ -40,7 +51,7 @@ class NavbarTop extends React.Component<any, any> {
     });
   }
 
-  getUserStatus() {
+  getUserStatus():void {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User logged in already or has just logged in.
@@ -52,43 +63,43 @@ class NavbarTop extends React.Component<any, any> {
     });
   }
 
-  handleToggle() {
+  handleToggle():void {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
-  handleSignup() {
+  handleSignup():void {
     this.setState({ signupCollapsed: !this.state.signupCollapsed });
     this.setState({ loginCollapsed: false });
   }
 
-  handleChange(field) {
+  handleChange(field:React.ChangeEvent<HTMLInputElement>):void {
     this.setState({ [field.target.name]: field.target.value });
   }
 
-  handleLogin() {
+  handleLogin():void {
     this.setState({ loginCollapsed: !this.state.loginCollapsed });
     this.setState({ signupCollapsed: false });
   }
 
-  handleLogout() {
+  handleLogout():void {
     logoutUser();
     this.setState({ userLogged: false });
     this.setState({ userEmail: "" });
   }
 
-  signUpClick() {
+  signUpClick():void {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
     newUser(this.state.email, this.state.password);
   }
 
-  async googleSignUpClick() {
+  async googleSignUpClick():Promise<void> {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
     newGoogleUser();
   }
 
-  async googleLoginClick() {
+  async googleLoginClick():Promise<void>  {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
     const check = await loginGoogleUser();
@@ -100,7 +111,7 @@ class NavbarTop extends React.Component<any, any> {
     this.getUserEmail();
   }
 
-  async loginClick() {
+  async loginClick():Promise<void>  {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
     const check = await loginUser(this.state.email, this.state.password);
@@ -112,7 +123,7 @@ class NavbarTop extends React.Component<any, any> {
     this.getUserEmail();
   }
 
-  render() {
+  render(): JSX.Element{
     return (
       <section>
         <nav className="navbar has-shadow" id="top_navbar" role="navigation" aria-label="main navigation">
@@ -151,21 +162,21 @@ class NavbarTop extends React.Component<any, any> {
     );
   }
 
-  userMenuShown = () => (
+  userMenuShown:React.FC = () => (
     <div className="dropdown-content">
       { this.state.userLogged ? this.state.userEmail : this.state.userEmail}
       <button className="button dropdown-item" id="list_button" onClick={() => this.handleLogout()}>Log Out</button>
     </div>
   );
 
-  menuShown = () => (
+  menuShown:React.FC = () => (
     <div className="dropdown-content">
       <button className="button dropdown-item" id="list_button" onClick={() => this.handleSignup()}>Sign Up</button>
       <button className="button dropdown-item" id="list_button" onClick={() => this.handleLogin()}>Login</button>
     </div>
   );
 
-  userShown = () => (
+  userShown:React.FC = () => (
     <div className="navbar-item">
       <div id="Username">
         Welcome, {this.state.userLogged ? this.state.userEmail
@@ -177,7 +188,7 @@ class NavbarTop extends React.Component<any, any> {
     </div>
   );
 
-  buttonsShown = () => (
+  buttonsShown:React.FC = () => (
     <div className="navbar-item">
       <div className="buttons ButtonAlign">
         <button className={"button is-black is-outlined"} onClick={() => this.handleSignup()}>Sign Up</button>
@@ -186,7 +197,7 @@ class NavbarTop extends React.Component<any, any> {
     </div>
   );
 
-  Signup = () => (
+  Signup:React.FC = () => (
     <div className="box column is-quarter is-pulled-right has-background-white">
       <button className='is-square button is-success' id="google_img" onClick={() => this.googleSignUpClick()}>
         <img className="image is-16x16" src={google_logo}></img>
@@ -216,7 +227,7 @@ class NavbarTop extends React.Component<any, any> {
     </div>
   );
 
-  Login = () => (
+  Login:React.FC = () => (
     <div className="box column is-quarter is-pulled-right has-background-white">
       <button className='is-square button is-success' id="google_img" onClick={() => this.googleLoginClick()}>
         <img className="image is-16x16" src={google_logo}></img>
