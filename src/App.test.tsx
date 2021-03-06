@@ -14,21 +14,21 @@ import NavbarTop from './components/NavBar/navbar_top';
 import NavbarBottom from './components/NavBar/navbar_bottom';
 import NavbarMiddle from './components/NavBar/navbar_middle';
 import ResultBody from './components/Results/result-body';
-import Search from './components/search/Search';
 
+import Search from './components/search/Search';
+import SaveToggle from './components/Results/saveToggle'
+import SortDropdown from './components/Results/Sort/SortDropdown'
+import Sort from './components/Results/Sort/Sort';
+import Modals from './components/Modals/Modals';
 
 import firebase from './components/Signup/firebaseConfig';
+//import firebase from 'firebase';
 import routeData from 'react-router';
 import newGoogleUser from './components/Signup/google_signup';
+import DeveloperCard from './components/About/DeveloperCard/DeveloperCard';
 Enzyme.configure({ adapter: new Adapter() });
 
 
-jest.mock('firebase', () => {
-  const auth = jest.fn();
-  auth.GoogleAuthProvider = jest.fn();
-  auth.Auth = jest.fn();
-  return { auth };
-});
 
 jest.mock('firebase', () => ({
   initializeApp: jest.fn(),
@@ -40,7 +40,7 @@ jest.mock('firebase', () => ({
       }))
     })) 
    }),
-   auth: jest.fn()
+  auth: jest.fn()
 }))
 
 
@@ -98,20 +98,6 @@ describe("Footer Renders", () => {
   });
 });
 
-describe("Navbar Renders", () => {
-  const mockLocation = {
-    pathname: '/',
-    hash: '',
-    search: '',
-    state: ''
-  }
-  beforeEach(() => {
-    jest.spyOn(routeData, 'useLocation').mockReturnValue(mockLocation)
-  });
-  it("Navbar Renders", () => {
-    shallow(<NavbarTop/>);
-  });
-});
 
 describe("About Render", () => {
   it('About Renders', () =>{
@@ -119,15 +105,30 @@ describe("About Render", () => {
   })
 })
 
+
+
+
 describe("NavbarMiddle Render", () => {
   it('NavbarMiddle Renders', () =>{
-    shallow(<NavbarMiddle {...{}}/>);
+    shallow(<NavbarMiddle {...{data: {address: 'city'}, view: 'search'}}
+    />);
   })
 })
 
 describe("ResultBody Render", () => {
   it('ResultBody Renders', () =>{
-    shallow(<ResultBody/>);
+    shallow(<ResultBody {...{results: [{
+      cityName: "city",
+      travelTime: 1,
+      distance: 1,
+      averageCost: 1,
+      travelSeconds: 1,
+      numberPeople: 1,
+      searchAddress: "Yes",
+      lat: 1,
+      lng: 1,
+      saved: true
+    }],updateSaves: jest.fn() ,viewState: "yes", currentState: "no", statusCode: 200, }}/>);
   })
 })
 
@@ -137,3 +138,32 @@ describe("Search Render", () => {
   })
 })
 
+describe("SaveToggle Render", () => {
+  it('SaveToggle Renders', () =>{
+    shallow(<SaveToggle/>);
+  })
+})
+
+describe("SortDropdown Render", () => {
+  it('SortDropdown Renders', () =>{
+    shallow(<SortDropdown/>);
+  })
+})
+
+describe("Sort Render", () => {
+  it('Sort Renders', () =>{
+    shallow(<Sort {...{data: {address: 'city', results: []}, setData: jest.fn(), sort: [], sortSaves: "default", view: 'search' }}/>);
+  })
+})
+
+describe("Modal Render", () => {
+  it('Modal Renders', () =>{
+    shallow(<Modals/>);
+  })
+})
+
+describe("DeveloperCard Render", () => {
+  it('DeveloperCard Renders', () =>{
+    shallow(<DeveloperCard/>);
+  })
+})
