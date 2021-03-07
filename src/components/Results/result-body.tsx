@@ -4,7 +4,7 @@ import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
 import firebase from '../Signup/firebaseConfig'
 import Fade from 'react-reveal/Fade';
-import {analytics} from '../Signup/firebaseConfig'
+import { analytics } from '../Signup/firebaseConfig'
 
 export interface results {
   cityName: string,
@@ -76,7 +76,8 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
       });
     }
   }
-
+  // Takes in the results from backend and maps each result individually into their own viewable cards
+  // Beginning if statement used to render search and saved results respectively
   if (viewState == currentState) {
     return (
       <>
