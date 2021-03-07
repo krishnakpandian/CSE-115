@@ -19,7 +19,7 @@ export interface ModalInfoProps {
 
 interface dataBar {
     name: string,
-    color: string,
+    color?: string,
     upper: number,
     lower: number,
     value: number
@@ -28,7 +28,7 @@ interface dataBar {
 const ImageModal: React.FC<results> = (props: results) => {
     const [open, setOpen] = useState(false);
     const [data, setData] = useState<ModalInfoProps>();
-    const [url, setURL] = useState<any>('');
+    const [url, setURL] = useState<string>('');
 
     const handleOpen = async () => {
         setOpen(true);
@@ -89,7 +89,7 @@ const ImageModal: React.FC<results> = (props: results) => {
 
 export default ImageModal;
 
-const ResultBar: React.FC<dataBar> = ({ name, color, upper, lower, value }: dataBar) => {
+const ResultBar: React.FC<dataBar> = ({ name, upper, lower, value }: dataBar) => {
     const updateNegative = (val, diff) => {
         return val -= diff
     }
@@ -105,16 +105,6 @@ const ResultBar: React.FC<dataBar> = ({ name, color, upper, lower, value }: data
 
     percentage = Math.round(percentage * 100) / 100
     const percent = `${percentage}%`;
-
-    if (percentage < 50) {
-        color = "red";
-    }
-    else if (percentage >= 50 && percentage <= 75) {
-        color = "yellow";
-    }
-    else {
-        color = "green";
-    }
 
     function getGreenToRed(percent) {
         const r = percent < 50 ? 255 : Math.floor(255 - (percent * 2 - 100) * 255 / 100);

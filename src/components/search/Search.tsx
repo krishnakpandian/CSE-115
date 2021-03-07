@@ -5,9 +5,13 @@ import Radius from './filters/Radius';
 import People from './filters/People';
 import './Search.css';
 import {analytics} from '../Signup/firebaseConfig'
+import {props} from '../Results/result-body';
 
-
-const Search = params => {
+interface inputprops {
+  data: props,
+  setData: (res: props) => void
+}
+const Search:React.FC<inputprops> = (params) => {
   // state for user input of search bar
   const [input, setInput] = useState('');
 

@@ -137,3 +137,10 @@ img.modal-map {
   margin: 3.8rem;
   vertical-align: -0.7rem !important;
 }
+
+@media screen and (max-width: 340px) {
+  .modal-container {
+    height: 90vh;
+    margin: 5vh 10vw 5vh 10vw;
+  }
+}

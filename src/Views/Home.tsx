@@ -22,7 +22,7 @@ let saved_props: props = {
   lat: 0,
   lng: 0,
   address: "",
-  updateSaves: (add_or_delete: boolean, res: results) => null
+  updateSaves: () => null
 };
 
 const Home: React.FC = () => {
