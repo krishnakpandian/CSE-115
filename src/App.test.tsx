@@ -29,7 +29,7 @@ import DeveloperCard from './components/About/DeveloperCard/DeveloperCard';
 Enzyme.configure({ adapter: new Adapter() });
 
 
-
+// Mocks Firebase Methods
 jest.mock('firebase', () => ({
   initializeApp: jest.fn(),
   analytics: jest.fn(),
@@ -43,6 +43,9 @@ jest.mock('firebase', () => ({
   auth: jest.fn()
 }))
 
+
+
+//Tests Shallow Rendering of Each Component
 
 describe('App Renders', () => {
 

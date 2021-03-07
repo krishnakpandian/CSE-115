@@ -4,6 +4,8 @@ import './About.css';
 import DeveloperCard from './DeveloperCard/DeveloperCard';
 import Fade from 'react-reveal/Fade';
 
+
+// Renders All the Developer Information
 const About: React.FC = () => {
   return (
     <>
