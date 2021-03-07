@@ -4,7 +4,7 @@ import { createRequest, deleteRequest } from "../Request/request";
 import ImageModal from "../Modals/Modals";
 import firebase from '../Signup/firebaseConfig'
 import Fade from 'react-reveal/Fade';
-import {analytics} from '../Signup/firebaseConfig'
+import { analytics } from '../Signup/firebaseConfig'
 
 export interface results {
   cityName: string,
@@ -83,37 +83,35 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
         <div className="result-container">
           {results.map((result, index) => {
             return (
-              <>
-                <Fade down delay={50} distance={"0.5em"}>
-                  <div className="card" key={index}>
-                    <div className="title">
-                      {result.cityName}
-                    </div>
-
-                    <p className="address">From {result.searchAddress} with {numPeople(result.numberPeople)}</p>
-
-                    <div className="card-content">
-                      <li>{result.distance} km</li>
-                      <li>{cost(result.averageCost)}</li>
-                      <li>{travel(result.travelTime)}</li>
-                    </div>
-
-                    <footer className="card-footer">
-                      <ImageModal {...result} />
-                      {!result.saved &&
-                        <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.numberPeople, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
-                          Save
-                  </a>
-                      }
-                      {result.saved &&
-                        <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.numberPeople, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
-                          Unsave
-                  </a>
-                      }
-                    </footer>
+              <Fade down delay={50} distance={"0.5em"} key={index}>
+                <div className="card" key={index}>
+                  <div className="title">
+                    {result.cityName}
                   </div>
-                </Fade>
-              </>
+
+                  <p className="address">From {result.searchAddress} with {numPeople(result.numberPeople)}</p>
+
+                  <div className="card-content">
+                    <li>{result.distance} km</li>
+                    <li>{cost(result.averageCost)}</li>
+                    <li>{travel(result.travelTime)}</li>
+                  </div>
+
+                  <footer className="card-footer">
+                    <ImageModal {...result} />
+                    {!result.saved &&
+                      <a onClick={() => updateSave(true, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.numberPeople, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
+                        Save
+                  </a>
+                    }
+                    {result.saved &&
+                      <a onClick={() => updateSave(false, result.cityName, result.travelTime, result.distance, result.averageCost, result.travelSeconds, result.numberPeople, result.searchAddress, result.lat, result.lng)} className="card-footer-item">
+                        Unsave
+                  </a>
+                    }
+                  </footer>
+                </div>
+              </Fade>
             )
           })}
         </div>
