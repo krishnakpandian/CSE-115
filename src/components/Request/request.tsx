@@ -3,9 +3,7 @@ import {ModalInfoProps} from "../Modals/Modals";
 
 // request() Sends a request to the backend to get information of surrounding cities
 //         paramters: city and filters
-//         returns:  a promise
-
-
+//         returns:  list of cities and associated data
 export async function request(city: string, radius_of_results: number, number_of_people: number): Promise<props>{
     const response: props = {
         results: [],
@@ -42,7 +40,7 @@ export async function request(city: string, radius_of_results: number, number_of
 
 // createRequest() Sends a request to the backend to save a card to firestore
 //         paramters: user id, city information
-//         returns:  a promise
+//         returns:  success message
 export async function createRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?:number, number_people?: number, search_address?: string, lat?: number, lng?: number): Promise<string>{
     // console.log(id);
     let message = "";
@@ -75,7 +73,7 @@ export async function createRequest(id?: string, city_name?: string, travel_time
 
 // deleteRequest() Sends a request to the backend to delete the save in firestore
 //         paramters: user id, city information
-//         returns:  a promise
+//         returns:  success information
 export async function deleteRequest(id?: string, city_name?: string, travel_time?: number, distance?: number, average_cost?: number, travelSeconds?: number, number_people?: number, search_address?: string, lat?: number, lng?: number): Promise<string>{
     // console.log(id);
     let message = "";
@@ -108,7 +106,7 @@ export async function deleteRequest(id?: string, city_name?: string, travel_time
 
 // getRequest() Sends a request to the backend to get the users list of saved cards
 //         paramters: user id
-//         returns:  a promise
+//         returns:  list of saved cards
 export async function getRequest(id?: string): Promise<results[]> {
     // console.log(id);
     let results: results[] = [];
@@ -138,9 +136,9 @@ export async function getRequest(id?: string): Promise<results[]> {
 
 
 
-// getRequest() Sends a request to the backend to get the users list of saved cards
-//         parameters: user id
-//         returns:  a promise
+// getRequest() Sends a request to the backend to get information on city
+//         parameters: city name
+//         returns:  city data
 export async function getModalView(city: string): Promise<ModalInfoProps> {
     let result: ModalInfoProps = {
         cleanliness: -1,

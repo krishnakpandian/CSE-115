@@ -32,7 +32,10 @@ export interface props {
 }
 
 const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentState }: props) => {
-  // true for add, false for delete
+  // This function is a wrapper for two functions.
+  // First, it updates the state in the database. (calling createRequest or deleteRequest)
+  // Second, it updates the state in the frontend. (updateSaves)
+  // add_or_delete: true for add, false for delete
   const updateSave = (add_or_delete: boolean, city_name: string, travel_time?: number, distance?: number, average_cost?: number, travel_seconds?: number, number_people?: number, search_address?: string, lat?: number, lng?: number) => {
     if (firebase.auth().currentUser == null) return;
     // console.log("Search Address: " + search_address);
@@ -124,6 +127,7 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
     return null
   }
 
+  // String wrapper form numberPeople
   function numPeople(numberPeople?: number) {
     if (numberPeople == 1) {
       return "1 person";
