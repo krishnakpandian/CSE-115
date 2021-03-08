@@ -9,19 +9,15 @@ import newGoogleUser from '../Signup/google_signup'
 import loginGoogleUser from '../Login/google_login'
 import google_logo from '../../assets/google_icon.png'
 
-
-// type myprops = {
-//   collapsed: boolean,
-//   signupCollapsed: boolean,
-//   loginCollapsed: boolean,
-//   email: string,
-//   password: string,
-//   userEmail: string | null,
-//   userLogged: boolean | null
-// }
-
 class NavbarTop extends React.Component<React.FC, any> { 
 
+  /* States included:
+     collapsed: cotrols user login/signup button menu for minimized screens
+     signupCollapsed: controls signup form open/close
+     loginCollapsed: controls login form open/close
+     email: field contains user's email
+     password: field for users password
+  */
   constructor(props) { 
     super(props);
 
@@ -35,11 +31,13 @@ class NavbarTop extends React.Component<React.FC, any> {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  //Function returns user logged status and user email
   componentDidMount():void {
     this.getUserStatus();
     this.getUserEmail();
   }
 
+  //Function retrieves user's email on login
   getUserEmail():void {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -51,6 +49,7 @@ class NavbarTop extends React.Component<React.FC, any> {
     });
   }
 
+  //Function retrieves users logged in status on login/logout
   getUserStatus():void {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -63,42 +62,50 @@ class NavbarTop extends React.Component<React.FC, any> {
     });
   }
 
+  //Function changes collapsed state of minimized menu
   handleToggle():void {
     this.setState({ collapsed: !this.state.collapsed });
   }
 
+  //Function opens signup menu
   handleSignup():void {
     this.setState({ signupCollapsed: !this.state.signupCollapsed });
     this.setState({ loginCollapsed: false });
   }
-
+  
+  //General function for handling state change
   handleChange(field:React.ChangeEvent<HTMLInputElement>):void {
     this.setState({ [field.target.name]: field.target.value });
   }
 
+  //Function opens login menu
   handleLogin():void {
     this.setState({ loginCollapsed: !this.state.loginCollapsed });
     this.setState({ signupCollapsed: false });
   }
 
+  //Function changes email/user status on logout
   handleLogout():void {
     logoutUser();
     this.setState({ userLogged: false });
     this.setState({ userEmail: "" });
   }
 
+  //Function closes signup/login forms on user signing up
   signUpClick():void {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
     newUser(this.state.email, this.state.password);
   }
 
+  //Function closes signup/login forms on google signup
   async googleSignUpClick():Promise<void> {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
     newGoogleUser();
   }
 
+  //Function sets user logged in state on google login
   async googleLoginClick():Promise<void>  {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
@@ -111,6 +118,7 @@ class NavbarTop extends React.Component<React.FC, any> {
     this.getUserEmail();
   }
 
+  //Function sets user logged in state on regular user login
   async loginClick():Promise<void>  {
     this.setState({ signupCollapsed: false });
     this.setState({ loginCollapsed: false });
