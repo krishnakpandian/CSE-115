@@ -209,12 +209,12 @@ class NavbarTop extends React.Component<React.FC, any> {
     <div className="box column is-quarter is-pulled-right has-background-white">
       <button className='is-square button is-success' id="google_img" onClick={() => this.googleSignUpClick()}>
         <img className="image is-16x16" src={google_logo}></img>
-              Sign Up with Google
+              &nbsp; Sign Up with Google
             </button>
       <div className="field">
         <label className="label">Email</label>
         <div className="control has-icons-left">
-          <input name="email" type="email" placeholder="test@gmail.com" className="input" required
+          <input name="email" type="email" placeholder="enter your email" className="input" required
             onChange={this.handleChange}>
           </input>
         </div>
@@ -222,7 +222,7 @@ class NavbarTop extends React.Component<React.FC, any> {
       <div className="field">
         <label className="label">Password</label>
         <div className="control has-icons-left">
-          <input name="password" type="password" placeholder="*******" className="input" required
+          <input name="password" type="password" placeholder="enter your password" className="input" required
             onChange={this.handleChange}>
           </input>
         </div>
@@ -239,13 +239,13 @@ class NavbarTop extends React.Component<React.FC, any> {
     <div className="box column is-quarter is-pulled-right has-background-white">
       <button className='is-square button is-success' id="google_img" onClick={() => this.googleLoginClick()}>
         <img className="image is-16x16" src={google_logo}></img>
-              Login with Google
+              &nbsp; Login with Google
             </button>
 
       <div className="field">
         <label className="label">Email</label>
         <div className="control has-icons-left">
-          <input name="email" type="email" placeholder="test@gmail.com" className="input" required
+          <input name="email" type="email" placeholder="enter your email" className="input" required
             onChange={this.handleChange}>
           </input>
         </div>
@@ -253,7 +253,7 @@ class NavbarTop extends React.Component<React.FC, any> {
       <div className="field">
         <label className="label">Password</label>
         <div className="control has-icons-left">
-          <input name="password" type="password" placeholder="*******" className="input" required
+          <input name="password" type="password" placeholder="enter your password" className="input" required
             onChange={this.handleChange}>
           </input>
         </div>
