@@ -29,7 +29,9 @@ const ImageModal: React.FC<results> = (props: results) => {
     const [open, setOpen] = useState(false);
     const [data, setData] = useState<ModalInfoProps>();
     const [url, setURL] = useState<string>('');
+    // Variables to manage the data of the URL, each card, and state
 
+    //Renders the Location by creating a URL
     const handleOpen = async () => {
         setOpen(true);
         setURL("https://maps.googleapis.com/maps/api/staticmap?center=" + props.lat + "," + props.lng + "&zoom=12&size=400x400&key=AIzaSyDQnX9w8MERcEdazmtldZsJR0PTHfprQSY");
@@ -39,6 +41,7 @@ const ImageModal: React.FC<results> = (props: results) => {
         setOpen(false);
     };
 
+    // On mount gets the data for everything
     useEffect(() => {
         getModalView(props.cityName).then(res => setData(res[0]))
     }, [])

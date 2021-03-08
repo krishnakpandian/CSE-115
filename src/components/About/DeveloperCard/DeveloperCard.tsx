@@ -2,7 +2,9 @@ import React from 'react';
 import './DeveloperCard.css';
 import {props} from '../Props/Props';
 
-
+/*
+Renders One card each and passes in the info about each developer
+*/
 const DeveloperCard: React.FC<props> = ( prop: props) => {
     return (
       <>
