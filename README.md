@@ -4,12 +4,15 @@
 This react app was developed with typescript.
 This application was intended to be run with the following backend.
 
+`https://github.com/krishnakpandian/CSE-115-Backend`
+(Currently Private)
+
 You can access the live site here.
 we-locate.xyz
 
 One note about the fetching performance on the live site is that the fetches might be slow since heroku free tier turns off it's servers if they are not used in a while. So if the render for backend fetches is slow, reload the page or test via the following instructions.
 
-`git clone https://github.com/krishnakpandian/CruzHacks2021DevChallengeFrontend.git`
+`git clone https://github.com/krishnakpandian/CSE-115-frontend.git`
 
 Run `npm install` to install the required modules
 
