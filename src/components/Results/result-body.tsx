@@ -79,7 +79,8 @@ const ResultBody: React.FC<props> = ({ results, updateSaves, viewState, currentS
       });
     }
   }
-
+  // Takes in the results from backend and maps each result individually into their own viewable cards
+  // Beginning if statement used to render search and saved results respectively
   if (viewState == currentState) {
     return (
       <>
